@@ -36,7 +36,7 @@
     <creator><name>Wozniak, Przemyslaw</name></creator>
 
     <date role="update">2011-07-11</date>
-    <version>1.0</version>
+    <version>2.0</version>
     <contact>
       <name>IVOA Time Domain WG</name>
       <email>voevent@ivoa.net</email>
@@ -80,7 +80,7 @@ to a particular registry, nor the intellectual property issues.
     <contentLevel>Research</contentLevel>
   </content>
 
-  <endorsedVersion status="rec">1.0</endorsedVersion>
+  <endorsedVersion status="rec">2.0</endorsedVersion>
 
   <key>
     <name>acc-vtp</name>
@@ -102,6 +102,14 @@ to a particular registry, nor the intellectual property issues.
     <description>
     	In an interface's standardID, this identifies an interface that gives
     	access to the VOEvent stream using Apache Kafka.
+    </description>
+  </key>
+  <key>
+    <name>acc-proprietary</name>
+    <description>
+    	In an interface's standardID, this identifies an interface that gives
+    	access to the VOEvent stream using some method not (yet) mentioned
+    	in the VOEvent standard's registry record.
     </description>
   </key>
 
