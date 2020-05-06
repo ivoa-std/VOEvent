@@ -3,6 +3,9 @@
 
 \usepackage{hyperref}
 \usepackage{verbatim}
+\lstloadlanguages{XML,SQL}
+\lstset{flexiblecolumns=true,numberstyle=\small,showstringspaces=False,
+  identifierstyle=\texttt,defaultdialect=[latex]tex,language=tex}
 
 \title{Sky Event Reporting Metadata (VOEvent)}
 
@@ -675,6 +678,135 @@ An example of the indirection of a VOEvent packet using {\tt <Reference>}:
     <Reference uri="http://raptor.lanl.gov/documents/event233.xml"/>
 </VOEvent> 
 \end{verbatim}}
+
+\section{Event Streams and the Registry}
+\label{sec:registry-matters}
+
+In this section, we will reference several namespaced XML elements using
+VO canonical prefixes.  The prefixes used here are:
+
+\begin{itemize}
+\item \verb|vr| -- \nolinkurl{http://www.ivoa.net/xml/VOResource/v1.0}
+from \citet{2018ivoa.spec.0625P}.
+\item \verb|vs| --
+\nolinkurl{http://www.ivoa.net/xml/VODataService/v1.1}
+from \citet{todo:VODataService-1.2}.
+\item \verb|xsi| --
+\nolinkurl{http://www.w3.org/2001/XMLSchema-instance}.
+\end{itemize}
+
+The canonical prefix for the VOEvent registry extension is \verb|voe|,
+which maps to the namespace URI
+\nolinkurl{http://www.ivoa.net/xml/VOEvent/v2}.
+
+\subsection{Registering Event Streams}
+\label{sec:registering}
+
+Public VOEvent streams MUST be registered in the VO
+Registry\footnote{For a hands-on introduction on how to do that, refer
+to
+\url{https://wiki.ivoa.net/twiki/bin/view/IVOA/GettingIntoTheRegistry}}.
+This is necessary to
+
+\begin{compactitem}
+\item ensure the validity of the event ids, as URIs with an \verb|ivo:|
+scheme must resolve in a VO searchable registry to be valid
+\citep{2016ivoa.spec.0523D}.
+\item ensure the uniqueness of the event ids, as the event stream URI's
+uniqueness is maintained using the Registry.
+\item make the event streams enumeratable and findable.
+\end{compactitem}
+
+It is recommended to register VOEvent streams using
+\xmlel{vs:CatalogService} resources, as these allow service operators
+to attach rich metadata like the originating facility and instrument, and
+possibly extra stream metadata in a tableset.  However, this
+specification does not constrain the resource type.
+
+A public event stream MUST define a capability with standard id of
+\nolinkurl{ivo://ivoa.net/std/VOEvent}.
+
+Note that path parts in IVOA identifiers are case-insensitive, and hence
+when comparing ivoids, clients must ignore case.
+
+This specification does not constrain the type of the capability, but as
+of this version, it is recommended to use plain \xmlel{vr:capability}
+elements (i.e., not have \xmlel{xsi:type} attributes).
+
+Zero or more endpoints publishing the event stream are declared within
+this capability element using \xmlel{vr:interface} elements, which must
+be of type \xmlel{voe:StreamEndpoint}.  Each interface must have
+a \xmlel{standardID} attribute, the value of which SHOULD reference one
+of the keys in this standard's registry record,
+\nolinkurl{ivo://ivoa.net/std/VOEvent}.
+
+As of this writing, these include:
+
+\begin{compactitem}
+\item  \verb|acc-vtp| The endpoint complies to IVOA VOEvent Transport
+  Protocol \citep{2017ivoa.spec.0320S}
+\item \verb|acc-xmpp| The endpoint uses an informal method based on
+    	XMPP (jabber).
+\item \verb|acc-kafka| The endpoint uses Apache Kafka \citep{TODO}.
+\item \verb|acc-proprietary| The endpoint is usable by some
+  method not (yet) mentioned in the VOEvent standard's registry record.
+\end{compactitem}
+
+New keys may be added to the registry record by consensus between the
+chairs of the IVOA DAL and Time Domain Working groups.
+
+Here is an example of a capability that will make a resource
+discoverable as a VOEvent stream, with one endpoint each for VTP and
+Kafka.  The Kafka stream is also availble through some other
+provider, perhaps to ensure high availability:
+
+\begin{lstlisting}[language=XML]
+<capability standardID="ivo://ivoa.net/std/voevent">
+  <interface xsi:type="voe:StreamEndpoint"
+      standardID="ivo://ivoa.net/std/voevent#acc-vtp">
+    <accessURL>http://example.org/events/vtp</accessURL>
+  </interface>
+  <interface xsi:type="voe:StreamEndpoint"
+      standardID="ivo://ivoa.net/std/voevent#acc-vtp">
+    <accessURL>http://example.org/events/kafka</accessURL>
+    <accessURL>http://bigshot.com/streams/example-voe</accessURL>
+  </interface>
+</capability>
+\end{lstlisting}
+
+A full record describing a service running at the time of writing
+comes with this
+specification\footnote{\auxiliaryurl{resrec-sample.vor}}.
+
+\subsection{Finding VOEvent Streams}
+
+Normatively, VOEvent streams are located in the VO Registry as resources
+with capabilites whose \xmlel{standardID} attribute compares equal to
+the VOEvent standard id \nolinkurl{ivo://ivoa.net/std/VOEvent}.
+
+Using RegTAP \citep{2019ivoa.spec.1011D}, all registered VOEvent streams
+can be located using a query like
+
+\begin{lstlisting}[language=SQL]
+SELECT ivoid, res_title
+FROM rr.resource
+  NATURAL JOIN rr.capability
+WHERE standard_id='ivo://ivoa.net/std/voevent'
+\end{lstlisting}
+
+To get URLs and titles of streams giving a subject containing supernova
+in some way, use a query like
+
+\begin{lstlisting}[language=SQL]
+SELECT res_title, access_url
+FROM rr.resource
+  NATURAL JOIN rr.capability
+  NATURAL JOIN rr.interface
+  NATURAL JOIN rr.res_subject
+WHERE 
+  standard_id='ivo://ivoa.net/std/voevent'
+  AND 1=ivo_nocasematch(res_subject, '%supernova%')
+\end{lstlisting}
 
 \section{VOEvent Example}
 \label{sec:4}
