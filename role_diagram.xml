@@ -1,0 +1,15 @@
+<archdiag xmlns="http://ivoa.net/archdiag">
+	<rec name="Resource M.D." x="55" y="230"/>
+	<rec name="Identifiers" x="125" y="425"/>
+	<rec name="VOTable" x="270" y="325"/>
+
+	<rec name="VTP" x="655" y="375"/>
+
+	<rec name="STC" x="550" y="230"/>
+
+	<!-- Semantics: x=160..250 y=250..400 -->
+	<rec name="UCD" x="160" y="310"/>
+	<rec name="Vocabularies" x="160" y="335"/>
+
+	<thisrec name="VOEvent"  x="530" y="375"/>
+</archdiag>
