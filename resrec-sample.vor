@@ -1,15 +1,16 @@
-<Resource 
-    xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2" 
+<ri:Resource 
+    xmlns:voe="http://www.ivoa.net/xml/VOEventRegExt/v2" 
+    xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
     xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
     xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     created="2018-07-18T11:44:26Z" 
     status="active" 
     updated="2020-03-10T16:32:02Z" 
     xsi:type="vs:CatalogService">
   <title>TODO</title>
   <shortName>TODO</shortName>
-  <identifier>ivo:///example.ignored/eventstream</identifier>
+  <identifier>ivo://example.ignored/eventstream</identifier>
   <curation>
     <publisher>TODO</publisher>
     <creator>
@@ -39,7 +40,8 @@
   <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/"
   	>CC-0</rights>
   <capability standardID="ivo://ivoa.net/std/VOEvent">
-    <interface role="std" standardID="ivo://ivoa.net/std/VOEvent#acc-vtp">
+    <interface role="std" standardID="ivo://ivoa.net/std/VOEvent#acc-vtp"
+        xsi:type="voe:StreamEndpoint">
       <accessURL>TODO</accessURL>
     </interface>
   </capability>
@@ -47,9 +49,9 @@
   <coverage>
     <spatial>0/0-11</spatial>
     <waveband>Optical</waveband>
-    <waveband>TODO</waveband>
+    <waveband>Radio</waveband> <!-- TODO: add/remove as appropriate -->
   </coverage>
-</Resource>
+</ri:Resource>
 
 <!-- vim:et:sw=2
 -->
