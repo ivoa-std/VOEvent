@@ -1,0 +1,55 @@
+<Resource 
+    xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2" 
+    xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
+    xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    created="2018-07-18T11:44:26Z" 
+    status="active" 
+    updated="2020-03-10T16:32:02Z" 
+    xsi:type="vs:CatalogService">
+  <title>TODO</title>
+  <shortName>TODO</shortName>
+  <identifier>ivo:///example.ignored/eventstream</identifier>
+  <curation>
+    <publisher>TODO</publisher>
+    <creator>
+      <name>TODO</name>
+    </creator>
+    <creator>
+      <name>TODO</name>
+    </creator>
+    <date role="updated">2020-03-31T15:38:21Z</date>
+    <contact>
+      <name>TODO</name>
+      <address>TODO</address>
+      <email>TODO</email>
+      <telephone>TODO</telephone>
+    </contact>
+  </curation>
+  <content>
+    <subject>TODO</subject>
+    <subject>TODO</subject>
+    <description>TODO
+    </description>
+    <source format="bibcode">TODO</source>
+    <referenceURL>TODO</referenceURL>
+    <type>TODO</type>
+    <contentLevel>TODO</contentLevel>
+  </content>
+  <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/"
+  	>CC-0</rights>
+  <capability standardID="ivo://ivoa.net/std/VOEvent">
+    <interface role="std" standardID="ivo://ivoa.net/std/VOEvent#acc-vtp">
+      <accessURL>TODO</accessURL>
+    </interface>
+  </capability>
+  <facility>TODO</facility>
+  <coverage>
+    <spatial>0/0-11</spatial>
+    <waveband>Optical</waveband>
+    <waveband>TODO</waveband>
+  </coverage>
+</Resource>
+
+<!-- vim:et:sw=2
+-->
