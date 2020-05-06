@@ -697,7 +697,7 @@ from \citet{todo:VODataService-1.2}.
 
 The canonical prefix for the VOEvent registry extension is \verb|voe|,
 which maps to the namespace URI
-\nolinkurl{http://www.ivoa.net/xml/VOEvent/v2}.
+\nolinkurl{http://www.ivoa.net/xml/VOEventRegExt/v2}.
 
 \subsection{Registering Event Streams}
 \label{sec:registering}
@@ -734,13 +734,14 @@ of this version, it is recommended to use plain \xmlel{vr:capability}
 elements (i.e., not have \xmlel{xsi:type} attributes).
 
 Zero or more endpoints publishing the event stream are declared within
-this capability element using \xmlel{vr:interface} elements, which must
-be of type \xmlel{voe:StreamEndpoint}.  Each interface must have
+this capability element using \xmlel{vr:interface} elements with their
+\xmlel{role} attributes set to \verb|std|; such standard interfaces MUST
+be of type \xmlel{voe:StreamEndpoint} and then by the schema MUST have
 a \xmlel{standardID} attribute, the value of which SHOULD reference one
 of the keys in this standard's registry record,
 \nolinkurl{ivo://ivoa.net/std/VOEvent}.
 
-As of this writing, these include:
+As of this writing, these keys include:
 
 \begin{compactitem}
 \item  \verb|acc-vtp| The endpoint complies to IVOA VOEvent Transport
@@ -784,7 +785,15 @@ Normatively, VOEvent streams are located in the VO Registry as resources
 with capabilites whose \xmlel{standardID} attribute compares equal to
 the VOEvent standard id \nolinkurl{ivo://ivoa.net/std/VOEvent}.
 
-Using RegTAP \citep{2019ivoa.spec.1011D}, all registered VOEvent streams
+This standard defines one mandatory details key for RegTAP
+\citep{2019ivoa.spec.1011D}: \verb|capability/interface/standardID|.
+Note that using this model, it is only possible to discover that a
+service supports a given transport protocol but not to find out which
+access URL corresponds to which transport protocol on multi-protocol
+services.  If a consumer must make this distinction, it will need to
+retrieve the service's capabilities document and parse it itself.
+
+Using RegTAP, all registered VOEvent streams
 can be located using a query like
 
 \begin{lstlisting}[language=SQL]
@@ -806,6 +815,7 @@ FROM rr.resource
 WHERE 
   standard_id='ivo://ivoa.net/std/voevent'
   AND 1=ivo_nocasematch(res_subject, '%supernova%')
+  AND role='std'
 \end{lstlisting}
 
 \section{VOEvent Example}
