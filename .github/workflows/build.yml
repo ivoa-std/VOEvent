@@ -1,10 +1,8 @@
 name: CI build of the VOEvent standard
 
-on: [push]
-  # pull_request:
-  #   types: [opened, synchronize, reopened]
-  #:
-  #  types: []    
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs: 
   build:
