@@ -24,7 +24,6 @@ jobs:
     - name: Check the output
       run: |
         test -f VOEvent.pdf
-        test -f VOEvent.bbl
  
     - uses: actions/upload-artifact@v1
       with:
