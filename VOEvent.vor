@@ -93,7 +93,8 @@ to a particular registry, nor the intellectual property issues.
     <name>acc-xmpp</name>
     <description>
     	In an interface's standardID, this identifies an interface that gives
-    	access to the VOEvent stream using an informal method based on
+    	access to the VOEvent stream using the XMPP transport protocol.
+    	https://xmpp.org/
     	XMPP (jabber).
     </description>
   </key>
