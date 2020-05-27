@@ -19,7 +19,9 @@ jobs:
         sudo apt install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended xsltproc inkscape
 
     - name: Build the document
-      run: make biblio forcetex
+      run: |
+        make
+        make biblio forcetex
 
     - name: Check the output
       run: |
