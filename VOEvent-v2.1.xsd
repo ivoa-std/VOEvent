@@ -1,5 +1,28 @@
 <?xml version='1.0' encoding='ASCII'?>
-<xs:schema xmlns="http://www.ivoa.net/xml/VOEvent/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ivoa.net/xml/VOEvent/v2.0" elementFormDefault="unqualified">
+<!-- Change log
+Revision 2.1 2020/05/05 BaptisteCecconi
+- added "Name" complex type with "ivorn", "altIdentifier" and "role" attributes, used by "contributor"(in "Who/Author")
+- added "ContributorRole" simple type, with enumeration of role values
+- removed restricted list of "AstroCoordSystem": previously "idValues" type, now "xs:string"
+- removed "idValues" type (and references)
+- added annotation in "AstroCoords/Time" (according to STC-1.30)
+- added "AstroCoords/PositionName" as "xs:string"
+- added annotation to "AstroCoords/Position2D" (according to STC-1.30)
+- removed restricted list of attribute "coord_system_id" in "AstroCoords": previous type=idValues (removed), new type=xs:string
+- added "TimeInterval" of type "TimeInterval" in "Time"
+- added "TimeOrigin" of type "xs:string" in "TimeInstant"
+- added "TimeInterval" type with "StartTime" and "StopTime" elements
+- changed minOccurs attribute in "Position2D/Error2Radius": now set to 0
+- added "Error2" element in "Position2D" with type "error2" and minOccurs=0
+- added "Error3" element in "Position3D" with type "error3" and minOccurs=0
+- added "coord_value" type introducing "ucd" and "unit" attributes for C1, C2 and C3 elements
+- added "error2" type, with "C1" and "C2" elements
+- added "error3" type, with "C1", "C2" and "C3" elements
+- added "TimeFrameType" (taken from to STC-1.30) 
+- added "SpaceFrameType" (taken from to STC-1.30)
+-->
+<xs:schema xmlns="http://www.ivoa.net/xml/VOEvent/v2.1" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.ivoa.net/xml/VOEvent/v2.1" elementFormDefault="unqualified">
 
   <xs:element name="VOEvent">
     <xs:annotation>
@@ -62,7 +85,7 @@
             <xs:element name="contactName" type="xs:string"/>
             <xs:element name="contactEmail" type="xs:string"/>
             <xs:element name="contactPhone" type="xs:string"/>
-            <xs:element name="contributor" type="xs:string"/>
+            <xs:element name="contributor" type="Name"/>
           </xs:choice>
         </xs:complexType>
       </xs:element>
@@ -188,7 +211,8 @@
     </xs:annotation>
     <xs:all>
       <xs:element name="ObservatoryLocation" minOccurs="1" maxOccurs="1" type="ObservatoryLocation"/>
-      <xs:element name="ObservationLocation" minOccurs="1" maxOccurs="1" type="ObservationLocation"/>
+      <xs:element name="ObservationLocation" minOccurs="1" maxOccurs="1" type="ObservationLocation"
+      />
     </xs:all>
   </xs:complexType>
 
@@ -207,42 +231,42 @@
       <xs:documentation> Part of WhereWhen</xs:documentation>
     </xs:annotation>
     <!-- The empty sequence closes this to content -->
-    <xs:sequence/>
-    <xs:attribute name="id" type="idValues"/>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TimeFrame" type="TimeFrameType"/>
+      <xs:element minOccurs="0" name="SpaceFrame" type="SpaceFrameType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID"/>
   </xs:complexType>
-  <xs:simpleType name="idValues">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="TT-ICRS-TOPO"/>
-      <xs:enumeration value="UTC-ICRS-TOPO"/>
-      <xs:enumeration value="TT-FK5-TOPO"/>
-      <xs:enumeration value="UTC-FK5-TOPO"/>
-      <xs:enumeration value="GPS-ICRS-TOPO"/>
-      <xs:enumeration value="GPS-ICRS-TOPO"/>
-      <xs:enumeration value="GPS-FK5-TOPO"/>
-      <xs:enumeration value="GPS-FK5-TOPO"/>
-      <xs:enumeration value="TT-ICRS-GEO"/>
-      <xs:enumeration value="UTC-ICRS-GEO"/>
-      <xs:enumeration value="TT-FK5-GEO"/>
-      <xs:enumeration value="UTC-FK5-GEO"/>
-      <xs:enumeration value="GPS-ICRS-GEO"/>
-      <xs:enumeration value="GPS-ICRS-GEO"/>
-      <xs:enumeration value="TDB-ICRS-BARY"/>
-      <xs:enumeration value="TDB-FK5-BARY"/>
-      <!-- this one for ObservatoryLocation -->
-      <xs:enumeration value="UTC-GEOD-TOPO"/>
-    </xs:restriction>
-  </xs:simpleType>
+
+
 
   <xs:complexType name="AstroCoords">
     <xs:annotation>
       <xs:documentation> Part of WhereWhen</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="Time" type="Time" minOccurs="0"/>
-      <xs:element name="Position2D" type="Position2D" minOccurs="0"/>
-      <xs:element name="Position3D" type="Position3D" minOccurs="0"/>
+      <xs:element name="Time" type="Time" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Time instant or Time Interval for the event</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="PositionName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Named position for the event</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Position2D" type="Position2D" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Position for the event (2D coordSystem)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Position3D" type="Position3D" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Position for the event (3D coordSystem)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:all>
-    <xs:attribute name="coord_system_id" type="idValues"/>
+    <xs:attribute name="coord_system_id" type="xs:string"/>
   </xs:complexType>
 
   <xs:complexType name="Time">
@@ -251,6 +275,7 @@
     </xs:annotation>
     <xs:choice maxOccurs="unbounded">
       <xs:element name="TimeInstant" type="TimeInstant"/>
+      <xs:element name="TimeInterval" type="TimeInterval" minOccurs="0"/>
       <xs:element name="Error" type="xs:float" minOccurs="0"/>
     </xs:choice>
     <xs:attribute name="unit" type="xs:string"/>
@@ -264,6 +289,17 @@
       <xs:element name="ISOTime" type="xs:string" minOccurs="0" maxOccurs="1"/>
       <xs:element name="TimeOffset" type="xs:float" minOccurs="0" maxOccurs="1"/>
       <xs:element name="TimeScale" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="TimeOrigin" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="TimeInterval">
+    <xs:annotation>
+      <xs:documentation> Part of WhereWhen</xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="ISOTimeStart" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ISOTimeStop" type="xs:string" minOccurs="0" maxOccurs="1"/>
     </xs:choice>
   </xs:complexType>
 
@@ -275,7 +311,8 @@
       <xs:element name="Name1" type="xs:string" minOccurs="0"/>
       <xs:element name="Name2" type="xs:string" minOccurs="0"/>
       <xs:element name="Value2" type="Value2"/>
-      <xs:element name="Error2Radius" type="xs:float"/>
+      <xs:element name="Error2Radius" type="xs:float" minOccurs="0"/>
+      <xs:element name="Error2" type="error2" minOccurs="0"/>
     </xs:all>
     <xs:attribute name="unit" type="xs:string"/>
   </xs:complexType>
@@ -289,30 +326,66 @@
       <xs:element name="Name2" type="xs:string" minOccurs="0"/>
       <xs:element name="Name3" type="xs:string" minOccurs="0"/>
       <xs:element name="Value3" type="Value3"/>
+      <xs:element name="Error3" type="error3" minOccurs="0"/>
     </xs:all>
     <xs:attribute name="unit" type="xs:string"/>
   </xs:complexType>
+  <xs:complexType name="coord_value">
+    <xs:annotation>
+      <xs:documentation>element for each axis </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:float">
+        <xs:attribute name="ucd" type="xs:string"/>
+        <xs:attribute name="pos_unit" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
 
   <xs:complexType name="Value2">
     <xs:annotation>
       <xs:documentation> Part of WhereWhen</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="C1" type="xs:float"/>
-      <xs:element name="C2" type="xs:float"/>
+      <xs:element name="C1" type="coord_value"/>
+      <xs:element name="C2" type="coord_value"/>
     </xs:all>
   </xs:complexType>
+
+  <xs:complexType name="error2">
+    <xs:annotation>
+      <xs:documentation> Part of WhereWhen</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="C1" type="coord_value" minOccurs="0"/>
+      <xs:element name="C2" type="coord_value" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+
 
   <xs:complexType name="Value3">
     <xs:annotation>
       <xs:documentation> Part of WhereWhen</xs:documentation>
     </xs:annotation>
     <xs:all>
-      <xs:element name="C1" type="xs:float"/>
-      <xs:element name="C2" type="xs:float"/>
-      <xs:element name="C3" type="xs:float"/>
+      <xs:element name="C1" type="coord_value"/>
+      <xs:element name="C2" type="coord_value"/>
+      <xs:element name="C3" type="coord_value"/>
     </xs:all>
   </xs:complexType>
+
+  <xs:complexType name="error3">
+    <xs:annotation>
+      <xs:documentation> Part of WhereWhen</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="C1" type="coord_value" minOccurs="0"/>
+      <xs:element name="C2" type="coord_value" minOccurs="0"/>
+      <xs:element name="C3" type="coord_value" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+
 
   <xs:complexType name="ObservatoryLocation">
     <xs:annotation>
@@ -420,4 +493,103 @@
     <xs:attribute name="meaning" type="xs:anyURI"/>
   </xs:complexType>
 
+  <xs:complexType name="TimeFrameType">
+    <xs:annotation>
+      <xs:documentation>A CoordFrame has to have at least an Id</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" type="xs:string"/>
+      <xs:element minOccurs="0" name="ReferencePosition" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Origin of the coordinate reference frame: either a "known place" such as
+            geocenter or barycenter, or a position defined in a known coordinate
+            system</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="TimeScale" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The time reference frame consists of a time scale, a time format, and a
+            reference time, if needed</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID"/>
+  </xs:complexType>
+  <xs:complexType name="SpaceFrameType">
+    <xs:annotation>
+      <xs:documentation>A CoordFrame has to have at least an Id</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" type="xs:string"/>
+      <xs:element minOccurs="0" name="SpaceRefFrame" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Coordinate reference frame: optional equinox with either a standard
+            reference system (ICRS, FK5, FK4) and optional standard pole (equatorial, ecliptic,
+            galactic, etc.), or pole (positive Z-axis) and positive X-axis direction
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CoordFlavor" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Provides the coordinate definitions: number of axes, SPHERICAL,
+            CARTESIAN, UNITSPHERE, POLAR, or HEALPIX, presence of velocities</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ReferencePosition" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Origin of the coordinate reference frame: either a "known place" such as
+            geocenter or barycenter, or a position defined in a known coordinate
+            system</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID"/>
+  </xs:complexType>
+  <xs:complexType name="Name">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="altIdentifier" type="xs:anyURI">
+          <xs:annotation>
+            <xs:documentation>Alternate contact identifier in URI form. The main usage is to refer
+              to ORCIDs (e.g.: https://orcid.org/0000-0001-2345-6789)</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="role" type="contributorRole">
+          <xs:annotation>
+            <xs:documentation>Role of the Contributor </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ivorn" type="xs:anyURI">
+          <xs:annotation>
+            <xs:documentation>Person id in the VO registry, if available</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="contributorRole">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ContactPerson"/>
+      <xs:enumeration value="DataCollector"/>
+      <xs:enumeration value="DataCurator"/>
+      <xs:enumeration value="DataManager"/>
+      <xs:enumeration value="Distributor"/>
+      <xs:enumeration value="Editor"/>
+      <xs:enumeration value="HostingInstitution"/>
+      <xs:enumeration value="Producer"/>
+      <xs:enumeration value="ProjectLeader"/>
+      <xs:enumeration value="ProjectManager"/>
+      <xs:enumeration value="ProjectMember"/>
+      <xs:enumeration value="RegistrationAgency"/>
+      <xs:enumeration value="RegistrationAuthority"/>
+      <xs:enumeration value="RelatedPerson"/>
+      <xs:enumeration value="Researcher"/>
+      <xs:enumeration value="ResearchGroup"/>
+      <xs:enumeration value="RightsHolder"/>
+      <xs:enumeration value="Sponsor"/>
+      <xs:enumeration value="Supervisor"/>
+      <xs:enumeration value="WorkPackageLeader"/>
+      <xs:enumeration value="Other"/>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
