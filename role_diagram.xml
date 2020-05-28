@@ -73,7 +73,7 @@ with missing dependencies.
 	<!-- Semantics: x=160..250 y=250..400 -->
 	<rec name="VOUnits" x="200" y="250"/>
 	<rec name="UCD" x="160" y="310"/>
-	<!-- rec name="Vocabularies" x="160" y="335"/ -->
+	<rec name="Vocabularies" x="160" y="335"/>
 
 	<!-- TD -->
 	<thisrec name="VOEvent"  x="530" y="375"/>
