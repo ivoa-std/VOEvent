@@ -1,57 +1,59 @@
-<ri:Resource 
-    xmlns:voe="http://www.ivoa.net/xml/VOEventRegExt/v2" 
+<ri:Resource
+    xmlns:voe="http://www.ivoa.net/xml/VOEventRegExt/v2"
     xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
-    xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
-    xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1" 
+    xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+    xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    created="2018-07-18T11:44:26Z" 
-    status="active" 
-    updated="2020-03-10T16:32:02Z" 
+    created="2020-03-10T16:30:00Z"
+    status="active"
+    updated="2020-03-10T16:30:00Z"
     xsi:type="vs:CatalogService">
-  <title>TODO</title>
-  <shortName>TODO</shortName>
+  <title>Gamma-ray Coordinates Network</title>
+  <shortName>GCN</shortName>
   <identifier>ivo://example.ignored/eventstream</identifier>
   <curation>
-    <publisher>TODO</publisher>
+    <publisher>yes</publisher>
     <creator>
-      <name>TODO</name>
-    </creator>
-    <creator>
-      <name>TODO</name>
+      <name>Scott Barthelmy</name>
     </creator>
     <date role="updated">2020-03-31T15:38:21Z</date>
     <contact>
-      <name>TODO</name>
-      <address>TODO</address>
-      <email>TODO</email>
-      <telephone>TODO</telephone>
+      <name>Scott Barthelmy</name>
+      <address>8800 Greenbelt Rd</address>
+      <email>scott.barthelmy@nasa.gov</email>
+      <telephone>301-286-3106</telephone>
     </contact>
   </curation>
   <content>
-    <subject>TODO</subject>
-    <subject>TODO</subject>
-    <description>TODO
+    <subject>gamma-ray-bursts</subject>
+    <subject>time-domain-astronomy</subject>
+    <description>
+      The GCN system distributes Locations of GRBs and other transients
+      detected by spacecraft, mostly in real time, as well as reports
+      of follow-up observations made by ground-based and space-based
+      instruments across the electromagnetic spectrum.
     </description>
     <source format="bibcode">TODO</source>
-    <referenceURL>TODO</referenceURL>
-    <type>TODO</type>
-    <contentLevel>TODO</contentLevel>
+    <referenceURL>https://gcn.gsfc.nasa.gov/</referenceURL>
+    <type>Other</type>
+    <contentLevel>Research</contentLevel>
   </content>
-  <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/"
-  	>CC-0</rights>
   <capability standardID="ivo://ivoa.net/std/VOEvent">
     <interface role="std" standardID="ivo://ivoa.net/std/VOEvent#acc-vtp"
         xsi:type="voe:StreamEndpoint">
       <accessURL>TODO</accessURL>
     </interface>
   </capability>
-  <facility>TODO</facility>
+  <facility>Goddard Space Flight Center</facility>
   <coverage>
     <spatial>0/0-11</spatial>
+    <waveband>Radio</waveband>
     <waveband>Optical</waveband>
-    <waveband>Radio</waveband> <!-- TODO: add/remove as appropriate -->
+    <waveband>X-ray</waveband>
+    <waveband>Gamma-ray</waveband>
   </coverage>
 </ri:Resource>
+
 
 <!-- vim:et:sw=2
 -->
