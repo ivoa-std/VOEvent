@@ -763,11 +763,11 @@ provider, perhaps to ensure high availability:
 
 \begin{lstlisting}[language=XML]
 <capability standardID="ivo://ivoa.net/std/voevent">
-  <interface xsi:type="voe:StreamEndpoint"
+  <interface xsi:type="voe:StreamEndpoint" role="std"
       standardID="ivo://ivoa.net/std/voevent#acc-vtp">
     <accessURL>http://example.org/events/vtp</accessURL>
   </interface>
-  <interface xsi:type="voe:StreamEndpoint"
+  <interface xsi:type="voe:StreamEndpoint" role="std"
       standardID="ivo://ivoa.net/std/voevent#acc-vtp">
     <accessURL>http://example.org/events/kafka</accessURL>
     <accessURL>http://bigshot.com/streams/example-voe</accessURL>
@@ -777,13 +777,14 @@ provider, perhaps to ensure high availability:
 
 A full record describing a service running at the time of writing
 comes with this
-specification\footnote{\auxiliaryurl{resrec-sample.vor}}.
+specification\footnote{\auxiliaryurl{resrec-sample.vor}}.  This also
+shows how to declare an archive of the VOEvents sent out.
 
 \subsection{Finding VOEvent Streams}
 
 Normatively, VOEvent streams are located in the VO Registry as resources
 with capabilites whose \xmlel{standardID} attribute compares equal to
-the VOEvent standard id \nolinkurl{ivo://ivoa.net/std/VOEvent}.
+the VOEvent standard id \nolinkurl{ivo://ivoa.net/std/voevent}.
 
 This standard defines one mandatory details key for RegTAP
 \citep{2019ivoa.spec.1011D}: \verb|capability/interface/standardID|.
