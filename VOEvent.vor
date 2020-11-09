@@ -1,0 +1,125 @@
+<ri:Resource 
+  xsi:type="vstd:Standard" 
+  created="2020-05-06T08:00:00Z" 
+  updated="2020-05-06T08:00:00Z" 
+  status="active"
+  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
+  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0
+    http://www.ivoa.net/xml/VOResource/v1.0
+  http://www.ivoa.net/xml/StandardsRegExt/v1.0
+    http://www.ivoa.net/xml/StandardsRegExt/v1.0
+  http://www.ivoa.net/xml/VOResource/v1.0
+    http://www.ivoa.net/xml/VOResource/v1.0">
+
+  <title>Sky Event Reporting Metadata (VOEvent)</title>
+  <identifier>ivo://ivoa.net/std/VOEvent</identifier> 
+  <curation>
+    <publisher>IVOA</publisher>
+
+    <creator><name>Seaman, Rob</name></creator>
+    <creator><name>Williams, Roy</name></creator>
+    <creator><name>Allan, Alasdair</name></creator>
+    <creator><name>Barthelmy, Scott</name></creator>
+    <creator><name>Bloom, Joshua S.</name></creator>
+    <creator><name>Brewer, John M.</name></creator>
+    <creator><name>Denny, Robert B.</name></creator>
+    <creator><name>Fitzpatrick, Mike</name></creator>
+    <creator><name>Graham, Matthew</name></creator>
+    <creator><name>Gray, Norman</name></creator>
+    <creator><name>Hessman, Frederic</name></creator>
+    <creator><name>Marka, Szabolcs</name></creator>
+    <creator><name>Rots, Arnold</name></creator>
+    <creator><name>Vestrand, Tom</name></creator>
+    <creator><name>Wozniak, Przemyslaw</name></creator>
+
+    <date role="update">2011-07-11</date>
+    <version>2.0</version>
+    <contact>
+      <name>IVOA Time Domain WG</name>
+      <email>voevent@ivoa.net</email>
+    </contact>
+  </curation>
+  <content>
+    <subject>Virtual observatory</subject>
+    <subject>Time domain astronomy</subject>
+
+    <description>
+VOEvent defines the content and meaning of a standard
+information packet for representing, transmitting, publishing and archiving
+information about a transient celestial event, with the implication that timely
+follow-up is of interest. The objective is to motivate the observation of
+targets-of-opportunity, to drive robotic telescopes, to trigger archive
+searches, and to alert the community. VOEvent is focused on the reporting of
+photon events, but events mediated by disparate phenomena such as neutrinos,
+gravitational waves, and solar or atmospheric particle bursts may also be
+reported.
+
+Structured data is used, rather than natural language, so that automated
+systems can effectively interpret VOEvent packets. Each packet may contain zero
+or more of the “who, what, where, when &amp; how” of a detected event, but in
+addition, may contain a hypothesis (a “why”) regarding the nature of the
+underlying physical cause of the event. 
+
+Citations to previous VOEvents may be used to place each event in its correct
+context. Proper curation is encouraged throughout each event's life cycle from
+discovery through successive follow-ups. 
+
+VOEvent packets gain persistent identifiers and are typically stored in
+databases reached via registries. VOEvent packets may therefore reference other
+packets in various ways. Packets are encouraged to be small and to be processed
+quickly. This standard does not define a transport layer or the design of
+clients, repositories, publishers or brokers; it does not cover policy issues
+such as who can publish, who can build a registry of events, who can subscribe
+to a particular registry, nor the intellectual property issues.
+    </description>
+    <referenceURL>http://www.ivoa.net/documents/VOEvent</referenceURL>
+    <type>Other</type>
+    <contentLevel>Research</contentLevel>
+  </content>
+
+  <endorsedVersion status="rec">2.0</endorsedVersion>
+
+  <key>
+    <name>acc-vtp</name>
+    <description>
+    	In an interface's standardID, this identifies an interface that gives
+    	access to the VOEvent stream through the IVOA VTP standard.
+    </description>
+  </key>
+  <key>
+    <name>acc-xmpp</name>
+    <description>
+    	In an interface's standardID, this identifies an interface that gives
+    	access to the VOEvent stream using the XMPP transport protocol.
+    	https://xmpp.org/
+    	XMPP (jabber).
+    </description>
+  </key>
+  <key>
+    <name>acc-kafka</name>
+    <description>
+    	In an interface's standardID, this identifies an interface that gives
+    	access to the VOEvent stream using Apache Kafka.
+    </description>
+  </key>
+    <key>
+    <name>acc-rabbitmq</name>
+    <description>
+    	In an interface's standardID, this identifies an interface that gives
+    	access to the VOEvent stream using the RabbitMQ transport protocol.
+    	https://www.rabbitmq.com/
+    </description>
+  </key>
+  <key>
+    <name>acc-proprietary</name>
+    <description>
+    	In an interface's standardID, this identifies an interface that gives
+    	access to the VOEvent stream using some method not (yet) mentioned
+    	in the VOEvent standard's registry record.
+    </description>
+  </key>
+
+</ri:Resource>

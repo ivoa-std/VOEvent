@@ -1,0 +1,13 @@
+*.blg
+*.toc
+*.out
+*.pdf
+*.aux
+*.bbl
+ivoatexmeta.tex
+*.log
+*.html
+*.zip
+*.tar.gz
+*.swp
+role_diagram.svg
