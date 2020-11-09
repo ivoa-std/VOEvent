@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+           xmlns:voe="http://www.ivoa.net/xml/VOEventRegExt/v2"
+           xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1"
+           targetNamespace="http://www.ivoa.net/xml/VOEventRegExt/v2"
+           elementFormDefault="unqualified" attributeFormDefault="unqualified"
+           version="2.0pre1">
+
+   <xs:annotation>
+      <xs:appinfo>
+        <vm:schemaName>VOEventRegExt</vm:schemaName>
+        <vm:schemaPrefix>xs</vm:schemaPrefix>
+        <vm:targetPrefix>voe</vm:targetPrefix>
+      </xs:appinfo>
+      <xs:documentation>
+     	  Types for registering VOEvent services.
+      </xs:documentation>
+   </xs:annotation>
+
+   <xs:import namespace="http://www.ivoa.net/xml/VOResource/v1.0"
+              schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0"/>
+
+   <xs:complexType name="StreamEndpoint">
+      <xs:annotation>
+         <xs:documentation>
+            An endpoint through which a VOEvent stream can be followed.
+         </xs:documentation>
+         <xs:documentation>
+            Since VOEvent streams can be served through several
+            protocols, the actual protocol used on a particular endpoint
+            must be given in a standardID attribute.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexContent>
+         <xs:extension base="vr:Interface">
+            <xs:attribute name="standardID" type="xs:anyURI" use="required">
+               <xs:annotation>
+                  <xs:documentation>
+                     A URI of the standard or convention this endpoint follows.
+                  </xs:documentation>
+                  <xs:documentation>
+                     This will normally be a key from 
+                     ivo://ivoa.net/std/VOEvent starting with acc-.
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+</xs:schema>
+<!-- vim:et:sw=3
+-->

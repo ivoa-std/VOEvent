@@ -29,6 +29,6 @@ FIGURES = role_diagram.svg
 VECTORFIGURES = 
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
-AUX_FILES = 
+AUX_FILES = VOEvent-v2.1.xsd VOEventRegExt-v2.0.xsd resrec-sample.vor
 
 include ivoatex/Makefile
