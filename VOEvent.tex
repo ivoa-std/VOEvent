@@ -2,6 +2,7 @@
 \input tthdefs
 
 \usepackage{hyperref}
+\usepackage{svg}
 
 \lstloadlanguages{XML}
 \lstset{flexiblecolumns=true,tagstyle=\ttfamily,showstringspaces=False}
@@ -108,7 +109,7 @@ VOEvent is an IVOA standard, which means that it fits into a rich matrix of
 other IVOA standards: the image below shows where VOEvent fits into the broader
 IVOA architecture. VOEvents inherit much of the structure and semantics of {\bf
 VOTable} \citep{2019ivoa.spec.1021O}, including the {\bf UCD} 
-\citep{2018ivoa.spec.0527M} scheme for semantics of quantities and the VOUnits
+\citep{2018ivoa.spec.0527P} scheme for semantics of quantities and the VOUnits
 standard \citep{2014ivoa.spec.0523D}. VOEvent takes space-time coordinates from
 the {\bf STC} \citep{2007ivoa.spec.1030R}, and it uses the URI semantics of the
 IVOA {\bf Vocabulary} \citep{2009ivoa.spec.1007G} effort. IVOA {\bf Identifiers}
@@ -117,7 +118,7 @@ servers, and both these latter will be described by IVOA {\bf Resource Metadata}
 \citep{2007ivoa.spec.0302H} and stored in the registry. 
 
 \begin{figure}[ht!]
-\centering\includegraphics[width=0.9\textwidth]{role_diagram.pdf}
+\centering\includegraphics[width=0.9\textwidth]{role_diagram}
 \caption{VOEvent standard in the VO architecture diagram}
 \label{fig:diagram}
 \end{figure}
@@ -570,7 +571,7 @@ usage.
 \label{sec:3.3.1}
 {\tt <Param>} elements may be used to represent the values of arbitrarily named 
 quantities. Thus a publisher need not establish a fixed schema for all events 
-they issue. Unified Content Descriptors (UCDs) \citep{2018ivoa.spec.0527M}.
+they issue. Unified Content Descriptors (UCDs) \citep{2018ivoa.spec.0527P}.
 %\citep{std:UCD}
 may be used to clarify meaning. Usage of {\tt <Param>} and {\tt <Group>} is 
 similar to the VOTable specification, see \S4.9 of \citep{2019ivoa.spec.1021O}. 
@@ -600,7 +601,7 @@ interpreting {\tt value}. See \S4.4 of \citep{2019ivoa.spec.1021O}
 which relies on VOUnits \citep{2014ivoa.spec.0523D}.
 
 \noindent {\bf3.3.1.4} {\tt ucd}\label{sec:3.3.1.4} --- A UCD 
-\citep{2018ivoa.spec.0527M}
+\citep{2018ivoa.spec.0527P}
 %\citep{std:UCD} 
 expression characterizing the nature of the {\tt <Param>}. 
 
@@ -741,7 +742,7 @@ interpreting the values as given in the {\tt <TD>} table cells. See \S4.4 of
 \citep{2019ivoa.spec.1021O}, which relies on \citep{2014ivoa.spec.0523D}. 
 
 \noindent {\bf3.3.3.5} {\tt ucd}\label{sec:3.3.3.5} --- A UCD 
-\citep{2018ivoa.spec.0527M} expression characterizing the nature of the data in 
+\citep{2018ivoa.spec.0527P} expression characterizing the nature of the data in 
 this table column. 
 
 \noindent {\bf3.3.3.6} {\tt dataType}\label{sec:3.3.3.6} --- A string specifying 
@@ -807,12 +808,12 @@ and temporal information.
 \subsubsection{ObservationLocation}
 \label{sec:3.4.1}
 
-The {\tt <ObservationLocation>} defines the location of the event; the {\tt 
-<ObservatoryLocation>} specifies the location of the observatory for which that 
-location is valid. It should contain a link to a coordinate system, {\tt 
-<AstroCoordSystem>}, as well as the actual coordinates of the event, {\tt 
-<AstroCoords>}, containing a reference back to the coordinate system 
-specification. For example: 
+The {\tt <ObservationLocation>} defines the location of the event, whereas
+the {\tt <ObservatoryLocation>} specifies the location of the observatory, 
+for which that event location is valid. It should contain a link to a 
+coordinate system, {\tt <AstroCoordSystem>}, as well as the actual coordinates 
+of the event, {\tt <AstroCoords>}, containing a reference back to the 
+coordinate system specification. For example: 
 
 \begin{lstlisting}[language=XML]
 <ObservationLocation>
@@ -839,7 +840,9 @@ Specifying errors is optional but recommended for both time and space
 components. 
 
 The {\tt <AstroCoords>} element has a {\tt coord\_system\_id} attribute and the 
-{\tt <AstroCoordSystem>} has a {\tt id} attribute. The value of both of these should be identical, and represent the space-time coordinate system that will be used for the event position and time. 
+{\tt <AstroCoordSystem>} has a {\tt id} attribute. The value of both of these 
+should be identical, and represent the space-time coordinate system that will be 
+used for the event position and time. 
 
 A {\tt coord\_system\_id} and {\tt id} are built from a time part, a space part, 
 and a ``center'' specification, concatenated in that order and separated by 
@@ -849,13 +852,17 @@ of these basic defaults:
 \begin{itemize}
 \item The time part can be \emph{UTC} (Coordinated Universal Time 
 \citep{bib26}), \emph{TT} (Terrestrial Time, currently 65.184 seconds ahead of 
-UTC), \emph{GPS} time, or \emph{TDB} (Barycentric Dynamical Time). 
+UTC), \emph{GPS} time, or \emph{TDB} (Barycentric Dynamical Time). The full list 
+of valid timescales is available as an IVOA vocabulary: 
+\url{https://www.ivoa.net/rdf/timescale}
 \item The space part can be equatorial coordinates (right ascension and 
 declination) expressed in either the \emph{ICRS} or \emph{FK5} coordinate 
-systems. 
+systems. The list of valid reference frames is available as an IVOA vocabulary: 
+\url{https://www.ivoa.net/rdf/refframe}
 \item The center specification can be \emph{TOPO} (i.e., the location of the 
 observatory), \emph{GEO} (geocentric coordinates), or \emph{BARY} (relative to 
-the barycenter of the solar system). 
+the barycenter of the solar system). The full list of valid reference positions
+is available as an IVOA vocabulary: \url{https://www.ivoa.net/rdf/refposition}
 \end{itemize}
 
 
@@ -1070,7 +1077,7 @@ previous VOEvent asserts that an identical instrumental configuration was used:
 astronomical objects and processes that generated the observations noted in the 
 {\tt <What>} element. Natural language words and phrases are used to express the 
 hypothesised astrophysics, pending a standard VO ontology or formal UCD-like 
-vocabulary of astronomical concepts (see \citep{2018ivoa.spec.0527M}).
+vocabulary of astronomical concepts (see \citep{2018ivoa.spec.0527P}).
 % and [\hyperref[bib19]{19}], for example => reference removed, since the 
 % document is not available anymore at provided URL.
 The {\tt <Why>} element has two optional attributes, {\tt importance} and {\tt 
@@ -1108,7 +1115,7 @@ likelihood via its {\tt probability} attribute.
 The value of a {\tt <Concept>} element uses a controlled vocabulary to express 
 the hypothesized astrophysics. This standard VO ontology or formal UCD-like 
 vocabulary of astronomical concepts vocabulary is still in development (see 
-\citep{2018ivoa.spec.0527M}).
+\citep{2018ivoa.spec.0527P}).
 %\citep{std:UCD} and [\hyperref[bib19]{19}], for example). 
 
 \subsubsection{{\tt <Description>} --- natural language}\label{sec:3.6.4}
