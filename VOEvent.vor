@@ -19,6 +19,7 @@
   <curation>
     <publisher>IVOA</publisher>
 
+    <creator><name>Cecconi, Baptiste</name></creator>
     <creator><name>Seaman, Rob</name></creator>
     <creator><name>Williams, Roy</name></creator>
     <creator><name>Allan, Alasdair</name></creator>
@@ -35,8 +36,8 @@
     <creator><name>Vestrand, Tom</name></creator>
     <creator><name>Wozniak, Przemyslaw</name></creator>
 
-    <date role="update">2011-07-11</date>
-    <version>2.0</version>
+    <date role="update">2022-10-26</date>
+    <version>2.1</version>
     <contact>
       <name>IVOA Time Domain WG</name>
       <email>voevent@ivoa.net</email>
