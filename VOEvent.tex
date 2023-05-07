@@ -12,9 +12,7 @@
 % see ivoatexDoc for what group names to use here
 \ivoagroup{Time Domain}
 
-\author{Baptiste {\bf Cecconi}, Observatoire de Paris, France}
-\author{\\Rob {\bf Seaman}, National Optical Astronomy Observatory, USA}
-\author{\\Roy {\bf Williams}, California Institute of Technology, USA}
+\author{Baptiste {\bf Cecconi}, Observatoire de Paris-PSL, France}
 \author{\\Alasdair {\bf Allan}, University of Exeter, UK}
 \author{\\Scott {\bf Barthelmy}, NASA Goddard Spaceflight Center, USA}
 \author{\\Joshua S. {\bf Bloom}, University of California, Berkeley, USA}
@@ -26,8 +24,11 @@
 \author{\\Frederic {\bf Hessman}, University of Gottingen, Germany}
 \author{\\Pierre {\bf Le Sidaner}, Observatoire de Paris, France}
 \author{\\Szabolcs {\bf Marka}, Columbia University, USA}
+\author{\\Dave {\bf Morris}, University of Edinburg, UK}
 \author{\\Arnold {\bf Rots}, Harvard-Smithsonian Center for Astrophysics, USA}
+\author{\\Rob {\bf Seaman}, National Optical Astronomy Observatory, USA}
 \author{\\Tom {\bf Vestrand}, Los Alamos National Laboratory, USA}
+\author{\\Roy {\bf Williams}, California Institute of Technology, USA}
 \author{\\Przemyslaw {\bf Wozniak}, Los Alamos National Laboratory, USA}
 
 \editor[mailto:baptiste.cecconi@obspm.fr]{Baptiste Cecconi}
@@ -109,7 +110,7 @@ VOEvent is an IVOA standard, which means that it fits into a rich matrix of
 other IVOA standards: the image below shows where VOEvent fits into the broader
 IVOA architecture. VOEvents inherit much of the structure and semantics of {\bf
 VOTable} \citep{2019ivoa.spec.1021O}, including the {\bf UCD} 
-\citep{2018ivoa.spec.0527M} scheme for semantics of quantities and the VOUnits
+\citep{2018ivoa.spec.0527P} scheme for semantics of quantities and the VOUnits
 standard \citep{2014ivoa.spec.0523D}. VOEvent takes space-time coordinates from
 the {\bf STC} \citep{2007ivoa.spec.1030R}, and it uses the URI semantics of the
 IVOA {\bf Vocabulary} \citep{2009ivoa.spec.1007G} effort. IVOA {\bf Identifiers}
@@ -118,7 +119,7 @@ servers, and both these latter will be described by IVOA {\bf Resource Metadata}
 \citep{2007ivoa.spec.0302H} and stored in the registry. 
 
 \begin{figure}[ht!]
-\centering\includegraphics[width=0.9\textwidth]{role_diagram.pdf}
+\centering\includegraphics[width=0.9\textwidth]{role_diagram}
 \caption{VOEvent standard in the VO architecture diagram}
 \label{fig:diagram}
 \end{figure}
@@ -506,7 +507,7 @@ registry; an {\tt altIdentifier} attribute to refer to other identifier (such
 as an ORCID (Open Researcher and Contributor ID)\footnote{
 \url{https://orcid.org}} for persons, or a Research Organisation Registry 
 (ROR)\footnote{\url{https://ror.org}} identifier for institutions), in the form 
-of an URI; and a {\tt roll} attribute. The {\tt roll} attribute is an important 
+of an URI; and a {\tt role} attribute. The {\tt role} attribute is an important 
 part of the contributor's metadata and allows proper attribution of work. We 
 propose to use here the list of \emph{contributorType} from the Datacite 
 Metadata Schema v4.3 \citep{https://doi.org/10.14454/7xq3-zf69}.
@@ -571,7 +572,7 @@ usage.
 \label{sec:3.3.1}
 {\tt <Param>} elements may be used to represent the values of arbitrarily named 
 quantities. Thus a publisher need not establish a fixed schema for all events 
-they issue. Unified Content Descriptors (UCDs) \citep{2018ivoa.spec.0527M}.
+they issue. Unified Content Descriptors (UCDs) \citep{2018ivoa.spec.0527P}.
 %\citep{std:UCD}
 may be used to clarify meaning. Usage of {\tt <Param>} and {\tt <Group>} is 
 similar to the VOTable specification, see \S4.9 of \citep{2019ivoa.spec.1021O}. 
@@ -601,7 +602,7 @@ interpreting {\tt value}. See \S4.4 of \citep{2019ivoa.spec.1021O}
 which relies on VOUnits \citep{2014ivoa.spec.0523D}.
 
 \noindent {\bf3.3.1.4} {\tt ucd}\label{sec:3.3.1.4} --- A UCD 
-\citep{2018ivoa.spec.0527M}
+\citep{2018ivoa.spec.0527P}
 %\citep{std:UCD} 
 expression characterizing the nature of the {\tt <Param>}. 
 
@@ -742,7 +743,7 @@ interpreting the values as given in the {\tt <TD>} table cells. See \S4.4 of
 \citep{2019ivoa.spec.1021O}, which relies on \citep{2014ivoa.spec.0523D}. 
 
 \noindent {\bf3.3.3.5} {\tt ucd}\label{sec:3.3.3.5} --- A UCD 
-\citep{2018ivoa.spec.0527M} expression characterizing the nature of the data in 
+\citep{2018ivoa.spec.0527P} expression characterizing the nature of the data in 
 this table column. 
 
 \noindent {\bf3.3.3.6} {\tt dataType}\label{sec:3.3.3.6} --- A string specifying 
@@ -808,12 +809,12 @@ and temporal information.
 \subsubsection{ObservationLocation}
 \label{sec:3.4.1}
 
-The {\tt <ObservationLocation>} defines the location of the event; the {\tt 
-<ObservatoryLocation>} specifies the location of the observatory for which that 
-location is valid. It should contain a link to a coordinate system, {\tt 
-<AstroCoordSystem>}, as well as the actual coordinates of the event, {\tt 
-<AstroCoords>}, containing a reference back to the coordinate system 
-specification. For example: 
+The {\tt <ObservationLocation>} defines the location of the event, whereas
+the {\tt <ObservatoryLocation>} specifies the location of the observatory, 
+for which that event location is valid. It should contain a link to a 
+coordinate system, {\tt <AstroCoordSystem>}, as well as the actual coordinates 
+of the event, {\tt <AstroCoords>}, containing a reference back to the 
+coordinate system specification. For example: 
 
 \begin{lstlisting}[language=XML]
 <ObservationLocation>
@@ -840,7 +841,9 @@ Specifying errors is optional but recommended for both time and space
 components. 
 
 The {\tt <AstroCoords>} element has a {\tt coord\_system\_id} attribute and the 
-{\tt <AstroCoordSystem>} has a {\tt id} attribute. The value of both of these should be identical, and represent the space-time coordinate system that will be used for the event position and time. 
+{\tt <AstroCoordSystem>} has a {\tt id} attribute. The value of both of these 
+should be identical, and represent the space-time coordinate system that will be 
+used for the event position and time. 
 
 A {\tt coord\_system\_id} and {\tt id} are built from a time part, a space part, 
 and a ``center'' specification, concatenated in that order and separated by 
@@ -850,13 +853,17 @@ of these basic defaults:
 \begin{itemize}
 \item The time part can be \emph{UTC} (Coordinated Universal Time 
 \citep{bib26}), \emph{TT} (Terrestrial Time, currently 65.184 seconds ahead of 
-UTC), \emph{GPS} time, or \emph{TDB} (Barycentric Dynamical Time). 
+UTC), \emph{GPS} time, or \emph{TDB} (Barycentric Dynamical Time). The full list 
+of valid timescales is available as an IVOA vocabulary: 
+\url{https://www.ivoa.net/rdf/timescale}
 \item The space part can be equatorial coordinates (right ascension and 
 declination) expressed in either the \emph{ICRS} or \emph{FK5} coordinate 
-systems. 
+systems. The list of valid reference frames is available as an IVOA vocabulary: 
+\url{https://www.ivoa.net/rdf/refframe}
 \item The center specification can be \emph{TOPO} (i.e., the location of the 
 observatory), \emph{GEO} (geocentric coordinates), or \emph{BARY} (relative to 
-the barycenter of the solar system). 
+the barycenter of the solar system). The full list of valid reference positions
+is available as an IVOA vocabulary: \url{https://www.ivoa.net/rdf/refposition}
 \end{itemize}
 
 
@@ -1071,7 +1078,7 @@ previous VOEvent asserts that an identical instrumental configuration was used:
 astronomical objects and processes that generated the observations noted in the 
 {\tt <What>} element. Natural language words and phrases are used to express the 
 hypothesised astrophysics, pending a standard VO ontology or formal UCD-like 
-vocabulary of astronomical concepts (see \citep{2018ivoa.spec.0527M}).
+vocabulary of astronomical concepts (see \citep{2018ivoa.spec.0527P}).
 % and [\hyperref[bib19]{19}], for example => reference removed, since the 
 % document is not available anymore at provided URL.
 The {\tt <Why>} element has two optional attributes, {\tt importance} and {\tt 
@@ -1109,7 +1116,7 @@ likelihood via its {\tt probability} attribute.
 The value of a {\tt <Concept>} element uses a controlled vocabulary to express 
 the hypothesized astrophysics. This standard VO ontology or formal UCD-like 
 vocabulary of astronomical concepts vocabulary is still in development (see 
-\citep{2018ivoa.spec.0527M}).
+\citep{2018ivoa.spec.0527P}).
 %\citep{std:UCD} and [\hyperref[bib19]{19}], for example). 
 
 \subsubsection{{\tt <Description>} --- natural language}\label{sec:3.6.4}
@@ -1310,15 +1317,15 @@ An example of the indirection of a VOEvent packet using {\tt <Reference>}:
 \section{Event Streams and the Registry}
 \label{sec:registry-matters}
 
-In this section, we will reference several namespaced XML elements using
+In this section, we will reference several namespaces XML elements using
 VO canonical prefixes.  The prefixes used here are:
 
 \begin{itemize}
 \item \verb|vr| -- \nolinkurl{http://www.ivoa.net/xml/VOResource/v1.0}
 from \citet{2018ivoa.spec.0625P}.
 \item \verb|vs| --
-\nolinkurl{http://www.ivoa.net/xml/VODataService/v1.1}
-from \citet{std:VODS11}.
+\nolinkurl{http://www.ivoa.net/xml/VODataService/v1.2}
+from \citet{2021ivoa.spec.1102D}.
 \item \verb|xsi| --
 \nolinkurl{http://www.w3.org/2001/XMLSchema-instance}.
 \end{itemize}
