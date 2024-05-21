@@ -1,4 +1,4 @@
-![VOEvent version](https://img.shields.io/badge/VOEvent-WD--2.1-yellow.svg)
+![VOEvent version](https://img.shields.io/badge/VOEvent-PR--2.1-yellow.svg)
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
 
