@@ -1,11 +1,12 @@
 \documentclass[11pt,a4paper]{ivoa}
 \input tthdefs
+\input gitmeta
 
 \usepackage{hyperref}
 \usepackage{verbatim}
 \lstloadlanguages{XML,SQL}
 \lstset{flexiblecolumns=true,numberstyle=\small,showstringspaces=False,
-  identifierstyle=\texttt}
+  identifierstyle=\texttt,basicstyle=\footnotesize}
 
 \title{Sky Event Reporting Metadata (VOEvent)}
 
@@ -17,11 +18,12 @@
 \author{\\Scott {\bf Barthelmy}, NASA Goddard Spaceflight Center, USA}
 \author{\\Joshua S. {\bf Bloom}, University of California, Berkeley, USA}
 \author{\\John M. {\bf Brewer}, Yale University, USA}
+\author{\\Markus {\bf Demleitner}, Universität Heidelberg, Germany}
 \author{\\Robert B. {\bf Denny}, DC-3 Dreams SP, USA}
 \author{\\Mike {\bf Fitzpatrick}, National Optical Astronomy Observatory, USA}
 \author{\\Matthew {\bf Graham}, California Institute of Technology, USA}
 \author{\\Norman {\bf Gray}, University of Glasgow, UK}
-\author{\\Frederic {\bf Hessman}, University of Gottingen, Germany}
+\author{\\Frederic {\bf Hessman}, University of Göttingen, Germany}
 \author{\\Pierre {\bf Le Sidaner}, Observatoire de Paris, France}
 \author{\\Szabolcs {\bf Marka}, Columbia University, USA}
 \author{\\Dave {\bf Morris}, University of Edinburg, UK}
@@ -106,24 +108,6 @@ The \href{http://ivoa.net/Documents/latest/VOEvent.html}{latest} version
 The list of \href{http://www.ivoa.net/Documents/}{current IVOA Recommendations
 and other technical documents} can be found at \url{http://www.ivoa.net/Documents/}.
 
-VOEvent is an IVOA standard, which means that it fits into a rich matrix of
-other IVOA standards: the image below shows where VOEvent fits into the broader
-IVOA architecture. VOEvents inherit much of the structure and semantics of {\bf
-VOTable} \citep{2019ivoa.spec.1021O}, including the {\bf UCD}
-\citep{2018ivoa.spec.0527P} scheme for semantics of quantities and the VOUnits
-standard \citep{2014ivoa.spec.0523D}. VOEvent takes space-time coordinates from
-the {\bf STC} \citep{2007ivoa.spec.1030R}, and it uses the URI semantics of the
-IVOA {\bf Vocabulary} \citep{2009ivoa.spec.1007G} effort. IVOA {\bf Identifiers}
-\citep{2016ivoa.spec.0523D} are used for events and their parent streams and
-servers, and both these latter will be described by IVOA {\bf Resource Metadata}
-\citep{2007ivoa.spec.0302H} and stored in the registry.
-
-\begin{figure}[ht!]
-\centering\includegraphics[width=0.9\textwidth]{role_diagram}
-\caption{VOEvent standard in the VO architecture diagram}
-\label{fig:diagram}
-\end{figure}
-
 \section{Introduction}
 
 Throughout human history, unexpected events in the sky have been interpreted as
@@ -184,7 +168,7 @@ A much larger rate of events can be expected as new facilities are commissioned
 or more fully automated. These rates indicate events that must be handled by
 machines, not humans. Subscribing agents must be able to automatically filter a
 tractable number of events without missing any that may be key to achieving
-theirgoals. In general, the number of pending events from a large-scale survey
+their goals. In general, the number of pending events from a large-scale survey
 telescope (such as LSST) that are above the horizon at a given observatory
 during a given observing session may be orders of magnitude larger than a human
 can sift through productively. Selection criteria will need to be quite precise
@@ -244,6 +228,27 @@ appropriate VOEvent usage in \S\ref{sec:2}. Section \S\ref{sec:3} is the heart
 of the document, conveying the semantics of a VOEvent packet. Explicit examples
 of VOEvent packets are in \S\ref{sec:4}, and linked references in \S\ref{sec:5}.
 
+\subsection{Role within the VO Architecture}
+
+\begin{figure}[ht!]
+\centering\includegraphics[width=0.9\textwidth]{role_diagram}
+\caption{VOEvent standard in the VO architecture diagram}
+\label{fig:diagram}
+\end{figure}
+
+Fig.~\ref{fig:diagram} shows the role this document plays within the
+IVOA architecture \citep{2021ivoa.spec.1101D}.
+
+VOEvents inherit much of the structure and semantics of {\bf
+VOTable} \citep{2019ivoa.spec.1021O}, including the {\bf UCD}
+\citep{2018ivoa.spec.0527P} scheme for semantics of quantities and the VOUnits
+standard \citep{2023ivoa.spec.1215G}. VOEvent takes space-time coordinates from
+the {\bf STC} \citep{2007ivoa.spec.1030R}, and it uses the URI semantics of the
+IVOA {\bf Vocabulary} 1.0 \citep{2009ivoa.spec.1007G} effort. IVOA {\bf Identifiers}
+\citep{2016ivoa.spec.0523D} are used for events and their parent streams and
+servers, and both these latter are described by IVOA {\bf Resource Metadata}
+\citep{2007ivoa.spec.0302H} and stored in the VO Registry.
+
 \section{Usage}
 \label{sec:2}
 This document defines the syntax and semantics of an alert packet known as
@@ -269,7 +274,7 @@ VOEvent packets can be small and reusable, expressing only the IVOA identifier
 needed to retrieve the contact information for the author. An authoring
 organisation or individual may often rely on autonomous systems to actually
 create and transport the individual alert messages.
-\item A \emph{\bf Publisher} receives alerts from one-or-more authors, and
+\item A \emph{\bf Publisher} receives alerts from one or more authors, and
 assigns a unique identifier to each resulting packet. Either the author or the
 publisher generates the actual XML syntax of the event, but the publisher is
 responsible for the validity of the packet relative to the VOEvent schema.
@@ -297,7 +302,8 @@ arbitrary application-level functionality. See the IVOA VOEvent Transport Note
 
 \subsection{VO Identifiers (IVORNs)}
 \label{sec:2.2}
-VOEvent benefits from the IVOA identifiers developed for the VO registry. Such
+VOEvent benefits from the IVOA identifiers developed for the VO registry.
+In this document, such
 an identifier is called an \emph{IVORN}, that is, an \emph{International Virtual
 Observatory Resource Name}. It is required to begin with ``{\tt ivo://}'', and
 will stand in for a particular packet. A \emph{registered} VOEvent packet is one
@@ -466,7 +472,7 @@ default value.
 
 For example, a {\tt <VOEvent>} packet resulting from Tycho Brahe's discovery of
 a ``Stella Nova'' in Cassiopeia on 11 November 1572 might start:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <VOEvent ivorn="ivo://uraniborg.hven#1572-11-11/0001"
     role="observation" version="2.0" xmlns:... >
 \end{lstlisting}
@@ -488,7 +494,7 @@ and a logo. A contact person has a name, email, and phone number. Other
 contributors can also be noted.
 
 An example of Author information might be:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <Author>
     <title>Rapid Telescope for Optical Response</title>
     <shortName>Raptor</shortName>
@@ -529,11 +535,11 @@ packet. The required format is a subset of ISO-8601 (\emph{e.g., {\tt
 yyyy-mm-ddThh:mm:ss}}). The timescale --- for curation purposes only --- is
 assumed to be Coordinated Universal Time (UTC). Discussions of date and time for
 the expression of meaningful scientific coordinates may be found in
-\citep{2007ivoa.spec.1030R} and \citep{bib26}.
+\citet{2007ivoa.spec.1030R} and \citet{bib26}.
 
 
 Minimal {\tt <Who>} usage might resemble:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <Who>
      <AuthorIVORN>ivo://uraniborg.hven/Tycho</AuthorIVORN>
      <Date>1573-05-05T01:23:45Z</Date>
@@ -550,7 +556,7 @@ retrieved directly from the publisher.
 The {\tt <What>} and {\tt <Why>} elements work together to characterise the
 nature of a VOEvent. That is: {\tt <What>} has author-defined parameters about
 what was measured directly, or other relevant information about the event,
-versus {\tt <Why>} is a data model of fixed schema about the hypothesised
+whereas {\tt <Why>} is governed by a data model with a fixed schema about the hypothesised
 underlying cause or causes of the astrophysical event.
 
 In general, an observation is the association of one or more dependent variables
@@ -562,9 +568,9 @@ dependent variables --- what was seen at that location at that time.
 
 A {\tt <What>} element contains a list of {\tt <Param>} elements which may be
 associated and labeled using {\tt <Group>} elements. It may also have one or
-more <Table> elements, each of which can contain {\tt <Param>} and {\tt <Field>}
+more \texttt{<Table>} elements, each of which can contain {\tt <Param>} and {\tt <Field>}
 elements: these last define a whole column, or vector of data, rather than a
-single primitive value as with <Param>. See \S\ref{sec:4} for an example of
+single primitive value as with \texttt{<Param>}. See \S\ref{sec:4} for an example of
 usage.
 
 \subsubsection{{\tt <Param>} --- Numbers and strings with semantics}
@@ -572,8 +578,7 @@ usage.
 \label{sec:3.3.1}
 {\tt <Param>} elements may be used to represent the values of arbitrarily named
 quantities. Thus a publisher need not establish a fixed schema for all events
-they issue. Unified Content Descriptors (UCDs) \citep{2018ivoa.spec.0527P}.
-%\citep{std:UCD}
+they issue. Unified Content Descriptors (UCDs) \citep{2018ivoa.spec.0527P}
 may be used to clarify meaning. Usage of {\tt <Param>} and {\tt <Group>} is
 similar to the VOTable specification, see \S4.9 of \citep{2019ivoa.spec.1021O}.
 
@@ -597,9 +602,8 @@ the value in question. No range or type checking of implied numbers is
 performed.
 
 \noindent {\bf3.3.1.3} {\tt unit}\label{sec:3.3.1.3} --- The unit for
-interpreting {\tt value}. See \S4.4 of \citep{2019ivoa.spec.1021O}
-%\citep{std:VOTABLE}
-which relies on VOUnits \citep{2014ivoa.spec.0523D}.
+interpreting {\tt value}. See \S4.4 of \citet{2019ivoa.spec.1021O}
+which relies on VOUnits \citep{2023ivoa.spec.1215G}.
 
 \noindent {\bf3.3.1.4} {\tt ucd}\label{sec:3.3.1.4} --- A UCD
 \citep{2018ivoa.spec.0527P}
@@ -610,11 +614,11 @@ expression characterizing the nature of the {\tt <Param>}.
 the data type of the {\tt <Param>}. Allowed values are ``string'', ``int'', or
 ``float'', with the default being ``string''.
 \begin{itemize}
-\item For {\tt dataType=float}, the value must contain a possibly signed decimal
+\item For \verb|dataType="float"|, the value must contain a possibly signed decimal
 or floating point number, possibly embedded in whitespace; it may also be
-$\pm$nan or $\pm$inf. If the value cannot be parsed this way, for example null
+$\pm$nan or $\pm$inf. If the value cannot be parsed this way, for example an empty
 string, it may return zero or NaN, but no exception should be thrown.
-\item For {\tt dataType=int}, the value must contain a possibly signed decimal
+\item For \verb|dataType="int"|, the value must contain a possibly signed decimal
 number, possibly embedded in whitespace. Conversion of floating point numbers to
 integers truncates (towards zero). If the value cannot be parsed this way, for
 example null string, it will return zero, and no exception should be thrown.
@@ -626,16 +630,17 @@ standard data models. For more details, read the corresponding IVOA
 page\footnote{\url{http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/Utypes}}.
 
 For example, here are three values from a GCN \citep{bib04} notice:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 TRIGGER_NUM = 114299 RATE_SIGNIF = 20.49 GRB_INTEN = 73288
 \end{lstlisting}
+
 In VOEvent, these can be represented as:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <Param name="TRIGGER_NUM" value="114299" ucd="meta.id" />
-    <Param name="RATE_SIGNIF" value="20.49"  ucd="stat.snr" dataType="float">
-        <Description>Best significance after trying all algorithms</Description>
-        <Reference uri="http://gcn.gsfc.nasa.gov/swift.html"/>
-    </Param>
+<Param name="RATE_SIGNIF" value="20.49"  ucd="stat.snr" dataType="float">
+    <Description>Best significance after trying all algorithms</Description>
+    <Reference uri="http://gcn.gsfc.nasa.gov/swift.html"/>
+  </Param>
 <Param name="GRB_INTEN" value="73288"  ucd="phot.count" dataType="int"/>
 \end{lstlisting}
 
@@ -655,12 +660,12 @@ have Params called ``real'' and ``imag'' for the two components of a complex
 number.
 
 In a GCN notice, for example, we might see this line:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 GRB_INTEN:       73288 [cnts]    Peak=1310 [cnts/sec]
 \end{lstlisting}
 which could be expressed with one Param with a Value element, and the other with
 a Value attribute:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <Group type="GRB_INTEN">
     <Param name="cnts" ucd="phot.count" dataType="int">
         <Value>73288</Value>
@@ -740,7 +745,7 @@ significance to subscribing clients.
 
 \noindent {\bf3.3.3.4} {\tt unit}\label{sec:3.3.3.4} --- The unit for
 interpreting the values as given in the {\tt <TD>} table cells. See \S4.4 of
-\citep{2019ivoa.spec.1021O}, which relies on \citep{2014ivoa.spec.0523D}.
+\citet{2019ivoa.spec.1021O}, which relies on \citet{2014ivoa.spec.0523D}.
 
 \noindent {\bf3.3.3.5} {\tt ucd}\label{sec:3.3.3.5} --- A UCD
 \citep{2018ivoa.spec.0527P} expression characterizing the nature of the data in
@@ -751,25 +756,27 @@ the data type of the table column. Allowed values are ``string'', ``int'', or
 ``float'', with the default being ``string''.
 
 \noindent {\bf3.3.3.7} {\tt utype}\label{sec:3.3.3.7} --- A utype (see \S4.6 of
-\citep{2019ivoa.spec.1021O}) defines this {\tt <Param>} as part of a larger data
+\citet{2019ivoa.spec.1021O}) defines this {\tt <Param>} as part of a larger data
 structure, such as one of the IVOA standard data models.
 
  The following is an example of a Table element. Note the {\tt dataType}
  attribute that is used to interpret the values in the table cells.
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <Table>
-    <Description>Individual Moduli and Distances for NGC 0931 from NED</Description>
-    <Field name="(m-M)"    unit="mag" ucd="phot.mag.distMod" dataType="float"/>
-    <Field name="err(m-M)" unit="mag" ucd="phot.mag.distMod;stat.err" dataType="float"/>
-    <Field name="D"        unit="Mpc" ucd="pos.distance dataType="float"/>
-    <Field name="REFCODE"             ucd="meta.bib.bibcode"/>
+    <Description>Individual Moduli and Distances for NGC 0931 from
+      NED</Description>
+    <Field name="(m-M)" unit="mag" ucd="phot.mag.distMod" dataType="float"/>
+    <Field name="err(m-M)" unit="mag" ucd="phot.mag.distMod;stat.err"
+      dataType="float"/>
+    <Field name="D" unit="Mpc" ucd="pos.distance dataType="float"/>
+    <Field name="REFCODE" ucd="meta.bib.bibcode"/>
     <Data>
-        <TR><TD>33.16</TD><TD>0.38</TD><TD>42.9</TD><TD>1997ApJS..109..333W</TD></TR>
-        <TR><TD>33.32</TD><TD>0.38</TD><TD>46.1</TD><TD>1997ApJS..109..333W</TD></TR>
-        <TR><TD>33.51</TD><TD>0.48</TD><TD>50.4</TD><TD>2009ApJS..182..474S</TD></TR>
-        <TR><TD>33.55</TD><TD>0.38</TD><TD>51.3</TD><TD>1997ApJS..109..333W</TD></TR>
-        <TR><TD>33.71</TD><TD>0.43</TD><TD>55.2</TD><TD>2009ApJS..182..474S</TD></TR>
-        <TR><TD>34.01</TD><TD>0.80</TD><TD>63.3</TD><TD>1997ApJS..109..333W</TD></TR>
+        <TR><TD>33.16</TD><TD>0.38</TD><TD>42.9</TD>
+          <TD>1997ApJS..109..333W</TD></TR>
+        <TR><TD>33.32</TD><TD>0.38</TD><TD>46.1</TD>
+          <TD>1997ApJS..109..333W</TD></TR>
+        <TR><TD>33.51</TD><TD>0.48</TD><TD>50.4</TD>
+          <TD>2009ApJS..182..474S</TD></TR>
     </Data>
 </Table>
 \end{lstlisting}
@@ -797,7 +804,7 @@ location of the observatory from which that observation was made. Both the sky
 and the observatory are in constant motion, and STC inextricably relates spatial
 and temporal information.
 
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <WhereWhen>
     <ObsDataLocation>
         <ObservatoryLocation/>
@@ -816,7 +823,7 @@ coordinate system, {\tt <AstroCoordSystem>}, as well as the actual coordinates
 of the event, {\tt <AstroCoords>}, containing a reference back to the
 coordinate system specification. For example:
 
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <ObservationLocation>
     <AstroCoordSystem id="UTC-FK5-GEO" />
     <AstroCoords coord_system_id="UTC-FK5-GEO">
@@ -906,12 +913,13 @@ would be a good choice as an interoperability standard.
 The {\tt <ObservatoryLocation>} element is used to express the location from
 which the observation being described was made. It is a required element for
 expressing topocentric coordinate systems. An instance of {\tt
-<ObservatoryLocation>} may take two forms. In the first, an observatory location
+<Observatory\-Location>} may take two forms. In the first, an observatory location
 may be taken from a library, for example:
-{\footnotesize
-\begin{verbatim}
+
+\begin{lstlisting}
 <ObservatoryLocation id="Palomar" />
-\end{verbatim}}
+\end{lstlisting}
+
 The {\tt id} here indicates the name of the observatory, other examples being:
 Keck, KPNO, JCMT, MMTO, VLA, etc., or it may indicate one of the following
 generic observatory locations:
@@ -926,7 +934,7 @@ generic observatory locations:
 For example, a packet might contain the following {\tt <ObservatoryLocation>}
 to indicate that the coordinates expressed in the {\tt <WhereWhen>} element are
 located with an accuracy comprising the Earth's surface:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <ObservatoryLocation id="GEOSURFACE" />
 \end{lstlisting}
 
@@ -935,7 +943,7 @@ located by specifying the actual coordinate values of longitude, latitude and
 altitude on the surface of the Earth. Note the use of a coordinate system for
 the surface of the Earth (UTC-GEOD-TOPO) is natural for an observatory location,
 whereas coordinate systems in the previous section are for astronomical events.
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <ObservatoryLocation id="KPNO">
     <AstroCoordSystem id="UTC-GEOD-TOPO" />
     <AstroCoords coord_system_id="UTC-GEOD-TOPO">
@@ -958,7 +966,7 @@ optional attributes.
 When parsing a VOEvent packet, the following pseudocode may be of use to provide
 the time, the right ascension and the declination, if the author used
 \emph{ICRS} spatial coordinates and \emph{UTC} time.
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 Let  x =/voe:VOEvent/WhereWhen/ObsDataLocation/ObservationLocation/AstroCoords
    If x[@coord_system_id='UTC-ICRS-TOPO'] then
       Let Time = x/Time/TimeInstant/ISOTime
@@ -977,7 +985,7 @@ written to simply accept anything that contains \emph{ICRS} or \emph{FK5},
 
 \subsubsection{Solar System Events}
 \label{sec:3.4.4}
-Solar System events include Solar events and planetary events.
+Solar system events include Solar events and planetary events.
 
 Solar events have similar requirement as astronomical events in terms of
 Observatory and Observation location but are using a different reference frames.
@@ -1004,12 +1012,12 @@ reference frames exist, we do not list them here. We call for an IVOA vocabulary
 for managing the valid terms of well-known solar system reference frames.
 
 A {\tt PositionName} element is available in the {\tt
-ObservationLocation/AstroCoords} element. It is used to refer to named objects,
+ObservationLocation/Ast\-roCoords} element. It is used to refer to named objects,
 at which the event is observed without coordinates (e.g., for unresolved
-observations, or global impact).
+observations, or a global impact).
 
 A {\tt TimeInterval} element is available in the {\tt
-ObservationLocation/AstroCoords/Time} element. It is composed of two elements
+ObservationLocation/Astro\-Coords/Time} element. It is composed of two elements
 {\tt ISOTimeStart} and {\tt ISOTimeStop}, both defined similarly to the {\tt
 ISOTime} element of {\tt TimeInstant}. This pair of dates is used to refer to
 interval observations or predictions. This interval concept is different than
@@ -1065,7 +1073,7 @@ about instrumental or experimental design. A {\tt <How>} contains zero or more
 elements, that together characterise the instrument(s) that produced the
 observation(s) that resulted in issuing the VOEvent packet. A URI pointing to a
 previous VOEvent asserts that an identical instrumental configuration was used:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <How>
     <Description> The Echelle spectrograph </Description>
     <Reference uri="http://nsa.noao.edu/kp012345.rtml" />
@@ -1078,7 +1086,7 @@ previous VOEvent asserts that an identical instrumental configuration was used:
 astronomical objects and processes that generated the observations noted in the
 {\tt <What>} element. Natural language words and phrases are used to express the
 hypothesised astrophysics, pending a standard VO ontology or formal UCD-like
-vocabulary of astronomical concepts (see \citep{2018ivoa.spec.0527P}).
+vocabulary of astronomical concepts (see \citet{2018ivoa.spec.0527P}).
 % and [\hyperref[bib19]{19}], for example => reference removed, since the
 % document is not available anymore at provided URL.
 The {\tt <Why>} element has two optional attributes, {\tt importance} and {\tt
@@ -1116,7 +1124,7 @@ likelihood via its {\tt probability} attribute.
 The value of a {\tt <Concept>} element uses a controlled vocabulary to express
 the hypothesized astrophysics. This standard VO ontology or formal UCD-like
 vocabulary of astronomical concepts vocabulary is still in development (see
-\citep{2018ivoa.spec.0527P}).
+\citet{2018ivoa.spec.0527P}).
 %\citep{std:UCD} and [\hyperref[bib19]{19}], for example).
 
 \subsubsection{{\tt <Description>} --- natural language}\label{sec:3.6.4}
@@ -1153,7 +1161,7 @@ event being described is equivalent to \emph{Tycho's Star}, which has been
 identified as a \emph{Type Ia Supernova}, and is ``associated'' with the
 \emph{SN remnant} known as \emph{3C 10}. This was an important discovery, but
 is no longer a very urgent one:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <Why importance="1.0" expires="1574-05-11T12:00:00">
     <Inference probability="1.0">
         <Name>Tycho's Stella Nova</Name>
@@ -1249,7 +1257,7 @@ Splitting, merging or retracting a VOEvent should typically be accompanied by a
 {\tt <Description>} element discussing why such actions are being taken.
 
 An attempt is made to retract the sighting of Tycho's supernova:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <Citations>
     <EventIVORN cite="retraction">ivo://uraniborg.hven#1572-11-11/0001</EventIVORN>
     <Description>Oops!</Description>
@@ -1300,14 +1308,14 @@ described in VOEvent v1.11.
 A {\tt <Reference>} is used to provide general purpose ancillary data with
 well-defined meaning. Here a fits image is presented (h.fits), and also a link
 to the data model that is needed for a machine to understand the meaning.
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <Group type="MyFilterWithImage">
     <Reference uri=http://.../data/h.fits
         meaning="http://www.ivoa.net/rdf/IVOAT#Filter/h"/>
 </Group>
 \end{lstlisting}
 An example of the indirection of a VOEvent packet using {\tt <Reference>}:
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <VOEvent ivorn="ivo://raptor.lanl#235649409/sn2005k"
     role="observation" version="2.0">
     <Reference uri="http://raptor.lanl.gov/documents/event233.xml"/>
@@ -1317,7 +1325,7 @@ An example of the indirection of a VOEvent packet using {\tt <Reference>}:
 \section{Event Streams and the Registry}
 \label{sec:registry-matters}
 
-In this section, we will reference several namespaces XML elements using
+In this section, we will reference several namespaced XML elements using
 VO canonical prefixes.  The prefixes used here are:
 
 \begin{itemize}
@@ -1353,7 +1361,9 @@ uniqueness is maintained using the Registry.
 \end{compactitem}
 
 It is recommended to register VOEvent streams using
-\xmlel{vs:CatalogService} resources, as these allow service operators
+\xmlel{vs:CatalogService} (or, if the stream is only accessible through
+third-party services, \xmlel{vs:CatalogResource})
+resources, as these allow service operators
 to attach rich metadata like the originating facility and instrument, and
 possibly extra stream metadata in a tableset.  However, this
 specification does not constrain the resource type.
@@ -1371,7 +1381,7 @@ elements (i.e., not have \xmlel{xsi:type} attributes).
 Zero or more endpoints publishing the event stream are declared within
 this capability element using \xmlel{vr:interface} elements with their
 \xmlel{role} attributes set to \verb|std|; such standard interfaces MUST
-be of type \xmlel{voe:StreamEndpoint} and then by the schema MUST have
+be of type \xmlel{voe:Stream\-Endpoint} and then by the schema MUST have
 a \xmlel{standardID} attribute, the value of which SHOULD reference one
 of the keys in this standard's registry record,
 \nolinkurl{ivo://ivoa.net/std/VOEvent}.
@@ -1396,7 +1406,7 @@ discoverable as a VOEvent stream, with one endpoint each for VTP and
 Kafka.  The Kafka stream is also availble through some other
 provider, perhaps to ensure high availability:
 
-\begin{lstlisting}[language=XML]
+\begin{lstlisting}
 <capability standardID="ivo://ivoa.net/std/voevent">
   <interface xsi:type="voe:StreamEndpoint" role="std"
       standardID="ivo://ivoa.net/std/voevent#acc-vtp">
@@ -1419,7 +1429,8 @@ shows how to declare an archive of the VOEvents sent out.
 
 Normatively, VOEvent streams are located in the VO Registry as resources
 with capabilites whose \xmlel{standardID} attribute compares equal to
-the VOEvent standard id \nolinkurl{ivo://ivoa.net/std/voevent}.
+the VOEvent standard id \nolinkurl{ivo://ivoa.net/std/voevent} ignoring
+case.
 
 This standard defines one mandatory details key for RegTAP
 \citep{2019ivoa.spec.1011D}: \verb|capability/interface/standardID|.
@@ -1464,8 +1475,7 @@ and a {\tt <Group>} with the actual report: the magnitude is 19.5, measured
 <WhereWhen>} section. There is a {\tt <Table>} of measured distances to the
 presumed host galaxy. The packet represents a follow-up observation of an
 earlier event, as defined in the {\tt <Citations>} element.
-\begin{lstlisting}[language=XML]
-<?xml version="1.0" encoding="UTF-8"?>
+\begin{lstlisting}
 <voe:VOEvent ivorn="ivo://raptor.lanl/VOEvent#235649409"
   role="observation"
   version="2.0"
