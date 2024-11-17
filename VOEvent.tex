@@ -983,12 +983,10 @@ Solar events have similar requirement as astronomical events in terms of
 Observatory and Observation location but are using a different reference frames.
 The following coordinate systems are recognised for solar event data: 
 \begin{itemize}
-\item \emph{UTC-HPC-TOPO} --- Cartesian helio-projective coordinates (solar 
-disk)
-\item \emph{UTC-HPR-TOPO} --- Polar helio-projective coordinates (coronal 
-events)
-\item \emph{UTC-HGS-TOPO} --- Stonyhurst heliographic coordinates
-\item \emph{UTC-HGC-TOPO} --- Carrington heliographic coordinates
+\item \emph{HPC} --- Cartesian helio-projective coordinates (solar disk)
+\item \emph{HPR} --- Polar helio-projective coordinates (coronal events)
+\item \emph{HGS} --- Stonyhurst heliographic coordinates
+\item \emph{HGC} --- Carrington heliographic coordinates
 \end{itemize}
 
 What this means is that these coordinate combinations will be supported in the 
@@ -1000,8 +998,8 @@ matter, that solar subscribers be able to handle equatorial coordinates.
 Planetary events (including events at Earth, in a global solar system context,
 e.g., for Space Weather or Near Earth Objects) have specific requirements that 
 have been discussed by \citet{2018arXiv181112680C}. Since many solar system body 
-reference frames exist, we do not list them here. We call for an IVOA vocabulary 
-for managing the valid terms of well-known solar system reference frames.
+reference frames exist, we do not list them here. The RefFrame vocabulary is the 
+reference for such terms.
 
 A {\tt PositionName} element is available in the {\tt 
 ObservationLocation/AstroCoords} element. It is used to refer to named objects, 
