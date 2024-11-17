@@ -12,7 +12,7 @@
 % see ivoatexDoc for what group names to use here
 \ivoagroup[IG]{Time Domain}
 
-\author{Baptiste {\bf Cecconi}, Observatoire de Paris-PSL, France}
+\author[https://orcid.org/0000-0001-7915-5571]{Baptiste {\bf Cecconi}, Observatoire de Paris-PSL, France}
 \author{\\Alasdair {\bf Allan}, University of Exeter, UK}
 \author{\\Scott {\bf Barthelmy}, NASA Goddard Spaceflight Center, USA}
 \author{\\Joshua S. {\bf Bloom}, University of California, Berkeley, USA}
@@ -983,10 +983,10 @@ Solar events have similar requirement as astronomical events in terms of
 Observatory and Observation location but are using a different reference frames.
 The following coordinate systems are recognised for solar event data: 
 \begin{itemize}
-\item \emph{HPC} --- Cartesian helio-projective coordinates (solar disk)
-\item \emph{HPR} --- Polar helio-projective coordinates (coronal events)
-\item \emph{HGS} --- Stonyhurst heliographic coordinates
-\item \emph{HGC} --- Carrington heliographic coordinates
+\item \emph{UTC-HPC-TOPO} --- Cartesian helio-projective coordinates (solar disk)
+\item \emph{UTC-HPR-TOPO} --- Polar helio-projective coordinates (coronal events)
+\item \emph{UTC-HGS-TOPO} --- Stonyhurst heliographic coordinates
+\item \emph{UTC-HGC-TOPO} --- Carrington heliographic coordinates
 \end{itemize}
 
 What this means is that these coordinate combinations will be supported in the 
@@ -1452,8 +1452,9 @@ WHERE
   AND role='std'
 \end{lstlisting}
 
-\section{VOEvent Example}
+\section{VOEvent Examples}
 \label{sec:4}
+\subsection{Follow up observation of a supernova with the RAPTOR telescope}
 This imaginary event is a brightness measurement of a past supernova from the 
 RAPTOR \citep{bib10} telescope. The {\tt <What>} section reports a {\tt 
 <Description>} and {\tt <Reference>} followed by a {\tt <Param>} about seeing 
@@ -1551,6 +1552,96 @@ earlier event, as defined in the {\tt <Citations>} element.
       <Name>NGC0931</Name>
     </Inference>
   </Why>
+</voe:VOEvent>
+\end{lstlisting}
+
+\subsection{Prediction of a Solar Wind event arrival time at Jupiter}
+This second imaginary example describes the predicted time of arrival of 
+an Solar Wind dynamic pressure pulse at Jupiter. The prediction has been  
+produced by a 1D MHD propagation model \cite{tao05}, referred to as with
+the DOI of the paper describing the code. The {\tt WhereWhen} section provides
+the location of the event detection, and the time frame in use for the 
+predicted dates. The {\tt What} section provides the interval, in which the
+detection threshold is met. The reference dataset is also cited in the 
+{\tt Why} section.
+\begin{lstlisting}[language=XML]
+<?xml version="1.0"?>
+<voe:VOEvent ivorn="ivo://psws.irap/VOEvent/Tao_Jupiter_2018-10-02T17_34_45::v1.0" 
+  role="prediction" version="2.1" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.1" 
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.1 
+    http://www.ivoa.net/xml/VOEvent/VOEvent-v2.1.xsd"> 
+  <Who>
+    <AuthorIVORN>ivo://psws</AuthorIVORN>
+    <Author>
+      <contactEmail>Michel.Gangloff@irap.omp.eu</contactEmail>
+      <contactName>Michel Gangloff</contactName>
+    </Author>
+    <Date>2018-10-02T17:34:45</Date>
+  </Who>
+  <What>
+    <Description>Time intervals in which dynamic pressure is greater than 
+      0.08 nPa at Jupiter</Description>
+    <Param name="event_type" value="Solar Wind dynamic pressure pulse" ucd="meta.id"/>
+    <Group name="event">
+      <Param name="tested_parameter" value="Dynamic Pressure" ucd="meta.id" dataType="string"/>
+      <Param name="threshold" value="0.08" ucd="phys.pressure" unit="nPa" dataType="string"/>
+    </Group>
+    <Group name="target">
+      <Param name="target_name" value="Jupiter" ucd="meta.id" utype="epn:target_name"/>
+      <Param name="target_class" value="planet" ucd="meta.id" utype="epn:target_class"/>
+      <Param name="target_region" value="Magnetosphere" ucd="meta.id" utype="epn:target_region"/>
+    </Group>
+    <Table>
+      <Description>Time intervals found by the propagation code</Description>
+      <Field dataType="string" name="Start Time" ucd="time.begin" utype="epn:time_min">
+        <Description>time tag for beginning of interval</Description>
+      </Field>
+      <Field dataType="string" name="Stop Time" ucd="time.end" utype="epn:time_max">
+        <Description>time tag for end of interval</Description>
+      </Field>
+      <Data>
+        <TR><TD>2018-10-03T10:00:00.000</TD><TD>2018-10-04T01:00:00.000</TD></TR>
+        <TR><TD>2018-10-04T07:00:00.000</TD><TD>2018-10-04T11:00:00.000</TD></TR>
+        <TR><TD>2018-10-08T01:00:00.000</TD><TD>2018-10-08T07:00:00.000</TD></TR>
+      </Data>
+    </Table>
+  </What>
+  <WhereWhen>
+    <ObsDataLocation>
+      <ObservatoryLocation/>
+      <ObservationLocation>
+        <AstroCoordSystem>
+          <TimeFrame>
+            <ReferencePosition>Jupiter</ReferencePosition>
+            <TimeScale>UTC</TimeScale>
+          </TimeFrame>
+        </AstroCoordSystem>
+        <AstroCoords>
+          <PositionName>Jupiter</PositionName>
+        </AstroCoords>
+      </ObservationLocation>
+    </ObsDataLocation>
+  </WhereWhen>
+  <How>
+    <Description>This prediction has been computed by the Heliospheric propagation 1D MHD model 
+      for solar wind prediction at planets, probes and comets.</Description>
+    <Reference uri="https://doi.org/10.1029/2004JA010959"/>
+  </How>
+  <Why>
+    <Inference probability="1.0">
+      <Concept>http://astrothesaurus.org/uat/1534</Concept>
+      <Name>Solar Wind measured at 1 AU</Name>
+      <Reference uri="https://doi.org/10.48322/1shr-ht18"/>
+    </Inference>
+    <Inference>
+      <Concept>http://astrothesaurus.org/uat/1966</Concept>
+      <Name>MHD simulation of propagated Solar Wind at Jupiter</Name>
+      <Reference uri="https://doi.org/10.1029/2004JA010959"/>
+    </Inference>
+  </Why>
+  <Description>3 Solar Pressure pulses predicted at Jupiter between 2018-10-03 and 2018-10-09</Description>
 </voe:VOEvent>
 \end{lstlisting}
 
