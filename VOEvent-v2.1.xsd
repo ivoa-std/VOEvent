@@ -44,7 +44,7 @@ Revision 2.1 2020/05/05 BaptisteCecconi
         <xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1"/>
         <xs:element name="Reference" type="Reference" minOccurs="0" maxOccurs="1"/>
       </xs:all>
-      <xs:attribute name="version" type="xs:token" fixed="2.0" use="required"/>
+      <xs:attribute name="version" type="xs:token" fixed="2.1" use="required"/>
       <xs:attribute name="ivorn" type="xs:anyURI" use="required"/>
       <xs:attribute name="role" type="roleValues" default="observation"/>
     </xs:complexType>
