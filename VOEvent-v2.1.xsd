@@ -239,7 +239,6 @@ Revision 2.1 2020/05/05 BaptisteCecconi
   </xs:complexType>
 
 
-
   <xs:complexType name="AstroCoords">
     <xs:annotation>
       <xs:documentation> Part of WhereWhen</xs:documentation>
@@ -274,7 +273,7 @@ Revision 2.1 2020/05/05 BaptisteCecconi
       <xs:documentation> Part of WhereWhen</xs:documentation>
     </xs:annotation>
     <xs:choice maxOccurs="unbounded">
-      <xs:element name="TimeInstant" type="TimeInstant"/>
+      <xs:element name="TimeInstant" type="TimeInstant" maxOccurs="1" minOccurs="0"/>
       <xs:element name="TimeInterval" type="TimeInterval" minOccurs="0"/>
       <xs:element name="Error" type="xs:float" minOccurs="0"/>
     </xs:choice>
