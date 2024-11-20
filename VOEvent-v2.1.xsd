@@ -18,7 +18,7 @@ Revision 2.1 2020/05/05 BaptisteCecconi
 - added "coord_value" type introducing "ucd" and "unit" attributes for C1, C2 and C3 elements
 - added "error2" type, with "C1" and "C2" elements
 - added "error3" type, with "C1", "C2" and "C3" elements
-- added "TimeFrameType" (taken from to STC-1.30) 
+- added "TimeFrameType" (taken from to STC-1.30)
 - added "SpaceFrameType" (taken from to STC-1.30)
 -->
 <xs:schema xmlns="http://www.ivoa.net/xml/VOEvent/v2.1" xmlns:xs="http://www.w3.org/2001/XMLSchema"
