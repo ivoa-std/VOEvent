@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
            xmlns:voe="http://www.ivoa.net/xml/VOEventRegExt/v2"
            xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1"
@@ -41,7 +41,7 @@
                      A URI of the standard or convention this endpoint follows.
                   </xs:documentation>
                   <xs:documentation>
-                     This will normally be a key from 
+                     This will normally be a key from
                      ivo://ivoa.net/std/VOEvent starting with acc-.
                   </xs:documentation>
                </xs:annotation>

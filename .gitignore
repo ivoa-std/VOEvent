@@ -11,3 +11,6 @@ ivoatexmeta.tex
 *.tar.gz
 *.swp
 role_diagram.svg
+gitmeta.tex
+*.fdb_latexmk
+*.fls
