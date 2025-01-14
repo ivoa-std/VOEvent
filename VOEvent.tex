@@ -706,7 +706,7 @@ about the table. There is then a single \texttt{<Data>} element that contains th
 data of the table, which is represented as a sequence of table rows, which are 
 \texttt{<TR>} elements, each containing a sequence of \texttt{<TD>} elements for the 
 table cells. For a full table, where every cell has a value, the number of \texttt{
-<TD>} elements in each row should be the same as the number of \texttt{<Field>} 
+<TD>} elements in each row must be the same as the number of \texttt{<Field>} 
 elements. There is then a 1-to-1 correspondence between them for each row. 
 
 The Table can contain \texttt{<Description>} and \texttt{<Reference>} elements to add 
@@ -909,9 +909,10 @@ would be a good choice as an interoperability standard.
 \label{sec:3.4.2}
 The \texttt{<ObservatoryLocation>} element is used to express the location from 
 which the observation being described was made. It is a required element for 
-expressing topocentric coordinate systems. An instance of 
-\texttt{<ObservatoryLocation>} may take two forms. In the first, an observatory location
-may be taken from a library, for example: 
+expressing topocentric coordinate systems. 
+
+An instance of \texttt{<ObservatoryLocation>} may take two forms. In the first, 
+an observatory location may be taken from a library, for example: 
 \begin{lstlisting}
 <ObservatoryLocation id="Palomar" /> 
 \end{lstlisting}
