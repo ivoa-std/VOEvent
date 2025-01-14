@@ -256,37 +256,37 @@ VOEvent packets express sky transient alerts. VOEvent users subscribe to the
 types of alerts pertinent to their science goals. The following roles define the
 interchange of VOEvent semantics:
 \begin{itemize}
-\item An \emph{\bf Author} is anyone (or any organisation) creating scientific
-content suitable for representation as a sky transient alert. An author will
-typically register with the IVOA registry, so that the {\tt <Who>} element of
-VOEvent packets can be small and reusable, expressing only the IVOA identifier
-needed to retrieve the contact information for the author. An authoring
-organisation or individual may often rely on autonomous systems to actually
-create and transport the individual alert messages.
-\item A \emph{\bf Publisher} receives alerts from one or more authors, and
-assigns a unique identifier to each resulting packet. Either the author or the
-publisher generates the actual XML syntax of the event, but the publisher is
-responsible for the validity of the packet relative to the VOEvent schema.
-Publishers will register with the IVOA registry as described below.
-\item A \emph{\bf Repository} subscribes to (or is party to the original
-creation of) one or more VOEvent streams, persists packets either permanently
-or temporarily, and runs a service that allows clients to resolve identifiers
-and apply complex queries to its holdings. A given packet had one Publisher but
-may be held in more than one Repository. Public repositories will register with
-the IVOA registry.
-\item A \emph{\bf Subscriber} is any entity that receives VOEvent packets for
-whatever purpose. Subscribers can find out how to get certain types of events
-by consulting the lists of publishers and repositories in the IVOA registry.
-A subscription is a filter on the stream of events from a publisher: the
-subscriber is notified whenever certain criteria are met. For example, the
-filter may involve the curation part of the event (\emph{e.g., ``all events
-published by the Swift spacecraft''}), its location (\emph{``anything in
-M31''}), or it may reference the detailed metadata of the event itself
-(\emph{``whenever the cosmic ray energy is greater than 3 TeV''}).
-\item A Broker or Relay, also sometimes known as a Filter, is any combination
-of the atomic roles of Publisher, Repository, or Subscriber that also offers
-arbitrary application-level functionality. See the IVOA VOEvent Transport Note
-\citep{2011ivoa.spec.0711S} for further discussion.
+\item An \emph{\bf Author} is anyone (or any organisation) creating scientific 
+content suitable for representation as a sky transient alert. An author will 
+typically register with the IVOA registry, so that the {\tt <Who>} element of 
+VOEvent packets can be small and reusable, expressing only the IVOA identifier 
+needed to retrieve the contact information for the author. An authoring 
+organisation or individual may often rely on autonomous systems to actually 
+create and transport the individual alert messages. 
+\item A \emph{\bf Publisher} receives alerts from one-or-more authors, and 
+assigns a unique identifier to each resulting packet. Either the author or the 
+publisher generates the actual XML syntax of the event, but the publisher is 
+responsible for the validity of the packet relative to the VOEvent schema. 
+Publishers will register with the IVOA registry as described below. 
+\item A \emph{\bf Repository} subscribes to (or is party to the original 
+creation of) one or more VOEvent streams, persists packets either permanently 
+or temporarily, and runs a service that allows clients to resolve identifiers 
+and apply complex queries to its holdings. A given packet had one Publisher but 
+may be held in more than one Repository. Public repositories will register with 
+the IVOA registry. 
+\item A \emph{\bf Subscriber} is any entity that receives VOEvent packets for 
+whatever purpose. Subscribers can find out how to get certain types of events 
+by consulting the lists of publishers and repositories in the IVOA registry. 
+A subscription is a filter on the stream of events from a publisher: the 
+subscriber is notified whenever certain criteria are met. For example, the 
+filter may involve the curation part of the event (\emph{e.g., ``all events 
+published by the Swift spacecraft''}), its location (\emph{``anything in 
+M31''}), or it may reference the detailed metadata of the event itself 
+(\emph{``whenever the cosmic ray energy is greater than 3 TeV''}). 
+\item A Broker or Relay, also sometimes known as a Filter, is any combination 
+of the atomic roles of Publisher, Repository, or Subscriber that also offers 
+arbitrary application-level functionality. See the IVOA VOEvent Transport Protocol 
+Recommendation \citep{2017ivoa.spec.0320S} for further discussion. 
 \end{itemize}
 
 \subsection{VO Identifiers (IVORNs)}
