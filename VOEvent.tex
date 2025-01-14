@@ -167,12 +167,21 @@ structured discovery alert --- and any follow-up packets --- will be referred
 to as a VOEvent. VOEvent will rely on XML schema\footnote{
 \url{https://www.w3.org/XML/Schema}} to provide the appropriate structured
 syntax and semantics. These schemata may be specific to VOEvent or may implement
+<<<<<<< HEAD
 external schemata such as the IVOA's Space-Time Coordinate (STC) metadata
 specification \citep{2007ivoa.spec.1030R}. Some of the VOEvent structure is
 provided by this document, for example the meaning of the {\tt <Who>} and {\tt
 <Date>} elements; however other structure is provided by the author of the event
 stream, who might define, for example, what the {\tt <peak\_energy>} and {\tt
 <energy\_variance>} parameters mean when supplied with one of those events.
+=======
+external schemata such as the IVOA's Space-Time Coordinate (STC) metadata 
+specification \citep{2007ivoa.spec.1030R}. Some of the VOEvent structure is 
+provided by this document, for example the meaning of the \texttt{<Who>} and \texttt{
+<Date>} elements; however other structure is provided by the author of the event
+stream, who might define, for example, what the \texttt{<peak\_energy>} and \texttt{
+<energy\_variance>} parameters mean when supplied with one of those events. 
+>>>>>>> d7c6c77 (update {\tt } to \texttt{} (RFC: MD-12))
 
 VOEvent is a pragmatic effort that crosses the boundary between the Virtual
 Observatory and the larger astronomical community. The results of astronomical
@@ -258,7 +267,7 @@ interchange of VOEvent semantics:
 \begin{itemize}
 \item An \emph{\bf Author} is anyone (or any organisation) creating scientific 
 content suitable for representation as a sky transient alert. An author will 
-typically register with the IVOA registry, so that the {\tt <Who>} element of 
+typically register with the IVOA registry, so that the \texttt{<Who>} element of 
 VOEvent packets can be small and reusable, expressing only the IVOA identifier 
 needed to retrieve the contact information for the author. An authoring 
 organisation or individual may often rely on autonomous systems to actually 
@@ -294,14 +303,14 @@ Recommendation \citep{2017ivoa.spec.0320S} for further discussion.
 VOEvent benefits from the IVOA identifiers developed for the VO registry.
 In this document, such
 an identifier is called an \emph{IVORN}, that is, an \emph{International Virtual
-Observatory Resource Name}. It is required to begin with ``{\tt ivo://}'', and
+Observatory Resource Name}. It is required to begin with ``\texttt{ivo://}'', and 
 will stand in for a particular packet. A \emph{registered} VOEvent packet is one
 that has a valid identifier --- meaning that a mechanism exists that can resolve
-that identifier to the full VOEvent packet. VOEvent identifiers thus provide a
-citation mechanism --- a way to express that one VOEvent packet is a
-\emph{follow-up} in some fashion of a previous packet. For these reasons,
-VOEvent packets will often contain VO identifiers \citep{2016ivoa.spec.0523D}.
-These take the general form {\tt ivo://authorityID/resourceKey\#local\_ID}, and
+that identifier to the full VOEvent packet. VOEvent identifiers thus provide a 
+citation mechanism --- a way to express that one VOEvent packet is a 
+\emph{follow-up} in some fashion of a previous packet. For these reasons, 
+VOEvent packets will often contain VO identifiers \citep{2016ivoa.spec.0523D}. 
+These take the general form \texttt{ivo://authorityID/resourceKey\#local\_ID}, and
 are references to metadata packets that may be found at a VO registry or VOEvent
 repository. There are several types of metadata schema that the registry can
 hold. For the purposes of VOEvent, the principal schemata are:
@@ -332,24 +341,24 @@ through the global, distributed IVOA registry in stages. The registry is queried
 to locate a repository holding the relevant packet, and then the repository is
 queried for the packet itself. The part of the IVORN before the ``{\tt\#}''
 symbol points to the \emph{VOEventStreamRegExt} of which the event is a member;
-the whole IVORN (that includes the {\tt local\_ID}) points to the event itself.
+the whole IVORN (that includes the \texttt{local\_ID}) points to the event itself.
 Thus VOEvent identifiers serve two purposes; they contain a stream identifier,
 then the ``{\tt\#}'' sign, then the local reference within that stream.
 
 This is a key point in understanding VOEvent identifiers: {\bf The Event
 identifier also expresses the Stream identifier.} For example:
 \begin{itemize}
-\item {\tt ivo://nvo.caltech/voeventnet/catot\#1004071150784109051}\\
-This identifier points to a specific VOEvent (number {\tt 1004071150784109051})
-that is an instance of the stream called {\tt
-ivo://nvo.caltech/voeventnet/catot}. However, this IVORN will not resolve from
-the global VO registry, but only from a repository that has this stream of
-events.
-\item {\tt ivo://nvo.caltech/voeventnet/catot}\\
-This Stream identifier can be looked up in any VO registry, returning a
-description, who runs it, the names, semantics, and descriptions of the
-parameters used in the events, how to subscribe, etc. In this case, the stream
-represents optical transients from the CRTS survey. For resolving the event
+\item \texttt{ivo://nvo.caltech/voeventnet/catot\#1004071150784109051}\\
+This identifier points to a specific VOEvent (number \texttt{1004071150784109051})
+that is an instance of the stream called \texttt{
+ivo://nvo.caltech/voeventnet/catot}. However, this IVORN will not resolve from 
+the global VO registry, but only from a repository that has this stream of 
+events. 
+\item \texttt{ivo://nvo.caltech/voeventnet/catot}\\
+This Stream identifier can be looked up in any VO registry, returning a 
+description, who runs it, the names, semantics, and descriptions of the 
+parameters used in the events, how to subscribe, etc. In this case, the stream 
+represents optical transients from the CRTS survey. For resolving the event 
 itself, we want a repository that will have the event, so a query would be used
 like this: ``\emph{Find repositories that keep the events from this Stream}''
 \end{itemize}
@@ -385,10 +394,10 @@ identifiers are used. VOEvent has a strong interest in the development of
 complete and robust astronomical ontologies, but must rely on pragmatic and
 immediately useful prototypes of planned facilities.
 
-By definition, a VOEvent packet contains a single XML {\tt <VOEvent>} element.
-If multiple {\tt <VOEvent>} elements are jointly contained within a larger
-document in some fashion, they should still be handled as separate alert
-packets. A {\tt <VOEvent>} element may contain at most one of each of the
+By definition, a VOEvent packet contains a single XML \texttt{<VOEvent>} element. 
+If multiple \texttt{<VOEvent>} elements are jointly contained within a larger 
+document in some fashion, they should still be handled as separate alert 
+packets. A \texttt{<VOEvent>} element may contain at most one of each of the 
 following optional sub-elements:
 \begin{itemize}
 \item[\tt <Who>] Identification of scientifically responsible Author (see
@@ -403,41 +412,41 @@ following optional sub-elements:
 \item[\tt <Reference>] External Content (see \S\ref{sec:3.9})
 \end{itemize}
 
-Only those elements required to convey the event being described need be
-present; the ordering of elements is not formally constrained. The intent of
-VOEvent is to describe a single astronomical transient event per packet.
-Multiple events should be expressed using multiple packets. On the other hand,
-complex observations may best be expressed using multiple follow-up packets or
-via embedded {\tt <References>} to external resources such as VOTables or RTML
-documents. XML structures other than those listed in this document should be
-used with care within a {\tt <VOEvent>} element, but some applications may
-require the freedom to reference schema outside the scope of this specification.
-Section 4 contains examples of complete VOEvent packets.
+Only those elements required to convey the event being described need be 
+present; the ordering of elements is not formally constrained. The intent of 
+VOEvent is to describe a single astronomical transient event per packet. 
+Multiple events should be expressed using multiple packets. On the other hand, 
+complex observations may best be expressed using multiple follow-up packets or 
+via embedded \texttt{<References>} to external resources such as VOTables or RTML 
+documents. XML structures other than those listed in this document should be 
+used with care within a \texttt{<VOEvent>} element, but some applications may 
+require the freedom to reference schema outside the scope of this specification. 
+Section 4 contains examples of complete VOEvent packets. 
 
-\subsection{{\tt <VOEvent>} --- identifiers, roles and versions}
+\subsection{\texttt{<VOEvent>} --- identifiers, roles and versions}
 \label{sec:3.1}
-A {\tt <VOEvent>} expresses the discovery of a sky transient event, located in a
-region of space and time, observed by an instrument, and published by a person
-or institution who may have developed a hypothesis about the underlying
-classification of the event.
+A \texttt{<VOEvent>} expresses the discovery of a sky transient event, located in a
+region of space and time, observed by an instrument, and published by a person 
+or institution who may have developed a hypothesis about the underlying 
+classification of the event. 
 
-The {\tt <VOEvent>} element has three attributes:
+The \texttt{<VOEvent>} element has three attributes:  
 
-\noindent {\bf 3.1.1} {\tt ivorn} \label{sec:3.1.1} ---
-Each VOEvent packet is required to have one-and-only-one identifier, expressed
-with the {\tt ivorn} attribute. VOEvent identifiers are URIs
-\citep{2016ivoa.spec.0523D}. As the issuance of duplicate identifiers would
-diminish the trust placed in systems exchanging VOEvents, it is anticipated that
-a number of VOEvent publishers will be founded to issue unique IVORNs from a
-variety of useful and appropriate namespaces. The non-opaque URI identifier is
-constructed systematically so that the identifier of a different resource, the
-VOEventStreamRegExt, is deducible from the identifier of an event. The first
-part is the identifier for the publisher, and the event identifier is built
-from this, then a {\tt\#} symbol, then a local string that is meaningful only
+\noindent {\bf 3.1.1} \texttt{ivorn} \label{sec:3.1.1} ---
+Each VOEvent packet is required to have one-and-only-one identifier, expressed 
+with the \texttt{ivorn} attribute. VOEvent identifiers are URIs 
+\citep{2016ivoa.spec.0523D}. As the issuance of duplicate identifiers would 
+diminish the trust placed in systems exchanging VOEvents, it is anticipated that 
+a number of VOEvent publishers will be founded to issue unique IVORNs from a 
+variety of useful and appropriate namespaces. The non-opaque URI identifier is 
+constructed systematically so that the identifier of a different resource, the 
+VOEventStreamRegExt, is deducible from the identifier of an event. The first 
+part is the identifier for the publisher, and the event identifier is built 
+from this, then a {\tt\#} symbol, then a local string that is meaningful only 
 in the context of that publisher.
 
-\noindent {\bf 3.1.2} {\tt role} \label{sec:3.1.2} ---
-The optional {\tt role} attribute accepts the enumerated options:
+\noindent {\bf 3.1.2} \texttt{role} \label{sec:3.1.2} ---
+The optional \texttt{role} attribute accepts the enumerated options:
 \begin{itemize}
 \item The value ``\emph{observation}'' is the default if the role is missing;
 this means that the packet describes an observation of the actual universe.
@@ -450,31 +459,31 @@ configuration.
 \item The value ``\emph{test}'' means that the packet does not describe actual
 astronomical events, but rather is part of a testing procedure of some kind.
 \end{itemize}
-It is the responsibility of all who receive VOEvent packets to pay attention to
-the {\tt role}, and to be quite sure of the difference between an actual event
-and a test of the system or a prediction of an event that has yet to happen.
+It is the responsibility of all who receive VOEvent packets to pay attention to 
+the \texttt{role}, and to be quite sure of the difference between an actual event 
+and a test of the system or a prediction of an event that has yet to happen. 
 
-\noindent {\bf 3.1.3} {\tt version} \label{sec:3.1.3} --- 
-The {\tt version} attribute is required to be present and to equal "2.1" for 
+\noindent {\bf 3.1.3} \texttt{version} \label{sec:3.1.3} --- 
+The \texttt{version} attribute is required to be present and to equal "2.1" for 
 all VOEvent packets governed by this version of the standard. There is no 
 default value. 
 
-For example, a {\tt <VOEvent>} packet resulting from Tycho Brahe's discovery of 
+For example, a \texttt{<VOEvent>} packet resulting from Tycho Brahe's discovery of 
 a ``Stella Nova'' in Cassiopeia on 11 November 1572 might start: 
 \begin{lstlisting}[language=XML]
 <VOEvent ivorn="ivo://uraniborg.hven#1572-11-11/0001" 
     role="observation" version="2.0">...
 \end{lstlisting}
 
-\subsection{{\tt <Who>} --- Curation Metadata}
+\subsection{\texttt{<Who>} --- Curation Metadata}
 \label{sec:3.2}
 This element of a VOEvent packet is devoted to curation metadata: who is
 responsible for the information content of the packet. Usage should be
 compatible with section 3.2 of the IVOA Resource Metadata specification
 \citep{2007ivoa.spec.0302H}. Typical curation content would include:
 
-\subsubsection{\tt <Author>}
-Author information follows the IVOA curation information schema: the
+\subsubsection{\texttt{<Author>}}
+Author information follows the IVOA curation information schema: the 
 organisation responsible for the packet can have a title, short name or acronym,
 and a logo. A contact person has a name, email, and phone number. Other
 contributors can also be noted.
@@ -491,41 +500,41 @@ An example of Author information might be:
  </Author>
 \end{lstlisting}
 
-Contributor information can be included using as many {\tt <contributor>}
-elements as necessary. The element value is the full name of the person or
-organisation. Each element can have three optional attributes: an {\tt ivorn}
-attribute to refer to the person's or organisation information in the VO
-registry; an {\tt altIdentifier} attribute to refer to other identifier (such
+Contributor information can be included using as many \texttt{<contributor>} 
+elements as necessary. The element value is the full name of the person or 
+organisation. Each element can have three optional attributes: an \texttt{ivorn} 
+attribute to refer to the person's or organisation information in the VO 
+registry; an \texttt{altIdentifier} attribute to refer to other identifier (such 
 as an ORCID (Open Researcher and Contributor ID)\footnote{
 \url{https://orcid.org}} for persons, or a Research Organisation Registry 
 (ROR)\footnote{\url{https://ror.org}} identifier for institutions), in the form 
-of an URI; and a {\tt role} attribute. The {\tt role} attribute is an important 
+of an URI; and a \texttt{role} attribute. The \texttt{role} attribute is an important 
 part of the contributor's metadata and allows proper attribution of work. We 
 recommend to use here the list of \emph{contributorType} from the DataCite 
 Metadata Schema v4.5 \citep{https://doi.org/10.14454/g8e5-6293}.
 
-\subsubsection{\tt <AuthorIVORN>}
-As an alternative to quoting Author information over and over, this information
-can be published to the VO registry, then referenced through an IVORN. The {\tt
-<AuthorIVORN>} element contains the identifier of the organisation responsible
-for making the VOEvent available. Event subscribers will often use this as their
-primary filtering criterion. Many subscribers will only want events from a
-particular publisher, or more precisely, from a specific content creator. In
-general, {\tt <AuthorIVORN>} should be a VOResource identifier that resolves to
-an organisation in the sense of \citep{2007ivoa.spec.0302H}. Publishers and
-subscribers may use this VOResource to exchange curation metadata directly.
+\subsubsection{\texttt{<AuthorIVORN>}}
+As an alternative to quoting Author information over and over, this information 
+can be published to the VO registry, then referenced through an IVORN. The \texttt{
+<AuthorIVORN>} element contains the identifier of the organisation responsible 
+for making the VOEvent available. Event subscribers will often use this as their 
+primary filtering criterion. Many subscribers will only want events from a 
+particular publisher, or more precisely, from a specific content creator. In 
+general, \texttt{<AuthorIVORN>} should be a VOResource identifier that resolves to 
+an organisation in the sense of \citep{2007ivoa.spec.0302H}. Publishers and 
+subscribers may use this VOResource to exchange curation metadata directly. 
 
-\subsubsection{\tt <Date>}
-The {\tt <Date>} contains the date and time of the creation of the VOEvent
-packet. The required format is a subset of ISO-8601 (\emph{e.g., {\tt
-yyyy-mm-ddThh:mm:ss}}). The timescale --- for curation purposes only --- is
-assumed to be Coordinated Universal Time (UTC). Discussions of date and time for
-the expression of meaningful scientific coordinates may be found in
-\citet{2007ivoa.spec.1030R} and \citet{bib26}.
+\subsubsection{\texttt{<Date>}}
+The \texttt{<Date>} contains the date and time of the creation of the VOEvent 
+packet. The required format is a subset of ISO-8601 (\emph{e.g., \texttt{
+yyyy-mm-ddThh:mm:ss}}). The timescale --- for curation purposes only --- is 
+assumed to be Coordinated Universal Time (UTC). Discussions of date and time for 
+the expression of meaningful scientific coordinates may be found in 
+\citep{2007ivoa.spec.1030R} and \citep{bib26}. 
 
 
-Minimal {\tt <Who>} usage might resemble:
-\begin{lstlisting}
+Minimal \texttt{<Who>} usage might resemble: 
+\begin{lstlisting}[language=XML]
 <Who>
      <AuthorIVORN>ivo://uraniborg.hven/Tycho</AuthorIVORN>
      <Date>1573-05-05T01:23:45Z</Date>
@@ -537,83 +546,85 @@ placed in the curation metadata. More detailed curation metadata can be
 retrieved directly from the publisher.
 
 
-\subsection{{\tt <What>} --- Event Characterisation}
+\subsection{\texttt{<What>} --- Event Characterisation}
 \label{sec:3.3}
-The {\tt <What>} and {\tt <Why>} elements work together to characterise the
-nature of a VOEvent. That is: {\tt <What>} has author-defined parameters about
-what was measured directly, or other relevant information about the event,
-whereas {\tt <Why>} is governed by a data model with a fixed schema about the hypothesised
-underlying cause or causes of the astrophysical event.
+The \texttt{<What>} and \texttt{<Why>} elements work together to characterise the 
+nature of a VOEvent. That is: \texttt{<What>} has author-defined parameters about 
+what was measured directly, or other relevant information about the event, 
+versus \texttt{<Why>} is a data model of fixed schema about the hypothesised 
+underlying cause or causes of the astrophysical event. 
 
-In general, an observation is the association of one or more dependent variables
-with zero or more independent variables. The {\tt <WhereWhen>} element, for
-example, is often used to express the independent variables in an observation
---- where was the telescope pointed and when was the camera shutter opened. The
-{\tt <What>} element, on the other hand, is typically used to express the
-dependent variables --- what was seen at that location at that time.
+In general, an observation is the association of one or more dependent variables 
+with zero or more independent variables. The \texttt{<WhereWhen>} element, for 
+example, is often used to express the independent variables in an observation 
+--- where was the telescope pointed and when was the camera shutter opened. The 
+\texttt{<What>} element, on the other hand, is typically used to express the 
+dependent variables --- what was seen at that location at that time. 
 
-A {\tt <What>} element contains a list of {\tt <Param>} elements which may be
-associated and labeled using {\tt <Group>} elements. It may also have one or
-more \texttt{<Table>} elements, each of which can contain {\tt <Param>} and {\tt <Field>}
-elements: these last define a whole column, or vector of data, rather than a
-single primitive value as with \texttt{<Param>}. See \S\ref{sec:4} for an example of
-usage.
+A \texttt{<What>} element contains a list of \texttt{<Param>} elements which may be 
+associated and labeled using \texttt{<Group>} elements. It may also have one or 
+more <Table> elements, each of which can contain \texttt{<Param>} and \texttt{<Field>} 
+elements: these last define a whole column, or vector of data, rather than a 
+single primitive value as with <Param>. See \S\ref{sec:4} for an example of 
+usage. 
 
-\subsubsection{{\tt <Param>} --- Numbers and strings with semantics}
+\subsubsection{\texttt{<Param>} --- Numbers and strings with semantics}
 %\addtocounter{subsubsection}{1}
 \label{sec:3.3.1}
-{\tt <Param>} elements may be used to represent the values of arbitrarily named
-quantities. Thus a publisher need not establish a fixed schema for all events
-they issue. Unified Content Descriptors (UCDs) \citep{2018ivoa.spec.0527P}
-may be used to clarify meaning. Usage of {\tt <Param>} and {\tt <Group>} is
-similar to the VOTable specification, see \S4.9 of \citep{2019ivoa.spec.1021O}.
-
-A {\tt <Param>} may contain elements {\tt <Description>} and {\tt <Reference>}.
-Like most VOEvent elements, these can be used to give further descriptive
-documentation about what this parameter means. The {\tt <Param>} may also
-contain an element {\tt <Value>} for the value of the parameter, as an alternate
-to the `value' attribute defined below: if both are present, the attribute takes
-precedence over the element. This allows parameter values to include a richer
-variety of text strings, to avoid strings being changed by Attribute-Value
-normalisation\footnote{\url{https://www.w3.org/TR/REC-xml/\#AVNormalize}} that
-is part of the XML specification.
-
-The following attributes are supported for {\tt <Param>}:
-
-\noindent {\bf3.3.1.1} {\tt name}\label{sec:3.3.1.1} --- A simple utilitarian
-name. This name may or may not have significance to subscribing clients.
-
-\noindent {\bf3.3.1.2} {\tt value}\label{sec:3.3.1.2} --- A string representing
-the value in question. No range or type checking of implied numbers is
-performed.
-
-\noindent {\bf3.3.1.3} {\tt unit}\label{sec:3.3.1.3} --- The unit for
-interpreting {\tt value}. See \S4.4 of \citet{2019ivoa.spec.1021O}
-which relies on VOUnits \citep{2023ivoa.spec.1215G}.
-
-\noindent {\bf3.3.1.4} {\tt ucd}\label{sec:3.3.1.4} --- A UCD
-\citep{2018ivoa.spec.0527P}
+\texttt{<Param>} elements may be used to represent the values of arbitrarily named 
+quantities. Thus a publisher need not establish a fixed schema for all events 
+they issue. Unified Content Descriptors (UCDs) \citep{2018ivoa.spec.0527P}.
 %\citep{std:UCD}
-expression characterizing the nature of the {\tt <Param>}.
+may be used to clarify meaning. Usage of \texttt{<Param>} and \texttt{<Group>} is 
+similar to the VOTable specification, see \S4.9 of \citep{2019ivoa.spec.1021O}. 
 
-\noindent {\bf3.3.1.5} {\tt dataType}\label{sec:3.3.1.5} --- A string specifying
-the data type of the {\tt <Param>}. Allowed values are ``string'', ``int'', or
-``float'', with the default being ``string''.
+A \texttt{<Param>} may contain elements \texttt{<Description>} and \texttt{<Reference>}. 
+Like most VOEvent elements, these can be used to give further descriptive 
+documentation about what this parameter means. The \texttt{<Param>} may also 
+contain an element \texttt{<Value>} for the value of the parameter, as an alternate 
+to the `value' attribute defined below: if both are present, the attribute takes 
+precedence over the element. This allows parameter values to include a richer 
+variety of text strings, to avoid strings being changed by Attribute-Value 
+normalisation\footnote{\url{https://www.w3.org/TR/REC-xml/\#AVNormalize}} that 
+is part of the XML specification. 
+
+The following attributes are supported for \texttt{<Param>}: 
+
+\noindent {\bf3.3.1.1} \texttt{name}\label{sec:3.3.1.1} --- A simple utilitarian 
+name. This name may or may not have significance to subscribing clients. 
+
+\noindent {\bf3.3.1.2} \texttt{value}\label{sec:3.3.1.2} --- A string representing 
+the value in question. No range or type checking of implied numbers is 
+performed. 
+
+\noindent {\bf3.3.1.3} \texttt{unit}\label{sec:3.3.1.3} --- The unit for 
+interpreting \texttt{value}. See \S4.4 of \citep{2019ivoa.spec.1021O}
+%\citep{std:VOTABLE}
+which relies on VOUnits \citep{2014ivoa.spec.0523D}.
+
+\noindent {\bf3.3.1.4} \texttt{ucd}\label{sec:3.3.1.4} --- A UCD 
+\citep{2018ivoa.spec.0527P}
+%\citep{std:UCD} 
+expression characterizing the nature of the \texttt{<Param>}. 
+
+\noindent {\bf3.3.1.5} \texttt{dataType}\label{sec:3.3.1.5} --- A string specifying 
+the data type of the \texttt{<Param>}. Allowed values are ``string'', ``int'', or 
+``float'', with the default being ``string''. 
 \begin{itemize}
-\item For \verb|dataType="float"|, the value must contain a possibly signed decimal
-or floating point number, possibly embedded in whitespace; it may also be
-$\pm$nan or $\pm$inf. If the value cannot be parsed this way, for example an empty
+\item For \texttt{dataType=float}, the value must contain a possibly signed decimal 
+or floating point number, possibly embedded in whitespace; it may also be 
+$\pm$nan or $\pm$inf. If the value cannot be parsed this way, for example null 
 string, it may return zero or NaN, but no exception should be thrown.
-\item For \verb|dataType="int"|, the value must contain a possibly signed decimal
-number, possibly embedded in whitespace. Conversion of floating point numbers to
-integers truncates (towards zero). If the value cannot be parsed this way, for
+\item For \texttt{dataType=int}, the value must contain a possibly signed decimal 
+number, possibly embedded in whitespace. Conversion of floating point numbers to 
+integers truncates (towards zero). If the value cannot be parsed this way, for 
 example null string, it will return zero, and no exception should be thrown.
 \end{itemize}
 
-\noindent {\bf3.3.1.6} {\tt utype}\label{sec:3.3.1.6} --- A {\tt utype} defines
-this {\tt <Param>} as part of a larger data structure, such as one of the IVOA
-standard data models. For more details, read the corresponding IVOA
-page\footnote{\url{http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/Utypes}}.
+\noindent {\bf3.3.1.6} \texttt{utype}\label{sec:3.3.1.6} --- A \texttt{utype} defines 
+this \texttt{<Param>} as part of a larger data structure, such as one of the IVOA 
+standard data models. For more details, read the corresponding IVOA 
+page\footnote{\url{http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/Utypes}}. 
 
 For example, here are three values from a GCN \citep{bib04} notice:
 \begin{lstlisting}
@@ -630,20 +641,20 @@ In VOEvent, these can be represented as:
 <Param name="GRB_INTEN" value="73288"  ucd="phot.count" dataType="int"/>
 \end{lstlisting}
 
-\subsubsection{{\tt <Group>} --- collection of related Params}
+\subsubsection{\texttt{<Group>} --- collection of related Params}
 \label{sec:3.3.2}
-{\tt <Group>} provides a simple mechanism for associating several {\tt <Param>}
-(and/or {\tt <Reference>}) elements, for instance, an error with a measurement.
-{\tt <Group>}s may NOT be nested. {\tt <Group>} elements may have a {\tt name}
-attribute, and unlike VOTable usage, may also have a {\tt type} attribute:
+\texttt{<Group>} provides a simple mechanism for associating several \texttt{<Param>} 
+(and/or \texttt{<Reference>}) elements, for instance, an error with a measurement. 
+\texttt{<Group>}s may NOT be nested. \texttt{<Group>} elements may have a \texttt{name} 
+attribute, and unlike VOTable usage, may also have a \texttt{type} attribute: 
 
-\noindent {\bf3.3.2.1} {\tt name}\label{sec:3.3.2.1} --- A simple name such as
-in \S\ref{sec:3.3.1.1}.
+\noindent {\bf3.3.2.1} \texttt{name}\label{sec:3.3.2.1} --- A simple name such as 
+in \S\ref{sec:3.3.1.1}. 
 
-\noindent {\bf3.3.2.2} {\tt type}\label{sec:3.3.2.2} --- A string that can be
-used to build data structures, for example a Group with type ``complex'' might
-have Params called ``real'' and ``imag'' for the two components of a complex
-number.
+\noindent {\bf3.3.2.2} \texttt{type}\label{sec:3.3.2.2} --- A string that can be 
+used to build data structures, for example a Group with type ``complex'' might 
+have Params called ``real'' and ``imag'' for the two components of a complex 
+number. 
 
 In a GCN notice, for example, we might see this line:
 \begin{lstlisting}
@@ -675,7 +686,7 @@ or Table.
 or Table can be nameless.
 \end{itemize}
 
-\subsubsection{{\tt <Table>} --- simple tabular data}
+\subsubsection{\texttt{<Table>} --- simple tabular data}
 \label{sec:3.3.3}
 This element is intended for a short and simple table, and re-uses the ideas and
 syntax of the IVOA VOTable, but simplified and streamlined: this is appropriate
@@ -689,65 +700,65 @@ referencing between cells; there is no INFO element.
 
 There are five elements defined in this subsection: Table, Field, Data, TR, TD.
 
-A {\tt <Table>} element can contain a sequence of {\tt <Field>} elements, one
-for each column of the table, and {\tt <Param>} elements for scalar information
-about the table. There is then a single {\tt <Data>} element that contains the
-data of the table, which is represented as a sequence of table rows, which are
-{\tt <TR>} elements, each containing a sequence of {\tt <TD>} elements for the
-table cells. For a full table, where every cell has a value, the number of {\tt
-<TD>} elements in each row should be the same as the number of {\tt <Field>}
-elements. There is then a 1-to-1 correspondence between them for each row.
+A \texttt{<Table>} element can contain a sequence of \texttt{<Field>} elements, one 
+for each column of the table, and \texttt{<Param>} elements for scalar information 
+about the table. There is then a single \texttt{<Data>} element that contains the 
+data of the table, which is represented as a sequence of table rows, which are 
+\texttt{<TR>} elements, each containing a sequence of \texttt{<TD>} elements for the 
+table cells. For a full table, where every cell has a value, the number of \texttt{
+<TD>} elements in each row should be the same as the number of \texttt{<Field>} 
+elements. There is then a 1-to-1 correspondence between them for each row. 
 
-The Table can contain {\tt <Description>} and {\tt <Reference>} elements to add
-documentation; the {\tt <Field>} elements can also contain these. Thus the {\tt
-<Table>} can contain, in order, an optional {\tt <Description>} and {\tt
-<Reference>}, then a sequence of one or more {\tt <Field>} elements, then a {\tt
-<Data>} element. The {\tt <Field>} element can also contain optional {\tt
-<Description>} and {\tt <Reference>} and nothing else. The {\tt <Data>} element
-can contain only {\tt <TR>} elements, each of which can contain only {\tt <TD>}
-elements. The following explains the attributes that are allowed for these five
-elements.
+The Table can contain \texttt{<Description>} and \texttt{<Reference>} elements to add 
+documentation; the \texttt{<Field>} elements can also contain these. Thus the \texttt{
+<Table>} can contain, in order, an optional \texttt{<Description>} and \texttt{
+<Reference>}, then a sequence of one or more \texttt{<Field>} elements, then a \texttt{
+<Data>} element. The \texttt{<Field>} element can also contain optional \texttt{
+<Description>} and \texttt{<Reference>} and nothing else. The \texttt{<Data>} element 
+can contain only \texttt{<TR>} elements, each of which can contain only \texttt{<TD>} 
+elements. The following explains the attributes that are allowed for these five 
+elements. 
 
-The following attributes are supported for {\tt <Table>}:
+The following attributes are supported for \texttt{<Table>}: 
 
-\noindent {\bf3.3.3.1} {\tt name}\label{sec:3.3.3.1} --- A simple utilitarian
-name that may be used for identification or presentation purposes. This name
-may or may not have significance to subscribing clients.
+\noindent {\bf3.3.3.1} \texttt{name}\label{sec:3.3.3.1} --- A simple utilitarian 
+name that may be used for identification or presentation purposes. This name 
+may or may not have significance to subscribing clients. 
 
-\noindent {\bf3.3.3.2} {\tt type}\label{sec:3.3.3.2} --- A string representing
-the type of the Table, that consumers can use for presentation or parsing. For
-example, a table of type ``spectralLines'' could mean to some community to
-expect columns (i.e., the {\tt <Field>}s) named ``wavelength'', ``width'',
-``name'' to define spectral lines.
+\noindent {\bf3.3.3.2} \texttt{type}\label{sec:3.3.3.2} --- A string representing 
+the type of the Table, that consumers can use for presentation or parsing. For 
+example, a table of type ``spectralLines'' could mean to some community to 
+expect columns (i.e., the \texttt{<Field>}s) named ``wavelength'', ``width'', 
+``name'' to define spectral lines. 
 
-The {\tt <Field>} element defines the semantic nature of a Table column, and is
-structured similarly to the {\tt <Param>} element of section \ref{sec:3.3.1}.
-The following attributes are supported for {\tt <Field>}, similarly to the {\tt
-<Param>} definition above:
+The \texttt{<Field>} element defines the semantic nature of a Table column, and is 
+structured similarly to the \texttt{<Param>} element of section \ref{sec:3.3.1}. 
+The following attributes are supported for \texttt{<Field>}, similarly to the \texttt{
+<Param>} definition above: 
 
-\noindent {\bf3.3.3.3} {\tt name}\label{sec:3.3.3.3} --- A simple utilitarian
-name that may be used elsewhere in the packet. This name may or may not have
-significance to subscribing clients.
+\noindent {\bf3.3.3.3} \texttt{name}\label{sec:3.3.3.3} --- A simple utilitarian 
+name that may be used elsewhere in the packet. This name may or may not have 
+significance to subscribing clients. 
 
-\noindent {\bf3.3.3.4} {\tt unit}\label{sec:3.3.3.4} --- The unit for
-interpreting the values as given in the {\tt <TD>} table cells. See \S4.4 of
-\citet{2019ivoa.spec.1021O}, which relies on \citet{2014ivoa.spec.0523D}.
+\noindent {\bf3.3.3.4} \texttt{unit}\label{sec:3.3.3.4} --- The unit for 
+interpreting the values as given in the \texttt{<TD>} table cells. See \S4.4 of 
+\citep{2019ivoa.spec.1021O}, which relies on \citep{2014ivoa.spec.0523D}. 
 
-\noindent {\bf3.3.3.5} {\tt ucd}\label{sec:3.3.3.5} --- A UCD
-\citep{2018ivoa.spec.0527P} expression characterizing the nature of the data in
-this table column.
+\noindent {\bf3.3.3.5} \texttt{ucd}\label{sec:3.3.3.5} --- A UCD 
+\citep{2018ivoa.spec.0527P} expression characterizing the nature of the data in 
+this table column. 
 
-\noindent {\bf3.3.3.6} {\tt dataType}\label{sec:3.3.3.6} --- A string specifying
-the data type of the table column. Allowed values are ``string'', ``int'', or
+\noindent {\bf3.3.3.6} \texttt{dataType}\label{sec:3.3.3.6} --- A string specifying 
+the data type of the table column. Allowed values are ``string'', ``int'', or 
 ``float'', with the default being ``string''.
-
-\noindent {\bf3.3.3.7} {\tt utype}\label{sec:3.3.3.7} --- A utype (see \S4.6 of
-\citet{2019ivoa.spec.1021O}) defines this {\tt <Param>} as part of a larger data
-structure, such as one of the IVOA standard data models.
-
- The following is an example of a Table element. Note the {\tt dataType}
- attribute that is used to interpret the values in the table cells.
-\begin{lstlisting}
+ 
+\noindent {\bf3.3.3.7} \texttt{utype}\label{sec:3.3.3.7} --- A utype (see \S4.6 of 
+\citep{2019ivoa.spec.1021O}) defines this \texttt{<Param>} as part of a larger data 
+structure, such as one of the IVOA standard data models. 
+ 
+ The following is an example of a Table element. Note the \texttt{dataType} 
+ attribute that is used to interpret the values in the table cells. 
+\begin{lstlisting}[language=XML]
 <Table>
     <Description>Individual Moduli and Distances for NGC 0931 from
       NED</Description>
@@ -767,7 +778,7 @@ structure, such as one of the IVOA standard data models.
 </Table>
 \end{lstlisting}
 
-\subsection{{\tt <WhereWhen>} --- Space-Time Coordinates}
+\subsection{\texttt{<WhereWhen>} --- Space-Time Coordinates}
 \label{sec:3.4}
 
 A VOEvent packet will typically include information about where in the sky and 
@@ -775,15 +786,15 @@ when in time an event was detected, and from what location, along with spatial
 and temporal coordinate systems and errors. If either the spatial or temporal 
 locators are absent, it is to be assumed that the information is either unknown 
 or irrelevant. VOEvent v2.1 borrows the syntax of the IVOA Space-Time Coordinate 
-(STC) specification version 1.30 or later; the {\tt <WhereWhen>} element may 
-reference an STC \citep{2007ivoa.spec.1030R} {\tt <ObsDataLocation>} element to 
+(STC) specification version 1.30 or later; the \texttt{<WhereWhen>} element may 
+reference an STC \citep{2007ivoa.spec.1030R} \texttt{<ObsDataLocation>} element to 
 provide a sky location and time for the event. VOEvent publishers should 
 construct expressions that concisely provide all information that is 
 scientifically significant to the event, and no more than that. See 
 \S\ref{sec:4} for an example of usage. 
 
 STC expressions are used to locate the physical phenomena associated with a 
-VOEvent alert in both time and space as described below. The {\tt 
+VOEvent alert in both time and space as described below. The \texttt{
 <ObsDataLocation>} element is a combination of information describing the 
 location of an observation in the sky along with information describing the 
 location of the observatory from which that observation was made. Both the sky 
@@ -802,12 +813,12 @@ and temporal information.
 \subsubsection{ObservationLocation}
 \label{sec:3.4.1}
 
-The {\tt <ObservationLocation>} defines the location of the event, whereas
-the {\tt <ObservatoryLocation>} specifies the location of the observatory,
-for which that event location is valid. It should contain a link to a
-coordinate system, {\tt <AstroCoordSystem>}, as well as the actual coordinates
-of the event, {\tt <AstroCoords>}, containing a reference back to the
-coordinate system specification. For example:
+The \texttt{<ObservationLocation>} defines the location of the event, whereas
+the \texttt{<ObservatoryLocation>} specifies the location of the observatory, 
+for which that event location is valid. It should contain a link to a 
+coordinate system, \texttt{<AstroCoordSystem>}, as well as the actual coordinates 
+of the event, \texttt{<AstroCoords>}, containing a reference back to the 
+coordinate system specification. For example: 
 
 \begin{lstlisting}
 <ObservationLocation>
@@ -833,16 +844,16 @@ coordinate system specification. For example:
 Specifying errors is optional but recommended for both time and space
 components.
 
-The {\tt <AstroCoords>} element has a {\tt coord\_system\_id} attribute and the
-{\tt <AstroCoordSystem>} has a {\tt id} attribute. The value of both of these
-should be identical, and represent the space-time coordinate system that will be
-used for the event position and time.
+The \texttt{<AstroCoords>} element has a \texttt{coord\_system\_id} attribute and the 
+\texttt{<AstroCoordSystem>} has a \texttt{id} attribute. The value of both of these 
+should be identical, and represent the space-time coordinate system that will be 
+used for the event position and time. 
 
-A {\tt coord\_system\_id} and {\tt id} are built from a time part, a space part,
-and a ``center'' specification, concatenated in that order and separated by
-hyphens. Astronomical coordinate systems are extremely varied, but all VOEvent
-subscribers should be prepared to handle coordinates expressed as combinations
-of these basic defaults:
+A \texttt{coord\_system\_id} and \texttt{id} are built from a time part, a space part, 
+and a ``center'' specification, concatenated in that order and separated by 
+hyphens. Astronomical coordinate systems are extremely varied, but all VOEvent 
+subscribers should be prepared to handle coordinates expressed as combinations 
+of these basic defaults: 
 \begin{itemize}
 \item The time part can be \emph{UTC} (Coordinated Universal Time
 \citep{bib26}), \emph{TT} (Terrestrial Time, currently 65.184 seconds ahead of
@@ -860,30 +871,30 @@ is available as an IVOA vocabulary: \url{https://www.ivoa.net/rdf/refposition}
 \end{itemize}
 
 
-It is assumed that the center reference position (origin) is the same for both
-space and time coordinates. That means, for instance, that \emph{BARY} should
-only be paired with \emph{TDB} (and vice-versa). See the STC specification
-\citep{2007ivoa.spec.1030R} %\citep{std:STC}
-for further discussion. The list of {\tt <AstroCoordSystem>} defaults that
+It is assumed that the center reference position (origin) is the same for both 
+space and time coordinates. That means, for instance, that \emph{BARY} should 
+only be paired with \emph{TDB} (and vice-versa). See the STC specification 
+\citep{2007ivoa.spec.1030R} %\citep{std:STC} 
+for further discussion. The list of \texttt{<AstroCoordSystem>} defaults that 
 VOEvent brokers and clients may be called upon to understand is: \\
 \emph{TT-ICRS-TOPO, UTC-ICRS-TOPO, TT-FK5-TOPO, UTC-FK5-TOPO, GPS-ICRS-TOPO,
 GPS-FK5-TOPO, TT-ICRS-GEO, UTC-ICRS-GEO, TT-FK5-GEO, UTC-FK5-GEO, GPS-ICRS-GEO,
 GPS-FK5-GEO, TDB-ICRS-BARY, TDB-FK5-BARY}.
 
-The STC specification, in particular {\tt <ObsDataLocation>} and its contained
-elements, allows more exotic coordinate systems (for example, describing
-planetary surfaces). Further description of how VOEvent packets might be
-constructed to convey such information to subscribers is outside the scope of
-this document. As with other elements of an alert packet, subscribers must be
-prepared to understand coordinates expressing the science and experimental
-design pertinent to the particular classes of sky transients that are of
-interest.
+The STC specification, in particular \texttt{<ObsDataLocation>} and its contained 
+elements, allows more exotic coordinate systems (for example, describing 
+planetary surfaces). Further description of how VOEvent packets might be 
+constructed to convey such information to subscribers is outside the scope of 
+this document. As with other elements of an alert packet, subscribers must be 
+prepared to understand coordinates expressing the science and experimental 
+design pertinent to the particular classes of sky transients that are of 
+interest. 
 
 In short, subscribers are responsible for choosing what VOEvent packets and thus
-{\tt coord\_system\_id} values they will accept. Further, subscribers may choose
+\texttt{coord\_system\_id} values they will accept. Further, subscribers may choose
 not to distinguish between coordinate systems that are only subtly different for
-their purposes --- for instance between \emph{ICRS} or \emph{FK5}, or between
-\emph{TOPO} or \emph{GEO}. As software determines whether a packet's {\tt
+their purposes --- for instance between \emph{ICRS} or \emph{FK5}, or between 
+\emph{TOPO} or \emph{GEO}. As software determines whether a packet's \texttt{
 coord\_system\_id} describes a supported coordinate system, the question is also
 what accuracy is required and what coordinate transformations may be implicitly
 or explicitly performed to that level of accuracy.
@@ -896,19 +907,18 @@ would be a good choice as an interoperability standard.
 
 \subsubsection{ObservatoryLocation}
 \label{sec:3.4.2}
-The {\tt <ObservatoryLocation>} element is used to express the location from
-which the observation being described was made. It is a required element for
-expressing topocentric coordinate systems. An instance of {\tt
-<Observatory\-Location>} may take two forms. In the first, an observatory location
-may be taken from a library, for example:
-
-\begin{lstlisting}
-<ObservatoryLocation id="Palomar" />
-\end{lstlisting}
-
-The {\tt id} here indicates the name of the observatory, other examples being:
-Keck, KPNO, JCMT, MMTO, VLA, etc., or it may indicate one of the following
-generic observatory locations:
+The \texttt{<ObservatoryLocation>} element is used to express the location from 
+which the observation being described was made. It is a required element for 
+expressing topocentric coordinate systems. An instance of \texttt{
+<ObservatoryLocation>} may take two forms. In the first, an observatory location
+may be taken from a library, for example: 
+{\footnotesize
+\begin{verbatim}
+<ObservatoryLocation id="Palomar" /> 
+\end{verbatim}}
+The \texttt{id} here indicates the name of the observatory, other examples being: 
+Keck, KPNO, JCMT, MMTO, VLA, etc., or it may indicate one of the following 
+generic observatory locations: 
 \begin{itemize}
 \item \emph{GEOSURFACE} - any location on the surface of the earth
 \item \emph{GEOLEO} - any location in Low Earth Orbit (altitude<700 km)
@@ -917,19 +927,19 @@ generic observatory locations:
 \item \emph{GEOLUN} - any location within the Moon's orbit
 \end{itemize}
 
-For example, a packet might contain the following {\tt <ObservatoryLocation>}
-to indicate that the coordinates expressed in the {\tt <WhereWhen>} element are
-located with an accuracy comprising the Earth's surface:
-\begin{lstlisting}
-<ObservatoryLocation id="GEOSURFACE" />
+For example, a packet might contain the following \texttt{<ObservatoryLocation>} 
+to indicate that the coordinates expressed in the \texttt{<WhereWhen>} element are 
+located with an accuracy comprising the Earth's surface: 
+\begin{lstlisting}[language=XML]
+<ObservatoryLocation id="GEOSURFACE" /> 
 \end{lstlisting}
 
-The second option for {\tt <ObservatoryLocation>} is that an observatory can be
-located by specifying the actual coordinate values of longitude, latitude and
-altitude on the surface of the Earth. Note the use of a coordinate system for
-the surface of the Earth (UTC-GEOD-TOPO) is natural for an observatory location,
-whereas coordinate systems in the previous section are for astronomical events.
-\begin{lstlisting}
+The second option for \texttt{<ObservatoryLocation>} is that an observatory can be 
+located by specifying the actual coordinate values of longitude, latitude and 
+altitude on the surface of the Earth. Note the use of a coordinate system for 
+the surface of the Earth (UTC-GEOD-TOPO) is natural for an observatory location, 
+whereas coordinate systems in the previous section are for astronomical events. 
+\begin{lstlisting}[language=XML]
 <ObservatoryLocation id="KPNO">
     <AstroCoordSystem id="UTC-GEOD-TOPO" />
     <AstroCoords coord_system_id="UTC-GEOD-TOPO">
@@ -944,8 +954,8 @@ whereas coordinate systems in the previous section are for astronomical events.
 </ObservatoryLocation>
 \end{lstlisting}
 
-Each {\tt C1}, {\tt C2} and {\tt C3} element have {\tt pos\_unit} and {\tt ucd}
-optional attributes.
+Each \texttt{C1}, \texttt{C2} and \texttt{C3} element have \texttt{pos\_unit} and \texttt{ucd}
+optional attributes. 
 
 \subsubsection{Parsing the WhereWhen Element}
 \label{sec:3.4.3}
@@ -994,19 +1004,18 @@ e.g., for Space Weather or Near Earth Objects) have specific requirements that
 have been discussed by \citet{2018arXiv181112680C}. Since many solar system body 
 reference frames exist, we do not list them here. 
 
-A {\tt PositionName} element is available in the {\tt
-ObservationLocation/Ast\-roCoords} element. It is used to refer to named objects,
-at which the event is observed without coordinates (e.g., for unresolved
-observations, or a global impact).
+A \texttt{PositionName} element is available in the \texttt{
+ObservationLocation/AstroCoords} element. It is used to refer to named objects, 
+at which the event is observed without coordinates (e.g., for unresolved 
+observations, or global impact).  
 
-A {\tt TimeInterval} element is available in the {\tt
-ObservationLocation/Astro\-Coords/Time} element. It is composed of two elements
-{\tt ISOTimeStart} and {\tt ISOTimeStop}, both defined similarly to the {\tt
-ISOTime} element of {\tt TimeInstant}. This pair of dates is used to refer to
-interval observations or predictions. This interval concept is different than
-the error on the event Time, but rather corresponds to the boundaries of a
-temporally extended event.
-
+A \texttt{TimeInterval} element is available in the \texttt{
+ObservationLocation/AstroCoords/Time} element. It is composed of two elements 
+\texttt{ISOTimeStart} and \texttt{ISOTimeStop}, both defined similarly to the \texttt{
+ISOTime} element of \texttt{TimeInstant}. This pair of dates is used to refer to 
+interval observations or predictions. This interval concept is different than 
+the error on the event Time, but rather corresponds to the boundaries of a 
+temporally extended event. 
 
 \subsubsection{Events Observed from Spacecraft}
 \label{sec:3.4.5}
@@ -1027,117 +1036,117 @@ travel time may be quite significant between a spacecraft and any follow-up
 telescopes on the Earth. Subscribers may need to adjust wavefront arrival times
 to suit.
 
-Authors of such events may choose to handle reporting the location of the
-spacecraft in different ways. First, they may simply construct the complex {\tt
-<ObservatoryLocation>} element that correctly represents the rapidly moving
-location of an orbiting observatory. Further discussion of this topic is outside
-the scope of the present document, see the STC specification
-\citep{2007ivoa.spec.1030R}. Of course, any subscribers to such an event stream
-would have to understand such an {\tt <ObservatoryLocation>} in detail and be
-able to calculate appropriate time-varying adjustments to the coordinates in
-support of their particular science program.
+Authors of such events may choose to handle reporting the location of the 
+spacecraft in different ways. First, they may simply construct the complex \texttt{
+<ObservatoryLocation>} element that correctly represents the rapidly moving 
+location of an orbiting observatory. Further discussion of this topic is outside 
+the scope of the present document, see the STC specification 
+\citep{2007ivoa.spec.1030R}. Of course, any subscribers to such an event stream 
+would have to understand such an \texttt{<ObservatoryLocation>} in detail and be 
+able to calculate appropriate time-varying adjustments to the coordinates in 
+support of their particular science program. 
 
-Alternately, an author of event alert packets resulting from spacecraft
-observations might simply choose to correct their observations themselves into
-geocentric or barycentric coordinates. Finally, for spacecraft in Earth orbit,
-authors might choose to report an {\tt <ObservatoryLocation>} such as
-\emph{GEOLUN}, indicating a rough position precise to the width of the Moon's
-orbit. These two options might be combined by both making a geocentric
-correction --- for instance, to simplify the handling of timing information ---
-with the reporting of a \emph{GEOLEO} location, for example.
+Alternately, an author of event alert packets resulting from spacecraft 
+observations might simply choose to correct their observations themselves into 
+geocentric or barycentric coordinates. Finally, for spacecraft in Earth orbit, 
+authors might choose to report an \texttt{<ObservatoryLocation>} such as 
+\emph{GEOLUN}, indicating a rough position precise to the width of the Moon's 
+orbit. These two options might be combined by both making a geocentric 
+correction --- for instance, to simplify the handling of timing information --- 
+with the reporting of a \emph{GEOLEO} location, for example. 
 
-\subsection{{\tt <How>} --- Instrument Configuration}
+\subsection{\texttt{<How>} --- Instrument Configuration}
 \label{sec:3.5}
-The {\tt <How>} element supplies instrument specific information. A VOEvent
-describes events in the sky, not events in the focal plane of a telescope. Only
-specialised classes of event will benefit from providing detailed information
-about instrumental or experimental design. A {\tt <How>} contains zero or more
-{\tt <Reference>} elements (see \S\ref{sec:3.9}) and {\tt <Description>}
-elements, that together characterise the instrument(s) that produced the
-observation(s) that resulted in issuing the VOEvent packet. A URI pointing to a
-previous VOEvent asserts that an identical instrumental configuration was used:
-\begin{lstlisting}
+The \texttt{<How>} element supplies instrument specific information. A VOEvent 
+describes events in the sky, not events in the focal plane of a telescope. Only 
+specialised classes of event will benefit from providing detailed information 
+about instrumental or experimental design. A \texttt{<How>} contains zero or more 
+\texttt{<Reference>} elements (see \S\ref{sec:3.9}) and \texttt{<Description>} 
+elements, that together characterise the instrument(s) that produced the 
+observation(s) that resulted in issuing the VOEvent packet. A URI pointing to a 
+previous VOEvent asserts that an identical instrumental configuration was used: 
+\begin{lstlisting}[language=XML]
 <How>
     <Description> The Echelle spectrograph </Description>
     <Reference uri="http://nsa.noao.edu/kp012345.rtml" />
 </How>
 \end{lstlisting}
 
-\subsection{{\tt <Why>} --- Initial Scientific Assessment}
+\subsection{\texttt{<Why>} --- Initial Scientific Assessment}
 \label{sec:3.6}
-{\tt <Why>} seeks to capture the emerging concept of the nature of the
-astronomical objects and processes that generated the observations noted in the
-{\tt <What>} element. Natural language words and phrases are used to express the
-hypothesised astrophysics, pending a standard VO ontology or formal UCD-like
-vocabulary of astronomical concepts (see \citet{2018ivoa.spec.0527P}).
-% and [\hyperref[bib19]{19}], for example => reference removed, since the
+\texttt{<Why>} seeks to capture the emerging concept of the nature of the 
+astronomical objects and processes that generated the observations noted in the 
+\texttt{<What>} element. Natural language words and phrases are used to express the 
+hypothesised astrophysics, pending a standard VO ontology or formal UCD-like 
+vocabulary of astronomical concepts (see \citep{2018ivoa.spec.0527P}).
+% and [\hyperref[bib19]{19}], for example => reference removed, since the 
 % document is not available anymore at provided URL.
-The {\tt <Why>} element has two optional attributes, {\tt importance} and {\tt
-expires}, providing ratings of the relative noteworthiness and urgency of each
-VOEvent, respectively. Subscribers should consider the {\tt importance} and {\tt
-expires} ratings from a particular publisher in combination with other VOEvent
-metadata in interpreting an alert for their purposes. The publishers of each
-category of event are encouraged to develop a self-consistent rating scheme for
-these values.
+The \texttt{<Why>} element has two optional attributes, \texttt{importance} and \texttt{
+expires}, providing ratings of the relative noteworthiness and urgency of each 
+VOEvent, respectively. Subscribers should consider the \texttt{importance} and {\tt
+expires} ratings from a particular publisher in combination with other VOEvent 
+metadata in interpreting an alert for their purposes. The publishers of each 
+category of event are encouraged to develop a self-consistent rating scheme for 
+these values. 
 
-\noindent {\bf 3.6.1} {\tt importance}\label{sec:3.6.1} ---
-The {\tt importance} provides a rating of the noteworthiness of the VOEvent,
-expressed as a floating point number bounded between 0.0 and 1.0 (inclusive).
-The meaning of {\tt importance} is unspecified other than that larger values are
-considered of generally greater importance.
+\noindent {\bf 3.6.1} \texttt{importance}\label{sec:3.6.1} ---
+The \texttt{importance} provides a rating of the noteworthiness of the VOEvent, 
+expressed as a floating point number bounded between 0.0 and 1.0 (inclusive). 
+The meaning of \texttt{importance} is unspecified other than that larger values are
+considered of generally greater importance. 
 
-\noindent {\bf 3.6.2} {\tt expires}\label{sec:3.6.2} ---
-The {\tt expires} attribute provides a rating of the urgency or time-criticality
+\noindent {\bf 3.6.2} \texttt{expires}\label{sec:3.6.2} --- 
+The \texttt{expires} attribute provides a rating of the urgency or time-criticality
 of the VOEvent, expressed as an ISO-8601\footnote{\url{
-https://www.w3.org/TR/NOTE-datetime}} representation of some date and time in
-the future. The meaning of {\tt expires} is application dependent but will often
-represent the date and time after which a follow-up observation might be
-belated.
+https://www.w3.org/TR/NOTE-datetime}} representation of some date and time in 
+the future. The meaning of \texttt{expires} is application dependent but will often
+represent the date and time after which a follow-up observation might be 
+belated. 
 
-A {\tt <Why>} element contains one or more {\tt <Concept>} and {\tt <Name>}
-sub-elements. These may be used to assert concepts that specify a scientific
-classification of the nature of the event, or rather to attach the name of some
-specific astronomical object or feature. These may be organised using the {\tt
-<Inference>} element, which permits expressing the nature of the {\tt relation}
-of the contained elements to the event in question as well as an estimate of its
-likelihood via its {\tt probability} attribute.
+A \texttt{<Why>} element contains one or more \texttt{<Concept>} and \texttt{<Name>} 
+sub-elements. These may be used to assert concepts that specify a scientific 
+classification of the nature of the event, or rather to attach the name of some 
+specific astronomical object or feature. These may be organised using the \texttt{
+<Inference>} element, which permits expressing the nature of the \texttt{relation} 
+of the contained elements to the event in question as well as an estimate of its 
+likelihood via its \texttt{probability} attribute. 
 
-\setcounter{subsubsection}{2}
-\subsubsection{{\tt <Concept>} --- classification}\label{sec:3.6.3}
-The value of a {\tt <Concept>} element uses a controlled vocabulary to express
-the hypothesized astrophysics. This standard VO ontology or formal UCD-like
-vocabulary of astronomical concepts vocabulary is still in development (see
-\citet{2018ivoa.spec.0527P}).
-%\citep{std:UCD} and [\hyperref[bib19]{19}], for example).
+\setcounter{subsubsection}{2} 
+\subsubsection{\texttt{<Concept>} --- classification}\label{sec:3.6.3}
+The value of a \texttt{<Concept>} element uses a controlled vocabulary to express 
+the hypothesized astrophysics. This standard VO ontology or formal UCD-like 
+vocabulary of astronomical concepts vocabulary is still in development (see 
+\citep{2018ivoa.spec.0527P}).
+%\citep{std:UCD} and [\hyperref[bib19]{19}], for example). 
 
-\subsubsection{{\tt <Description>} --- natural language}\label{sec:3.6.4}
-This element provides a natural language description of the concept, either as
-a replacement for the {\tt <Concept>} element, or as an elaboration.
+\subsubsection{\texttt{<Description>} --- natural language}\label{sec:3.6.4}
+This element provides a natural language description of the concept, either as 
+a replacement for the \texttt{<Concept>} element, or as an elaboration. 
 
-\subsubsection{{\tt <Name>} --- identification}\label{sec:3.6.5}
-{\tt <Name>} provides the name of a specific astronomical object. It is
-preferred, but not required, to use standard astronomical nomenclature,
-\emph{e.g.}, as recognized by NED \citep{bib22} or SIMBAD \citep{bib23}.
+\subsubsection{\texttt{<Name>} --- identification}\label{sec:3.6.5}
+\texttt{<Name>} provides the name of a specific astronomical object. It is 
+preferred, but not required, to use standard astronomical nomenclature, 
+\emph{e.g.}, as recognized by NED \citep{bib22} or SIMBAD \citep{bib23}. 
 
-\subsubsection{{\tt <Inference>} --- hypotheses inferred}\label{sec:3.6.6}
-An {\tt <Inference>} may be used to group or associate one or more {\tt <Name>}
-or {\tt <Concept>} elements. {\tt <Inference>} has two optional attributes, {\tt
-probability} and {\tt relation}:
+\subsubsection{\texttt{<Inference>} --- hypotheses inferred}\label{sec:3.6.6}
+An \texttt{<Inference>} may be used to group or associate one or more \texttt{<Name>} 
+or \texttt{<Concept>} elements. \texttt{<Inference>} has two optional attributes, {\tt
+probability} and \texttt{relation}: 
 
-\noindent {\bf 3.6.6.1} {\tt probability}\label{sec:3.6.6.1} --- The {\tt
-probability} attribute is an estimate of the likelihood of the {\tt <Inference>}
+\noindent {\bf 3.6.6.1} \texttt{probability}\label{sec:3.6.6.1} --- The \texttt{
+probability} attribute is an estimate of the likelihood of the \texttt{<Inference>}
 accurately describing the event in question. It is expressed as a floating point
 number bounded between 0.0 and 1.0 (inclusive). In particular, note that a {\tt
-probability} of 0.0 can be used to eliminate {\tt <Inferences>} from further
-consideration.
+probability} of 0.0 can be used to eliminate \texttt{<Inferences>} from further 
+consideration. 
 
-\noindent {\bf 3.6.6.2} {\tt relation}\label{sec:3.6.6.2} --- The {\tt relation}
-attribute is a natural language string that expresses the degree of connection
-between the {\tt <Inference>} and the event described by the packet. Typical
-values might be ``associated'' --- a SN is associated with a particular galaxy
---- or ``identified'' --- a SN is identified as corresponding to a particular
+\noindent {\bf 3.6.6.2} \texttt{relation}\label{sec:3.6.6.2} --- The \texttt{relation}
+attribute is a natural language string that expresses the degree of connection 
+between the \texttt{<Inference>} and the event described by the packet. Typical 
+values might be ``associated'' --- a SN is associated with a particular galaxy 
+--- or ``identified'' --- a SN is identified as corresponding to a particular 
 precursor star. Such a one-to-one identification is considered to be the default
-{\tt relation} in the absence of the attribute.
+\texttt{relation} in the absence of the attribute. 
 
 This example asserts that the creator of the packet is 100\% certain that the
 event being described is equivalent to \emph{Tycho's Star}, which has been
@@ -1158,11 +1167,11 @@ is no longer a very urgent one:
 </Why>
 \end{lstlisting}
 
-\subsection{{\tt <Citations>} --- Follow-up Observations}
+\subsection{\texttt{<Citations>} --- Follow-up Observations}
 \label{sec:3.7}
-A VOEvent packet without a {\tt <Citations>} element can be assumed to be
-asserting information about a new celestial discovery. Citations reference
-previous events to do one of three things:
+A VOEvent packet without a \texttt{<Citations>} element can be assumed to be 
+asserting information about a new celestial discovery. Citations reference 
+previous events to do one of three things: 
 \begin{itemize}
 \item follow-up an event alert with more observations or other relevant data, or
 \item supersede a prior event with better, equivalent information, or
@@ -1181,37 +1190,38 @@ between one observation of a transient and another relevant observation.
 However, not everything should be cited: while the papers of Einstein may be
 relevant, they need not be always cited! A different notion is that of
 association of sources: as in a radio source being near an optical source. If an
-author wishes to express this notion, the {\tt <Inference>} element can carry
-this information (see section \ref{sec:3.6.6}).
+author wishes to express this notion, the \texttt{<Inference>} element can carry 
+this information (see section \ref{sec:3.6.6}). 
 
-A {\tt <Citations>} element contains one or more {\tt <EventIVORN>} elements.
-The standard does not attempt to enforce references to be logically consistent;
-this is the responsibility of publishers and subscribers.
+A \texttt{<Citations>} element contains one or more \texttt{<EventIVORN>} elements. 
+The standard does not attempt to enforce references to be logically consistent; 
+this is the responsibility of publishers and subscribers. 
 
-\subsubsection{{\tt <EventIVORN>} --- Cited event and relationship}
+\subsubsection{\texttt{<EventIVORN>} --- Cited event and relationship}
 \label{sec:3.7.1}
-An {\tt <EventIVORN>} element contains the IVORN of a previously published
-VOEvent packet. Each {\tt <EventIVORN>} describes the relationship of the
-current packet to that previous VOEvent. It has one required attribute:
 
-\paragraph{\tt cite}\label{sec:3.7.1.1} --- The {cite} attribute accepts three
-possible enumerated values, ``\emph{followup}'', ``\emph{supersedes}'' or
-``\emph{retraction}''. There is no default value.
+An \texttt{<EventIVORN>} element contains the IVORN of a previously published 
+VOEvent packet. Each \texttt{<EventIVORN>} describes the relationship of the 
+current packet to that previous VOEvent. It has one required attribute: 
 
-The value of the {\tt cite} attribute modifies the VOEvent semantics. In
-contrast to a VOEvent announcing a discovery (\emph{i.e.}, a packet with no
-citations), a VOEvent may be explicitly a ``\emph{followup}'', citing one or
-more earlier packets --- meaning that the described real or virtual observation
-was done as a response to those cited packet(s). In this case, the supplied
-information is assumed to be a new, independent measurement.
+\paragraph{\texttt{cite}}\label{sec:3.7.1.1} --- The {cite} attribute accepts three 
+possible enumerated values, ``\emph{followup}'', ``\emph{supersedes}'' or 
+``\emph{retraction}''. There is no default value. 
 
-The {\tt cite} may be ``\emph{supersedes}'', which can be used to express a
-variety of possible event contingencies. A prior VOEvent may be superseded, for
-example, if reprocessing of the original observation has resulted in different
-values for quantities expressed by {\tt <What>} or {\tt <WhereWhen>} or if the
-investigators have formed a new {\tt <Why>} regarding the event. On the other
-hand, if a later observation has simply resulted in different measurements to
-report, this would typically be issued as a ``\emph{followup}''.
+The value of the \texttt{cite} attribute modifies the VOEvent semantics. In 
+contrast to a VOEvent announcing a discovery (\emph{i.e.}, a packet with no 
+citations), a VOEvent may be explicitly a ``\emph{followup}'', citing one or 
+more earlier packets --- meaning that the described real or virtual observation 
+was done as a response to those cited packet(s). In this case, the supplied 
+information is assumed to be a new, independent measurement. 
+
+The \texttt{cite} may be ``\emph{supersedes}'', which can be used to express a 
+variety of possible event contingencies. A prior VOEvent may be superseded, for 
+example, if reprocessing of the original observation has resulted in different 
+values for quantities expressed by \texttt{<What>} or \texttt{<WhereWhen>} or if the 
+investigators have formed a new \texttt{<Why>} regarding the event. On the other 
+hand, if a later observation has simply resulted in different measurements to 
+report, this would typically be issued as a ``\emph{followup}''. 
 
 When a citation is made with a ``\emph{supersedes}'' or ``\emph{retraction}''
 attribute, it is assumed that {\bf all} of the previous information is
@@ -1221,23 +1231,23 @@ gets improved calibration, then Y must also be copied to the new event, or else
 its value will no longer be seen. There is, however, no guarantee that a
 superseded or retracted event will not be subsequently cited or referenced.
 
-A ``\emph{supersedes}'' {\tt cite} can also be used to merge two or more earlier
-VOEvent threads that are later determined to be related in some fashion. The
-VOEvents to be merged are indicated with separate {\tt <EventIVORN>} elements.
-The proper interpretation of such a merger would depend on a VOEvent client
-having received all intervening packets from all relevant threads. Finally,
-``\emph{supersedes}'' can be used in combination with a ``\emph{followup}'' to
+A ``\emph{supersedes}'' \texttt{cite} can also be used to merge two or more earlier
+VOEvent threads that are later determined to be related in some fashion. The 
+VOEvents to be merged are indicated with separate \texttt{<EventIVORN>} elements. 
+The proper interpretation of such a merger would depend on a VOEvent client 
+having received all intervening packets from all relevant threads. Finally, 
+``\emph{supersedes}'' can be used in combination with a ``\emph{followup}'' to 
 divide a single VOEvent into two or more new threads. First, follow-up the event
 in one packet and then supersede the original event, rather than the follow-up,
 in a second packet (with a second identifier that can start a second thread).
 
-The ``\emph{retraction}" {\tt cite} indicates that the initial discovery event
+The ``\emph{retraction}" \texttt{cite} indicates that the initial discovery event 
 is being completely retracted for some reason. The publisher of a retraction may
 be other than the publisher of the original VOEvent --- subscribers are free to
 interpret such a situation as they see fit.
 
 Splitting, merging or retracting a VOEvent should typically be accompanied by a
-{\tt <Description>} element discussing why such actions are being taken.
+\texttt{<Description>} element discussing why such actions are being taken. 
 
 An attempt is made to retract the sighting of Tycho's supernova:
 \begin{lstlisting}
@@ -1247,60 +1257,61 @@ An attempt is made to retract the sighting of Tycho's supernova:
 </Citations>
 \end{lstlisting}
 
-\subsection{{\tt <Description>} --- Human Oriented Content}
+\subsection{\texttt{<Description>} --- Human Oriented Content}
 \label{sec:3.8}
-A {\tt <Description>} may be included within any element or sub-element of a
-VOEvent to add human readable content. {\tt <Description>}s may NOT contain {\tt
-<References>}. Users may wish to embellish Description sections with HTML tags
+A \texttt{<Description>} may be included within any element or sub-element of a
+VOEvent to add human readable content. \texttt{<Description>}s may NOT contain \texttt{
+<References>}. Users may wish to embellish Description sections with HTML tags 
 such as images and URL links, and these should not be seen by the XML parser, as
 they will cause the VOEvent XML to be invalid against the schema. However, it is
 possible to use the CDATA mechanism of XML to quote text at length, so this may
 be used for complicated tagged Descriptions. See the example in section
 \ref{sec:4} for usage.
 
-\subsection{{\tt <Reference>} --- External Content}
+\subsection{\texttt{<Reference>} --- External Content}
 \label{sec:3.9}
-A {\tt <Reference>} may be included in any element or sub-element of a VOEvent
-packet to describe an association with external content via a Uniform Resource
-Identifier \citep{2016ivoa.spec.0523D}. In addition to the locator for the
-content, there is also a locator for the meaning of the content, which is
-another URI, specified by the {\tt meaning} attribute. It is anticipated that a
-Note will be written discussing the IVOA-wide usage of such meaning locators. A
-client application may ignore {\tt <Reference>} elements with unrecognized {\tt
-meaning} attributes. On the other hand, the client may ignore the `meaning'
-attribute if the position of the {\tt <Reference>} element is sufficient to
-establish semantics; for example if it is contained in a {\tt <Param>}, then
-presumably it gives drill-down semantics for the precise meaning of that {\tt
-<Param>}. A {\tt <Reference>} must be expressed as an empty element, with
-attributes only.
 
-A {\tt <Reference>} element has the attributes:
-\subsubsection{\tt uri}\label{sec:3.9.1}--- The identifier of another document
-(anyURI\footnote{\url{https://www.w3.org/TR/xmlschema11-2/\#anyURI}}). This
-attribute must be present.
-\subsubsection{\tt meaning}\label{sec:3.9.2}--- The nature of the document
-referenced (anyURI). This attribute is optional.
-\subsubsection{\tt mimetype}\label{sec:3.9.3}--- An optional MIME type\footnote{
-\url{https://www.iana.org/assignments/media-types/media-types.xhtml}} for the
-referenced document.
-\subsubsection{\tt type}\label{sec:3.9.4}[DEPRECATED] --- The type of the
-document as described in VOEvent v1.11.
-\subsubsection{\tt name}\label{sec:3.9.5}[DEPRECATED] --- A short name as
-described in VOEvent v1.11.
+A \texttt{<Reference>} may be included in any element or sub-element of a VOEvent 
+packet to describe an association with external content via a Uniform Resource 
+Identifier \citep{2016ivoa.spec.0523D}. In addition to the locator for the 
+content, there is also a locator for the meaning of the content, which is 
+another URI, specified by the \texttt{meaning} attribute. It is anticipated that a 
+Note will be written discussing the IVOA-wide usage of such meaning locators. A 
+client application may ignore \texttt{<Reference>} elements with unrecognized \texttt{
+meaning} attributes. On the other hand, the client may ignore the `meaning' 
+attribute if the position of the \texttt{<Reference>} element is sufficient to 
+establish semantics; for example if it is contained in a \texttt{<Param>}, then 
+presumably it gives drill-down semantics for the precise meaning of that \texttt{
+<Param>}. A \texttt{<Reference>} must be expressed as an empty element, with 
+attributes only. 
 
-A {\tt <Reference>} is used to provide general purpose ancillary data with
-well-defined meaning. Here a fits image is presented (h.fits), and also a link
-to the data model that is needed for a machine to understand the meaning.
-\begin{lstlisting}
+A \texttt{<Reference>} element has the attributes: 
+\subsubsection{\texttt{uri}}\label{sec:3.9.1}--- The identifier of another document 
+(anyURI\footnote{\url{https://www.w3.org/TR/xmlschema11-2/\#anyURI}}). This 
+attribute must be present. 
+\subsubsection{\texttt{meaning}}\label{sec:3.9.2}--- The nature of the document 
+referenced (anyURI). This attribute is optional. 
+\subsubsection{\texttt{mimetype}}\label{sec:3.9.3}--- An optional MIME type\footnote{
+\url{https://www.iana.org/assignments/media-types/media-types.xhtml}} for the 
+referenced document. 
+\subsubsection{\texttt{type}}\label{sec:3.9.4}[DEPRECATED] --- The type of the 
+document as described in VOEvent v1.11. 
+\subsubsection{\texttt{name}}\label{sec:3.9.5}[DEPRECATED] --- A short name as 
+described in VOEvent v1.11. 
+
+A \texttt{<Reference>} is used to provide general purpose ancillary data with 
+well-defined meaning. Here a fits image is presented (h.fits), and also a link 
+to the data model that is needed for a machine to understand the meaning. 
+\begin{lstlisting}[language=XML]
 <Group type="MyFilterWithImage">
     <Reference uri=http://.../data/h.fits
         meaning="http://www.ivoa.net/rdf/IVOAT#Filter/h"/>
 </Group>
 \end{lstlisting}
-An example of the indirection of a VOEvent packet using {\tt <Reference>}:
-\begin{lstlisting}
-<VOEvent ivorn="ivo://raptor.lanl#235649409/sn2005k"
-    role="observation" version="2.0">
+An example of the indirection of a VOEvent packet using \texttt{<Reference>}:  
+\begin{lstlisting}[language=XML]
+<VOEvent ivorn="ivo://raptor.lanl#235649409/sn2005k" 
+    role="observation" version="2.0">   
     <Reference uri="http://raptor.lanl.gov/documents/event233.xml"/>
 </VOEvent>
 \end{lstlisting}
@@ -1452,13 +1463,13 @@ WHERE
 \label{sec:4}
 \subsection{Follow up observation of a supernova with the RAPTOR telescope}
 This imaginary event is a brightness measurement of a past supernova from the 
-RAPTOR \citep{bib10} telescope. The {\tt <What>} section reports a {\tt 
-<Description>} and {\tt <Reference>} followed by a {\tt <Param>} about seeing 
-and a {\tt <Group>} with the actual report: the magnitude is 19.5, measured 
-278.02 days after the reference time, which is reported in the {\tt 
-<WhereWhen>} section. There is a {\tt <Table>} of measured distances to the 
+RAPTOR \citep{bib10} telescope. The \texttt{<What>} section reports a \texttt{
+<Description>} and \texttt{<Reference>} followed by a \texttt{<Param>} about seeing 
+and a \texttt{<Group>} with the actual report: the magnitude is 19.5, measured 
+278.02 days after the reference time, which is reported in the \texttt{
+<WhereWhen>} section. There is a \texttt{<Table>} of measured distances to the 
 presumed host galaxy. The packet represents a follow-up observation of an 
-earlier event, as defined in the {\tt <Citations>} element. 
+earlier event, as defined in the \texttt{<Citations>} element. 
 \begin{lstlisting}[language=XML]
 <?xml version="1.0" encoding="UTF-8"?>
 <voe:VOEvent ivorn="ivo://raptor.lanl/VOEvent#235649409" 
@@ -1555,11 +1566,11 @@ earlier event, as defined in the {\tt <Citations>} element.
 This second imaginary example describes the predicted time of arrival of 
 an Solar Wind dynamic pressure pulse at Jupiter. The prediction has been  
 produced by a 1D MHD propagation model \cite{tao05}, referred to as with
-the DOI of the paper describing the code. The {\tt WhereWhen} section provides
+the DOI of the paper describing the code. The \texttt{WhereWhen} section provides
 the location of the event detection, and the time frame in use for the 
-predicted dates. The {\tt What} section provides the interval, in which the
+predicted dates. The \texttt{What} section provides the interval, in which the
 detection threshold is met. The reference dataset is also cited in the 
-{\tt Why} section.
+\texttt{Why} section.
 \begin{lstlisting}[language=XML]
 <?xml version="1.0"?>
 <voe:VOEvent ivorn="ivo://psws.irap/VOEvent/Tao_Jupiter_2018-10-02T17_34_45::v1.0" 
@@ -1643,9 +1654,9 @@ detection threshold is met. The reference dataset is also cited in the
 
 \section{Schema Diagram for VOEvent}
 \label{sec:5}
-This image summarizes the basic structure of the event packet. The image shows
-how the {\tt <Description>} and {\tt <Reference>} elements can appear in many
-different places, abbreviated by D and R. Elements and their hierarchy are in
+This image summarizes the basic structure of the event packet. The image shows 
+how the \texttt{<Description>} and \texttt{<Reference>} elements can appear in many 
+different places, abbreviated by D and R. Elements and their hierarchy are in 
 black, attributes in green, required attributes underlined.
 \begin{figure}[th]
 \begin{center}
@@ -1667,61 +1678,61 @@ black, attributes in green, required attributes underlined.
 \subsection{Changes from VOEvent 2.0}
 \label{appendix:last-changes}
 \begin{itemize}
-\item The {\tt contributor} element has new attributes: {\tt ivorn}, {\tt
-altIdentifier} and {\tt role}.
-\item The restricted list of {\tt AstroCoordSystem} is removed. It was
-previously an {\tt idValues} type, now it is a simple {\tt xs:string} type.
-This allows to have extra Solar and Planetary frames without modifying the
-schema. The {\tt idValues} type and its references (in {\tt AstroCoordSystem}
-and {\tt coord\_system\_id}) have been removed. The {\tt AstroCoordSystem} can
-be fully described with a {\tt TimeFrame} and a {\tt SpaceFrame}  (according to
+\item The \texttt{contributor} element has new attributes: \texttt{ivorn}, \texttt{
+altIdentifier} and \texttt{role}. 
+\item The restricted list of \texttt{AstroCoordSystem} is removed. It was 
+previously an \texttt{idValues} type, now it is a simple \texttt{xs:string} type. 
+This allows to have extra Solar and Planetary frames without modifying the 
+schema. The \texttt{idValues} type and its references (in \texttt{AstroCoordSystem} 
+and \texttt{coord\_system\_id}) have been removed. The \texttt{AstroCoordSystem} can 
+be fully described with a \texttt{TimeFrame} and a \texttt{SpaceFrame}  (according to 
 STC-1.33).
-\item Annotations in {\tt AstroCoords/Time} and {\tt AstroCoords/Position2D}
+\item Annotations in \texttt{AstroCoords/Time} and \texttt{AstroCoords/Position2D} 
 have been included in the schema (according to STC-1.33).
-\item The concept of {\tt AstroCoords/PositionName} is introduced with type {\tt
+\item The concept of \texttt{AstroCoords/PositionName} is introduced with type {\tt
 xs:string}. This allows to identify a target by its name (such as a named solar
-system body).
-\item The concept of {\tt TimeInterval} is introduced in the {\tt <Time>}
-section. It contains a {\tt StartTime} and a {\tt StopTime}
-\item The concept of {\tt TimeOrigin} is introduced in {\tt TimeInstant}, with
-type {\tt xs:string} (according to STC-1.33)
-\item The positional error elements have been improved. The {\tt
-Position2D/Error2Radius} is now optional, and a new {\tt Position2D/Error2}
-concept is introduced (allowing to describe error bars on each of the 2D frame
-axes). A {\tt Position3D/Error3} concept is also introduced.
-\item Each individual positional value are now associated with their own UCD
-and Unit.
+system body). 
+\item The concept of \texttt{TimeInterval} is introduced in the \texttt{<Time>} 
+section. It contains a \texttt{StartTime} and a \texttt{StopTime}
+\item The concept of \texttt{TimeOrigin} is introduced in \texttt{TimeInstant}, with 
+type \texttt{xs:string} (according to STC-1.33)
+\item The positional error elements have been improved. The \texttt{
+Position2D/Error2Radius} is now optional, and a new \texttt{Position2D/Error2} 
+concept is introduced (allowing to describe error bars on each of the 2D frame 
+axes). A \texttt{Position3D/Error3} concept is also introduced.
+\item Each individual positional value are now associated with their own UCD 
+and Unit. 
 \end{itemize}
 
 \subsection{Changes from VOEvent 1.11}
 \begin{itemize}
-\item The concept of event stream is introduced in section \ref{sec:2.2}, this
-is new in VOEvent 2.0. The stream metadata acts as a template for the events in
-the stream, and is registered with the VO registry.
-\item The section on transport of VOEvents has been removed, so it can be
-handled in its own standards process.
-\item The section on Registry enhancements to support VOEvent has been expanded
-and clarified.
-\item The {\tt <Param>} elements can now have {\tt <Description>} and {\tt
-<Reference>} elements
-\item The value of a {\tt <Param>} element can now be expressed as an element
-in addition to an attribute.
-\item The {\tt <Param>} element now has an attribute ``{\tt dataType}'' to
-express the meaning of the parameter value ({\tt int}, {\tt float}, {\tt
-string}).
-\item There is a new {\tt <Table>} element to express simple tables, see section
-\ref{sec:3.3.3}.
-\item The {\tt <Param>} and {\tt <Field>} elements may have an attribute
-``{\tt utype}'' to express how it fits into an IVOA data model.
-\item The VOEvent packet structure still conforms to the IVOA Space-Time
-Coordinates standard, but there is a new, simplified schema for these elements
-that is completely within the VOEvent schema.
-\item GPS time is now a valid time system for VOEvents
-\item The semantic implication of a {\tt <Citation>} element is clarified:
-section \ref{sec:3.7}
-\item The {\tt <Reference>} element has a more sophisticated notion of meaning;
-it is a general URI reference to a wide range of possible content, rather than
-just a simple HTML link, and there is also a {\tt mimetype} attribute.
+\item The concept of event stream is introduced in section \ref{sec:2.2}, this 
+is new in VOEvent 2.0. The stream metadata acts as a template for the events in 
+the stream, and is registered with the VO registry. 
+\item The section on transport of VOEvents has been removed, so it can be 
+handled in its own standards process. 
+\item The section on Registry enhancements to support VOEvent has been expanded 
+and clarified. 
+\item The \texttt{<Param>} elements can now have \texttt{<Description>} and \texttt{
+<Reference>} elements 
+\item The value of a \texttt{<Param>} element can now be expressed as an element 
+in addition to an attribute. 
+\item The \texttt{<Param>} element now has an attribute ``\texttt{dataType}'' to 
+express the meaning of the parameter value (\texttt{int}, \texttt{float}, \texttt{
+string}). 
+\item There is a new \texttt{<Table>} element to express simple tables, see section
+\ref{sec:3.3.3}. 
+\item The \texttt{<Param>} and \texttt{<Field>} elements may have an attribute 
+``\texttt{utype}'' to express how it fits into an IVOA data model. 
+\item The VOEvent packet structure still conforms to the IVOA Space-Time 
+Coordinates standard, but there is a new, simplified schema for these elements 
+that is completely within the VOEvent schema. 
+\item GPS time is now a valid time system for VOEvents 
+\item The semantic implication of a \texttt{<Citation>} element is clarified: 
+section \ref{sec:3.7} 
+\item The \texttt{<Reference>} element has a more sophisticated notion of meaning; 
+it is a general URI reference to a wide range of possible content, rather than 
+just a simple HTML link, and there is also a \texttt{mimetype} attribute. 
 \end{itemize}
 
 \section{Schema}
