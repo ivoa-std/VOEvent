@@ -1077,11 +1077,12 @@ previous VOEvent asserts that an identical instrumental configuration was used:
 \label{sec:3.6}
 \texttt{<Why>} seeks to capture the emerging concept of the nature of the 
 astronomical objects and processes that generated the observations noted in the 
-\texttt{<What>} element. Natural language words and phrases are used to express the 
-hypothesised astrophysics, pending a standard VO ontology or formal UCD-like 
-vocabulary of astronomical concepts (see \citep{2018ivoa.spec.0527P}).
-% and [\hyperref[bib19]{19}], for example => reference removed, since the 
-% document is not available anymore at provided URL.
+\texttt{<What>} is used to express the hypothesised astrophysics. Terms from 
+the IVOA UAT \citep{2022ivoa.spec.0722D} should be used here. Terms from other 
+controlled vocabularies may be used if necessary. Free text should only be used 
+for the cases where the relevant concepts are not described in existing vocabularies.
+
+\subsubsection{Attributes}
 The \texttt{<Why>} element has two optional attributes, \texttt{importance} and \texttt{
 expires}, providing ratings of the relative noteworthiness and urgency of each 
 VOEvent, respectively. Subscribers should consider the \texttt{importance} and {\tt
@@ -1090,13 +1091,13 @@ metadata in interpreting an alert for their purposes. The publishers of each
 category of event are encouraged to develop a self-consistent rating scheme for 
 these values. 
 
-\noindent {\bf 3.6.1} \texttt{importance}\label{sec:3.6.1} ---
+\paragraph{\texttt{importance}}\label{sec:3.6.1}
 The \texttt{importance} provides a rating of the noteworthiness of the VOEvent, 
 expressed as a floating point number bounded between 0.0 and 1.0 (inclusive). 
 The meaning of \texttt{importance} is unspecified other than that larger values are
 considered of generally greater importance. 
 
-\noindent {\bf 3.6.2} \texttt{expires}\label{sec:3.6.2} --- 
+\paragraph{\texttt{expires}}\label{sec:3.6.2}
 The \texttt{expires} attribute provides a rating of the urgency or time-criticality
 of the VOEvent, expressed as an ISO-8601\footnote{\url{
 https://www.w3.org/TR/NOTE-datetime}} representation of some date and time in 
@@ -1104,6 +1105,7 @@ the future. The meaning of \texttt{expires} is application dependent but will of
 represent the date and time after which a follow-up observation might be 
 belated. 
 
+\subsubsection{Sub-elements}
 A \texttt{<Why>} element contains one or more \texttt{<Concept>} and \texttt{<Name>} 
 sub-elements. These may be used to assert concepts that specify a scientific 
 classification of the nature of the event, or rather to attach the name of some 
@@ -1112,42 +1114,40 @@ specific astronomical object or feature. These may be organised using the \textt
 of the contained elements to the event in question as well as an estimate of its 
 likelihood via its \texttt{probability} attribute. 
 
-\setcounter{subsubsection}{2} 
-\subsubsection{\texttt{<Concept>} --- classification}\label{sec:3.6.3}
-The value of a \texttt{<Concept>} element uses a controlled vocabulary to express 
-the hypothesized astrophysics. This standard VO ontology or formal UCD-like 
-vocabulary of astronomical concepts vocabulary is still in development (see 
-\citep{2018ivoa.spec.0527P}).
-%\citep{std:UCD} and [\hyperref[bib19]{19}], for example). 
+\paragraph{\texttt{<Concept>} --- classification}\label{sec:3.6.3}
+The value of a \texttt{<Concept>} element uses terms from 
+the IVOA UAT \citep{2022ivoa.spec.0722D}. Terms from other controlled vocabularies 
+may be used if necessary. Free text should only be used for the cases where the 
+relevant concepts are not described in existing vocabularies.
 
-\subsubsection{\texttt{<Description>} --- natural language}\label{sec:3.6.4}
+\paragraph{\texttt{<Description>} --- natural language}\label{sec:3.6.4}
 This element provides a natural language description of the concept, either as 
 a replacement for the \texttt{<Concept>} element, or as an elaboration. 
 
-\subsubsection{\texttt{<Name>} --- identification}\label{sec:3.6.5}
+\paragraph{\texttt{<Name>} --- identification}\label{sec:3.6.5}
 \texttt{<Name>} provides the name of a specific astronomical object. It is 
 preferred, but not required, to use standard astronomical nomenclature, 
 \emph{e.g.}, as recognized by NED \citep{bib22} or SIMBAD \citep{bib23}. 
 
-\subsubsection{\texttt{<Inference>} --- hypotheses inferred}\label{sec:3.6.6}
+\paragraph{\texttt{<Inference>} --- hypotheses inferred}\label{sec:3.6.6}
 An \texttt{<Inference>} may be used to group or associate one or more \texttt{<Name>} 
 or \texttt{<Concept>} elements. \texttt{<Inference>} has two optional attributes, {\tt
 probability} and \texttt{relation}: 
-
-\noindent {\bf 3.6.6.1} \texttt{probability}\label{sec:3.6.6.1} --- The \texttt{
+\begin{itemize}
+\item \texttt{probability}\label{sec:3.6.6.1} --- The \texttt{
 probability} attribute is an estimate of the likelihood of the \texttt{<Inference>}
 accurately describing the event in question. It is expressed as a floating point
 number bounded between 0.0 and 1.0 (inclusive). In particular, note that a {\tt
 probability} of 0.0 can be used to eliminate \texttt{<Inferences>} from further 
 consideration. 
-
-\noindent {\bf 3.6.6.2} \texttt{relation}\label{sec:3.6.6.2} --- The \texttt{relation}
+\item \texttt{relation}\label{sec:3.6.6.2} --- The \texttt{relation}
 attribute is a natural language string that expresses the degree of connection 
 between the \texttt{<Inference>} and the event described by the packet. Typical 
 values might be ``associated'' --- a SN is associated with a particular galaxy 
 --- or ``identified'' --- a SN is identified as corresponding to a particular 
 precursor star. Such a one-to-one identification is considered to be the default
 \texttt{relation} in the absence of the attribute. 
+\end{itemize}
 
 This example asserts that the creator of the packet is 100\% certain that the
 event being described is equivalent to \emph{Tycho's Star}, which has been
