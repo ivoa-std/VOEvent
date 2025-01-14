@@ -133,14 +133,14 @@ producers of events, and by generalising its transport mechanisms.
 A much larger rate of events can be expected as new facilities are commissioned
 or more fully automated. These rates indicate events that must be handled by
 machines, not humans. Subscribing agents must be able to automatically filter a
-tractable number of events without missing any that may be key to achieving
-their goals. In general, the number of pending events from a large-scale survey
-telescope (such as LSST) that are above the horizon at a given observatory
-during a given observing session may be orders of magnitude larger than a human
-can sift through productively. Selection criteria will need to be quite precise
-to usefully throttle the incoming event stream(s) --- say --- ``\emph{give me
-all events in which a point source R-band magnitude increase of at least -2.0
-was seen to occur in less than four hours, that are located within specified
+tractable number of events without missing any that may be key to achieving 
+their goals. In general, the number of pending events from a large-scale survey 
+telescope (such as LSST) that are above the horizon at a given observatory 
+during a given observing session may be orders of magnitude larger than a human 
+can sift through productively. Selection criteria will need to be quite precise 
+to usefully throttle the incoming event stream(s) --- say --- ``\emph{give me 
+all events in which a point source R-band magnitude increase of at least -2.0 
+was seen to occur in less than four hours, that are located within specified 
 molecular column density contours of a prioritised list of galactic star forming
 regions}''. In practice the result of complex queries such as these will be
 transmitted through intermediary ``brokers'' --- which will subscribe to
@@ -159,17 +159,11 @@ bodies. (b) The capability to specify the location using a planetary body
 reference frame, or in a reference frame related to an object in the Solar
 System. (c) The capability to specify a time range, with a start and end time.
 
-<<<<<<< HEAD
-Handling the anticipated event rates quickly and accurately will require alert
-packets to be issued in a structured data format, not natural language. Such a
-structured discovery alert --- and any follow-up packets --- will be referred
-=======
 \subsection{Why VOEvent?}
 
 Handling the anticipated event rates quickly and accurately will require alert 
 packets to be issued in a structured data format, not natural language. Such a 
 structured discovery alert --- and any follow-up packets --- will be referred 
->>>>>>> ba78d2a (remove 'status of the document' section and move part of the content to introduction (RFC: MD-4))
 to as a VOEvent. VOEvent will rely on XML schema\footnote{
 \url{https://www.w3.org/XML/Schema}} to provide the appropriate structured
 syntax and semantics. These schemata may be specific to VOEvent or may implement
