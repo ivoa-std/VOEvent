@@ -72,42 +72,6 @@ such as who can publish, who can build a registry of events, who can subscribe
 to a particular registry, nor the intellectual property issues.
 \end{abstract}
 
-
-%\section*{Conformance-related definitions}
-%
-%The words ``MUST'', ``SHALL'', ``SHOULD'', ``MAY'', ``RECOMMENDED'', and
-%``OPTIONAL'' (in upper or lower case) used in this document are to be
-%interpreted as described in IETF standard RFC2119 \citep{std:RFC2119}.
-%
-%The \emph{Virtual Observatory (VO)} is a
-%general term for a collection of federated resources that can be used
-%to conduct astronomical research, education, and outreach.
-%The \href{http://www.ivoa.net}{International
-%Virtual Observatory Alliance (IVOA)} is a global
-%collaboration of separately funded projects to develop standards and
-%infrastructure that enable VO applications.
-
-%%% to be removed
-\section*{Status of this Document}
-This is the Proposed Recommendation of VOEvent v2.1. The first release of the
-near final document was 2024 May 22nd.
-
-This document describes an update to the IVOA VOEvent recommendation for the
-representation of solar system events. It has been developed by the Solar System
-and Time Domain Interest Groups. Changes from v2.0 are described below (in
-section \ref{appendix:last-changes}).
-
-This is an IVOA Proposed Recommendation made available for public review. It is
-appropriate to reference this document only as a recommended standard that is
-under review and which may be changed before it is accepted as a full
-recommendation.
-
-The \href{http://ivoa.net/Documents/latest/VOEvent.html}{latest} version
-(currently v2.0) of the internationally adopted VOEvent Recommendation
-(standard) is available from \url{http://ivoa.net/Documents/latest/VOEvent.html}.
-The list of \href{http://www.ivoa.net/Documents/}{current IVOA Recommendations
-and other technical documents} can be found at \url{http://www.ivoa.net/Documents/}.
-
 \section{Introduction}
 
 Throughout human history, unexpected events in the sky have been interpreted as
@@ -124,6 +88,8 @@ Searches for astrophysical events are taking place at all electromagnetic
 wavelengths from gamma-rays to radio, as well as quests for more exotic events
 conveyed by such means as neutrinos, gravitational waves or high-energy cosmic
 rays.
+
+\subsection{Astrophysical events}
 
 For many types of events, astrophysical knowledge is gained through fast,
 comprehensive follow-up observation --- perhaps the immediate acquisition of the
@@ -193,9 +159,17 @@ bodies. (b) The capability to specify the location using a planetary body
 reference frame, or in a reference frame related to an object in the Solar
 System. (c) The capability to specify a time range, with a start and end time.
 
+<<<<<<< HEAD
 Handling the anticipated event rates quickly and accurately will require alert
 packets to be issued in a structured data format, not natural language. Such a
 structured discovery alert --- and any follow-up packets --- will be referred
+=======
+\subsection{Why VOEvent?}
+
+Handling the anticipated event rates quickly and accurately will require alert 
+packets to be issued in a structured data format, not natural language. Such a 
+structured discovery alert --- and any follow-up packets --- will be referred 
+>>>>>>> ba78d2a (remove 'status of the document' section and move part of the content to introduction (RFC: MD-4))
 to as a VOEvent. VOEvent will rely on XML schema\footnote{
 \url{https://www.w3.org/XML/Schema}} to provide the appropriate structured
 syntax and semantics. These schemata may be specific to VOEvent or may implement
@@ -248,6 +222,27 @@ IVOA {\bf Vocabulary} 1.0 \citep{2009ivoa.spec.1007G} effort. IVOA {\bf Identifi
 \citep{2016ivoa.spec.0523D} are used for events and their parent streams and
 servers, and both these latter are described by IVOA {\bf Resource Metadata}
 \citep{2007ivoa.spec.0302H} and stored in the VO Registry.
+
+\subsection{VOEvent in the VO Architecture}
+
+VOEvent is an IVOA standard, which means that it fits into a rich matrix of
+other IVOA standards. Figure \ref{fig:diagram} shows where VOEvent fits into the broader
+IVOA architecture. VOEvents inherit much of the structure and semantics of {\bf
+VOTable} \citep{2019ivoa.spec.1021O}, including the {\bf UCD} 
+\citep{2018ivoa.spec.0527P} scheme for semantics of quantities and the VOUnits
+standard \citep{2014ivoa.spec.0523D}. VOEvent takes space-time coordinates from
+the {\bf STC} \citep{2007ivoa.spec.1030R}, and it uses the URI semantics of the
+IVOA {\bf Vocabulary} \citep{2009ivoa.spec.1007G} effort. IVOA {\bf Identifiers}
+\citep{2016ivoa.spec.0523D} are used for events and their parent streams and
+servers, and both these latter will be described by IVOA {\bf Resource Metadata}
+\citep{2007ivoa.spec.0302H} and stored in the registry. 
+
+\begin{figure}[ht!]
+\centering\includegraphics[width=0.9\textwidth]{role_diagram}
+\caption{VOEvent standard in the VO architecture diagram}
+\label{fig:diagram}
+\end{figure}
+
 
 \section{Usage}
 \label{sec:2}
