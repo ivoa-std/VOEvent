@@ -1287,18 +1287,19 @@ presumably it gives drill-down semantics for the precise meaning of that \texttt
 attributes only. 
 
 A \texttt{<Reference>} element has the attributes: 
-\subsubsection{\texttt{uri}}\label{sec:3.9.1}--- The identifier of another document 
+\begin{itemize}
+\item {\texttt{uri}}\label{sec:3.9.1} --- The identifier of another document 
 (anyURI\footnote{\url{https://www.w3.org/TR/xmlschema11-2/\#anyURI}}). This 
 attribute must be present. 
-\subsubsection{\texttt{meaning}}\label{sec:3.9.2}--- The nature of the document 
+\item {\texttt{meaning}}\label{sec:3.9.2} --- The nature of the document 
 referenced (anyURI). This attribute is optional. 
-\subsubsection{\texttt{mimetype}}\label{sec:3.9.3}--- An optional MIME type\footnote{
-\url{https://www.iana.org/assignments/media-types/media-types.xhtml}} for the 
-referenced document. 
-\subsubsection{\texttt{type}}\label{sec:3.9.4}[DEPRECATED] --- The type of the 
+\item {\texttt{mimetype}}\label{sec:3.9.3} --- An optional RFC 2046 media 
+type of the referenced document \citep{std:MIME}. 
+\item {\texttt{type}}\label{sec:3.9.4}\ [DEPRECATED] --- The type of the 
 document as described in VOEvent v1.11. 
-\subsubsection{\texttt{name}}\label{sec:3.9.5}[DEPRECATED] --- A short name as 
+\item {\texttt{name}}\label{sec:3.9.5}\ [DEPRECATED] --- A short name as 
 described in VOEvent v1.11. 
+\end{itemize}
 
 A \texttt{<Reference>} is used to provide general purpose ancillary data with 
 well-defined meaning. Here a fits image is presented (h.fits), and also a link 
