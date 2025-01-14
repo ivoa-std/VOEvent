@@ -459,15 +459,12 @@ The {\tt version} attribute is required to be present and to equal "2.1" for
 all VOEvent packets governed by this version of the standard. There is no 
 default value. 
 
-For example, a {\tt <VOEvent>} packet resulting from Tycho Brahe's discovery of
-a ``Stella Nova'' in Cassiopeia on 11 November 1572 might start:
-\begin{lstlisting}
-<VOEvent ivorn="ivo://uraniborg.hven#1572-11-11/0001"
-    role="observation" version="2.0" xmlns:... >
+For example, a {\tt <VOEvent>} packet resulting from Tycho Brahe's discovery of 
+a ``Stella Nova'' in Cassiopeia on 11 November 1572 might start: 
+\begin{lstlisting}[language=XML]
+<VOEvent ivorn="ivo://uraniborg.hven#1572-11-11/0001" 
+    role="observation" version="2.0">...
 \end{lstlisting}
-
-The {\tt xmlns} attribute refers to one-or-more standard XML namespace
-declarations that may optionally help define the contents of a packet.
 
 \subsection{{\tt <Who>} --- Curation Metadata}
 \label{sec:3.2}
