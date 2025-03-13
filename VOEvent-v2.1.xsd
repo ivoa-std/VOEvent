@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='ASCII'?>
 <!-- Change log
 Revision 2.1 2025/01/07 BaptisteCecconi
-- added "Name" complex type with "ivorn", "altIdentifier" and "role" attributes, used by "contributor"(in "Who/Author")
-- added "ContributorRole" simple type, with enumeration of role values
+- added "Name" complex type with "ivorn", "altIdentifier" and "role" attributes, used by "Contributor" (in "Who/Author")
+- deprecated "contributor" in "Who/Author" (kept for backward compatibility)
+- added "ContributorRole" simple type, with enumeration of role values (from DataCite schema v4.5)
 - removed restricted list of "AstroCoordSystem": previously "idValues" type, now "xs:string"
 - removed "idValues" type (and references)
 - added annotation in "AstroCoords/Time" (according to STC-1.30)
@@ -85,7 +86,8 @@ Revision 2.1 2025/01/07 BaptisteCecconi
             <xs:element name="contactName" type="xs:string"/>
             <xs:element name="contactEmail" type="xs:string"/>
             <xs:element name="contactPhone" type="xs:string"/>
-            <xs:element name="contributor" type="Name"/>
+            <xs:element name="contributor" type="xs:string"/>  <!--- DEPRECATED -->
+            <xs:element name="Contributor" type="Name"/>
           </xs:choice>
         </xs:complexType>
       </xs:element>
@@ -568,7 +570,7 @@ Revision 2.1 2025/01/07 BaptisteCecconi
   </xs:complexType>
   <xs:simpleType name="contributorRole">
     <xs:annotation>
-      <xs:documentation>The list of contributor roles is extracted from the DataCite Schema v4.3.</xs:documentation>
+      <xs:documentation>The list of contributor roles is extracted from the DataCite Schema v4.5.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="ContactPerson"/>
