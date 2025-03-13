@@ -751,7 +751,7 @@ structure, such as one of the IVOA standard data models.
     <Description>Individual Moduli and Distances for NGC 0931 from
       NED</Description>
     <Field name="(m-M)" unit="mag" ucd="phot.mag.distMod" dataType="float"/>
-    <Field name="err(m-M)" unit="mag" ucd="phot.mag.distMod;stat.err"
+    <Field name="err(m-M)" unit="mag" ucd="stat.err;phot.mag.distMod"
       dataType="float"/>
     <Field name="D" unit="Mpc" ucd="pos.distance dataType="float"/>
     <Field name="REFCODE" ucd="meta.bib.bibcode"/>
@@ -1494,14 +1494,14 @@ earlier event, as defined in the \verb|<Citations>| element.
       <Param name="mag" value="19.5" unit="mag"
         ucd="phot.mag" dataType="float"/>
       <Param name="magerr" value="0.14" unit="mag"
-        ucd="phot.mag; stat.err" dataType="float"/>
+        ucd="stat.err;phot.mag" dataType="float"/>
     </Group>
     <Table>
       <Param name="telescope" value="various" utype="whatever"/>
       <Description>Individual Moduli and Distances for NGC 0931
         from NED</Description>
       <Field name="(m-M)" unit="mag" ucd="phot.mag.distMod"/>
-      <Field name="err(m-M)" unit="mag" ucd="phot.mag.distMod;stat.err"/>
+      <Field name="err(m-M)" unit="mag" ucd="stat.err;phot.mag.distMod"/>
       <Field name="D" unit="Mpc" ucd="pos.distance"/>
       <Field name="REFCODE" ucd="meta.bib.bibcode" utype="whatever"/>
       <Data>
