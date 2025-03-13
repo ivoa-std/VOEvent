@@ -147,15 +147,9 @@ regions}''. In practice the result of complex queries such as these will be
 transmitted through intermediary ``brokers'' --- which will subscribe to
 VOEvent-producing systems and provide filter services to client groups
 (``subscribers'') via specialised VOEvents. Filtering will often be based on
-<<<<<<< HEAD
 coincidence (spatial or temporal) between multiple events. A gravitational wave
 detector may produce a large number of candidate events, but the interesting ones
 may be only those that register with multiple instruments.
-=======
-coincidence (spatial or temporal) between multiple events. A gravitational wave detector may produce
-a large number of candidate events, but the interesting ones may be only those
-that register with multiple instruments.
->>>>>>> 815d0a4 (Fix GWS RFC comments #1, #2)
 
 A recent study \citep{2018arXiv181112680C} extended the usage of VOEvent to
 reports or predictions of Solar System events. This assessment revealed the
@@ -277,6 +271,7 @@ arbitrary application-level functionality. See the IVOA VOEvent Transport Protoc
 Recommendation \citep{2017ivoa.spec.0320S} for further discussion.
 \end{itemize}
 
+<<<<<<< HEAD
 \subsection{VO Identifiers (IVOIDs)}
 \label{sec:ivoids}
 VOEvent benefits from the IVOA identifiers \citep{2016ivoa.spec.0523D}
@@ -287,6 +282,15 @@ It is required to begin with ``\texttt{ivo://}'', and
 will stand reference particular packet or an entire stream.
 
 A \emph{registered} VOEvent packet is one
+=======
+\subsection{VO Identifiers (IVORNs)}
+\label{sec:2.2}
+VOEvent benefits from the IVOA identifiers developed for the VO registry.
+In this document, such
+an identifier is called an IVORN, that is, an \emph{International Virtual
+Observatory Resource Name}. It is required to begin with ``\texttt{ivo://}'', and 
+will stand in for a particular packet. A \emph{registered} VOEvent packet is one
+>>>>>>> eb2b5dc (Fix GWS RFC comments #4)
 that has a valid identifier --- meaning that a mechanism exists that can resolve
 that identifier to the full VOEvent packet. VOEvent identifiers thus provide a
 citation mechanism --- a way to express that, for instance, one VOEvent packet is a
