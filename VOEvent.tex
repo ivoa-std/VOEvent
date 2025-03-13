@@ -466,7 +466,6 @@ An example of Author information might be:
  </Author>
 \end{lstlisting}
 
-<<<<<<< HEAD
 Contributor information can be included using as many \verb|<contributor>|
 elements as necessary. The element value is the full name of the person or
 organisation. Each element can have three optional attributes: an \xmlel{ivorn}
@@ -478,39 +477,8 @@ for persons, or a Research Organisation Registry
 of an URI; and a \xmlel{role} attribute. The \xmlel{role} attribute is an important
 part of the contributor's metadata and allows proper attribution of work. We
 recommend to use here the list of \emph{contributorType} from the DataCite
-Metadata Schema v4.5 \citep{https://doi.org/10.14454/g8e5-6293}.
-=======
-A series of \texttt{<Contributor>} (see below) elements can be added into the 
-\texttt{<Author>} information. 
-
-\subsubsection{\texttt{<Contributor>}}
-Contributor information can be included using as many \texttt{<Contributor>} 
-elements as necessary in \texttt{<Author>}. The element value is the full name of the person or 
-organisation. Each element can have three optional attributes: an \texttt{ivorn} 
-attribute to refer to the person's or organisation information in the VO 
-registry; an \texttt{altIdentifier} attribute to refer to other identifier (such 
-as an ORCID (Open Researcher and Contributor ID)\footnote{
-\url{https://orcid.org}} for persons, or a Research Organisation Registry 
-(ROR)\footnote{\url{https://ror.org}} identifier for institutions), in the form 
-of an URI; and a \texttt{role} attribute. The \texttt{role} attribute is an important 
-part of the contributor's metadata and allows proper attribution of work. We 
-recommend to use here the list of \emph{contributorType} from the DataCite 
-Metadata Schema v4.5 \citep{https://doi.org/10.14454/g8e5-6293}, as listed in 
+Metadata Schema v4.5 \citep{https://doi.org/10.14454/g8e5-6293}, as listed in
 their Appendix 7.a\footnote{\url{https://datacite-metadata-schema.readthedocs.io/en/4.5/appendices/appendix-1/contributorType/}}.
-
-Here is an example of contributors in an \texttt{<Author>}:
-
-\begin{lstlisting}
-<Author>
-    [...]
-    <Contributor altIdentifier="https://orcid.org/0000-0001-7915-5571"
-        role="ContactPerson">Baptiste Cecconi</Contributor>
-    <Contributor altIdentifier="https://ror.org/029nkcm90"
-        role="HostingInstitution">Observatoire de Paris</Contributor>    
-</Author>
-\end{lstlisting}
-
->>>>>>> 4896865 (Fix SSIG RFC comments #1)
 
 Here is an example of contributors in an \verb|<Author>|:
 \begin{lstlisting}
@@ -523,7 +491,6 @@ Here is an example of contributors in an \verb|<Author>|:
 \end{lstlisting}
 
 \subsubsection{\texttt{<AuthorIVORN>}}
-<<<<<<< HEAD
 As an alternative to quoting Author information over and over, this information
 can be published to the VO registry, then referenced through an IVORN.
 The \verb|<AuthorIVORN>| element contains the identifier of the organisation responsible
@@ -533,17 +500,6 @@ particular publisher, or more precisely, from a specific content creator. In
 general, \verb|<AuthorIVORN>| should be a VOResource identifier that resolves to
 an organisation in the sense of \citep{2007ivoa.spec.0302H}. Publishers and
 subscribers may use this VOResource to exchange curation metadata directly.
-=======
-As an alternative to quoting Author information over and over, this information 
-can be published to the VO registry, then referenced through an IVORN. The 
-\texttt{<AuthorIVORN>} element contains the identifier of the organisation responsible 
-for making the VOEvent available. Event subscribers will often use this as their 
-primary filtering criterion. Many subscribers will only want events from a 
-particular publisher, or more precisely, from a specific content creator. In 
-general, \texttt{<AuthorIVORN>} should be a VOResource identifier that resolves to 
-an organisation in the sense of \citep{2007ivoa.spec.0302H}. Publishers and 
-subscribers may use this VOResource to exchange curation metadata directly. 
->>>>>>> 4896865 (Fix SSIG RFC comments #1)
 
 \subsubsection{\texttt{<Date>}}
 The \verb|<Date>| contains the date and time of the creation of the VOEvent
@@ -1751,6 +1707,7 @@ black, attributes in green, required attributes underlined.
 \subsection{Changes from VOEvent 2.0}
 \label{appendix:last-changes}
 \begin{itemize}
+<<<<<<< HEAD
 \item The \xmlel{contributor} element has new attributes: \xmlel{ivorn},
 \xmlel{altIdentifier} and \xmlel{role}.
 \item The restricted list of \xmlel{AstroCoordSystem} is removed. It was
@@ -1761,6 +1718,18 @@ and \xmlel{coord\_system\_id}) have been removed. The \xmlel{AstroCoordSystem} c
 be fully described with a \xmlel{TimeFrame} and a \xmlel{SpaceFrame}  (according to
 STC-1.33).
 \item Annotations in \xmlel{AstroCoords/Time} and \xmlel{AstroCoords/Position2D}
+=======
+\item The \texttt{contributor} element has new attributes: \texttt{ivorn}, \texttt{
+altIdentifier} and \texttt{role}. 
+\item The restricted list of \texttt{AstroCoordSystem} is removed. It was 
+previously an \texttt{idValues} type, now it is a simple \texttt{xs:string} type. 
+This allows to have extra Solar and Planetary frames without modifying the 
+schema. The \texttt{idValues} type and its references (in \texttt{AstroCoordSystem} 
+and \texttt{coord\_system\_id}) have been removed. The \texttt{AstroCoordSystem} can 
+be fully described with a \texttt{TimeFrame} and a \texttt{SpaceFrame}, see 
+\citet{2007ivoa.spec.1030R}.
+\item Annotations in \texttt{AstroCoords/Time} and \texttt{AstroCoords/Position2D} 
+>>>>>>> 6fb6439 (Fix SSIG RFC comments #3)
 have been included in the schema (according to STC-1.33).
 \item The concept of \xmlel{AstroCoords/PositionName} is introduced with
 type \xmlel{xs:string}. This allows to identify a target by its name (such as a named solar
