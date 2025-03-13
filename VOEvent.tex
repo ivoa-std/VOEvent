@@ -841,8 +841,8 @@ systems. The list of valid reference frames is available as an IVOA vocabulary:
 \url{https://www.ivoa.net/rdf/refframe}
 \item The center specification can be \emph{TOPO} (i.e., the location of the
 observatory), \emph{GEO} (geocentric coordinates), or \emph{BARY} (relative to
-the barycenter of the solar system). The full list of valid reference positions
-is available as an IVOA vocabulary: \url{https://www.ivoa.net/rdf/refposition}.
+the barycenter of the solar system). Those terms are short versions of terms
+listed in reference positions IVOA vocabulary: \url{https://www.ivoa.net/rdf/refposition}.
 If the center specification is different from the three listed terms, the
 \verb|<AstroCoordSystem>| must be defined explicitly, with the \verb|<TimeFrame>|
 and \verb|<SpaceFrame>| elements.
@@ -1016,8 +1016,8 @@ The following coordinate systems are recognised for solar event data:
 \item \emph{UTC-HGC-TOPO} --- Carrington heliographic coordinates
 \end{itemize}
 
-What this means is that these coordinate combinations will be supported in the
-library and that, hence, use of VOEvent by the solar research community is
+These coordinate combinations shall be supported by VOEvent software (brokers 
+and clients) and that, hence, use of VOEvent by the solar research community is
 supported. It does not imply, of course, that all VOEvent participants are
 expected to recognise and handle these solar coordinates --- nor, for that
 matter, that solar subscribers be able to handle equatorial coordinates.
