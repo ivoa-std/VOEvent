@@ -1182,11 +1182,11 @@ is no longer a very urgent one:
 <Why importance="1.0" expires="1574-05-11T12:00:00">
     <Inference probability="1.0">
         <Name>Tycho's Stella Nova</Name>
-        <Concept>https://www.ivoa.net/rdf/uat/#supernovae</Concept>
+        <Concept>https://ivoa.net/rdf/uat/#supernovae</Concept>
     </Inference>
     <Inference probability="1.0" relation="associated">
         <Name>3C 10</Name>
-        <Concept>https://www.ivoa.net/rdf/uat/#supernova-remnants</Concept>
+        <Concept>https://ivoa.net/rdf/uat/#supernova-remnants</Concept>
         <Description>Supernova remnant</Description>
     </Inference>
 </Why>
@@ -1515,7 +1515,7 @@ earlier event, as defined in the \verb|<Citations>| element.
     <Description>An imaginary event report about SN 2009lw.</Description>
     <Reference uri="http://raptor.lanl.gov/data/lightcurves/235649409"
       mimetype="application/x-votable+xml"
-      meaning="http://www.ivoa.net/rdf/IVOAT#LightCurve"/>
+      meaning="http://ivoa.net/rdf/uat#light-curves"/>
     <Param name="seeing" value="2" unit="arcsec"
       ucd="instr.obsty.seeing" dataType="float"/>
     <Group name="magnitude">
@@ -1529,13 +1529,13 @@ earlier event, as defined in the \verb|<Citations>| element.
         ucd="stat.err;phot.mag" dataType="float"/>
     </Group>
     <Table>
-      <Param name="telescope" value="various" utype="whatever"/>
+      <Param name="telescope" value="various"/>
       <Description>Individual Moduli and Distances for NGC 0931
         from NED</Description>
       <Field name="(m-M)" unit="mag" ucd="phot.mag.distMod"/>
       <Field name="err(m-M)" unit="mag" ucd="stat.err;phot.mag.distMod"/>
       <Field name="D" unit="Mpc" ucd="pos.distance"/>
-      <Field name="REFCODE" ucd="meta.bib.bibcode" utype="whatever"/>
+      <Field name="REFCODE" ucd="meta.bib.bibcode"/>
       <Data>
         <TR><TD>33.16</TD><TD>0.38</TD><TD>51.3</TD><TD>1997ApJS..109..333W</TD></TR>
         <TR><TD>33.32</TD><TD>0.38</TD><TD>46.1</TD><TD>1997ApJS..109..333W</TD></TR>
