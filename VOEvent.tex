@@ -455,7 +455,7 @@ and a logo. A contact person has a name, email, and phone number. Other
 contributors can also be noted.
 
 An example of Author information might be:
-\begin{lstlisting}
+\begin{lstlisting}[language=XML]
 <Author>
     <title>Rapid Telescope for Optical Response</title>
     <shortName>Raptor</shortName>
@@ -467,7 +467,7 @@ An example of Author information might be:
 \end{lstlisting}
 
 Contributor information can be included using as many \verb|<contributor>|
-elements as necessary. The element value is the full name of the person or
+elements as necessary in \verb|Author|. The element value is the full name of the person or
 organisation. Each element can have three optional attributes: an \xmlel{ivorn}
 attribute to refer to the person's or organisation information in the VO
 registry; an \xmlel{altIdentifier} attribute to refer to other identifier (such
@@ -478,11 +478,11 @@ of an URI; and a \xmlel{role} attribute. The \xmlel{role} attribute is an import
 part of the contributor's metadata and allows proper attribution of work. We
 recommend to use here the list of \emph{contributorType} from the DataCite
 Metadata Schema v4.5 \citep{https://doi.org/10.14454/g8e5-6293}, as listed in
-their Appendix 7.a\footnote{\url{https://datacite-metadata-schema.readthedocs.io/en/4.5/appendices/appendix-1/contributorType/}}.
+their documentation\footnote{\url{https://datacite-metadata-schema.readthedocs.io/en/4.5/appendices/appendix-1/contributorType/}}.
 
 Here is an example of contributors in an \verb|<Author>|:
 \begin{lstlisting}
-<Author>
+Author>
 	<Contributor altIdentifier="https://orcid.org/0000-0001-7915-5571"
 	    role="ContactPerson">Baptiste Cecconi</Contributor>
 	<Contributor altIdentifier="https://ror.org/029nkcm90"
@@ -1707,35 +1707,22 @@ black, attributes in green, required attributes underlined.
 \subsection{Changes from VOEvent 2.0}
 \label{appendix:last-changes}
 \begin{itemize}
-<<<<<<< HEAD
 \item The \xmlel{contributor} element has new attributes: \xmlel{ivorn},
 \xmlel{altIdentifier} and \xmlel{role}.
 \item The restricted list of \xmlel{AstroCoordSystem} is removed. It was
 previously an \xmlel{idValues} type, now it is a simple \xmlel{xs:string} type.
-This allows to have extra Solar and Planetary frames without modifying the
+This allows to include Solar and Planetary frames without modifying the
 schema. The \xmlel{idValues} type and its references (in \xmlel{AstroCoordSystem}
 and \xmlel{coord\_system\_id}) have been removed. The \xmlel{AstroCoordSystem} can
-be fully described with a \xmlel{TimeFrame} and a \xmlel{SpaceFrame}  (according to
-STC-1.33).
-\item Annotations in \xmlel{AstroCoords/Time} and \xmlel{AstroCoords/Position2D}
-=======
-\item The \texttt{contributor} element has new attributes: \texttt{ivorn}, \texttt{
-altIdentifier} and \texttt{role}. 
-\item The restricted list of \texttt{AstroCoordSystem} is removed. It was 
-previously an \texttt{idValues} type, now it is a simple \texttt{xs:string} type. 
-This allows to have extra Solar and Planetary frames without modifying the 
-schema. The \texttt{idValues} type and its references (in \texttt{AstroCoordSystem} 
-and \texttt{coord\_system\_id}) have been removed. The \texttt{AstroCoordSystem} can 
-be fully described with a \texttt{TimeFrame} and a \texttt{SpaceFrame}, see 
+be fully described with a \xmlel{TimeFrame} and a \xmlel{SpaceFrame}, see 
 \citet{2007ivoa.spec.1030R}.
-\item Annotations in \texttt{AstroCoords/Time} and \texttt{AstroCoords/Position2D} 
->>>>>>> 6fb6439 (Fix SSIG RFC comments #3)
+\item Annotations in \xmlel{AstroCoords/Time} and \xmlel{AstroCoords/Position2D}
 have been included in the schema (according to STC-1.33).
 \item The concept of \xmlel{AstroCoords/PositionName} is introduced with
 type \xmlel{xs:string}. This allows to identify a target by its name (such as a named solar
 system body).
 \item The concept of \xmlel{TimeInterval} is introduced in the \verb|<Time>|
-section. It contains a \xmlel{StartTime} and a \xmlel{StopTime}
+section. It contains a \xmlel{ISOStartTime} and a \xmlel{ISOStopTime}
 \item The positional error elements have been improved. The \xmlel{Position2D/Er\-ror2Radius}
 is now optional, and a new \xmlel{Position2D/Error2}
 concept is introduced (allowing to describe error bars on each of the 2D frame
