@@ -981,6 +981,49 @@ coordinates. It contains three elements: \verb|<C1>|, \verb|<C2>| and
 or uncertainty values. Such objects have two attributes \xmlel{pos\_unit} and
 \xmlel{ucd}, which convey the units and UCD of the value.
 
+\subsubsection{\texttt{<AstroCoords>}}
+As presented in the previous sections, the \texttt{<AstroCoords>} has an 
+attribute \texttt{coord\_system\_id} used to refer to the 
+\texttt{<AstroCoordSystem>} in use for the coordinates values. Coordinates
+can be expressed with two objects \texttt{<Position2D>} or \texttt{<Position3D>}
+depending on the dimensionality of the coordinates, e.g., \texttt{<Position2D>} for
+sky coordinates. 
+
+\paragraph{\texttt{<Position2D>}} is used to store 2D coordinate positions. 
+The names of the coordinate axes are set using \texttt{<Name1>} and \texttt{<Name2>}
+elements. The values of the coordinates are set using a \texttt{<Value2D>}. The 
+errors on the coordinate, if any, can be set using a \texttt{<Error2D>} object 
+or an \texttt{<Error2Radius>}. 
+
+\subparagraph{\texttt{<Value2D>}} is used to store the actual values of 2D 
+coordinates. It contains a \texttt{<C1>} and a \texttt{<C2>} element, which
+are both with type \texttt{coord\_value}.
+
+\subparagraph{\texttt{<Error2D>}} is used to store the uncertainty values of 2D 
+coordinates. It contains a \texttt{<C1>} and a \texttt{<C2>} element, which
+are both with type \texttt{coord\_value}.
+
+\subparagraph{\texttt{<Error2Radius>}} is used to store the uncertainty value of 2D 
+coordinates through a radius estimation. It has a type \texttt{coord\_value}.
+
+\paragraph{\texttt{<Position3D>}} is used to store 3D coordinate positions. 
+The names of the coordinate axes are set using \texttt{<Name1>}, \texttt{<Name2>} 
+and \texttt{<Name3>} elements. The values of the coordinates are set using a 
+\texttt{<Value3D>} object. The errors on the coordinate, if any, can be set 
+using a \texttt{<Error3D>} object.
+
+\subparagraph{\texttt{<Value3D>}} is used to store the actual values of 3D 
+coordinates. It contains a \texttt{<C1>}, a \texttt{<C2>} and a \texttt{<C3>} 
+element, which are all with type \texttt{coord\_value}.
+
+\subparagraph{\texttt{<Error3D>}} is used to store the uncertaintity values of 2D 
+coordinates. It contains a \texttt{<C1>}, a \texttt{<C2>} and a \texttt{<C3>}
+element, which are all with type \texttt{coord\_value}.
+
+\paragraph{\texttt{coord\_value}} is the object type of the coordinate or 
+uncertainty values. Such objects have two attributes \texttt{pos\_unit} and 
+\texttt{ucd}, which convey the units and UCD of the value. 
+
 \subsubsection{Parsing the WhereWhen Element}
 \label{sec:3.4.3}
 When parsing a VOEvent packet, the following pseudocode may be of use to provide
