@@ -271,7 +271,6 @@ arbitrary application-level functionality. See the IVOA VOEvent Transport Protoc
 Recommendation \citep{2017ivoa.spec.0320S} for further discussion.
 \end{itemize}
 
-<<<<<<< HEAD
 \subsection{VO Identifiers (IVOIDs)}
 \label{sec:ivoids}
 VOEvent benefits from the IVOA identifiers \citep{2016ivoa.spec.0523D}
@@ -282,15 +281,6 @@ It is required to begin with ``\texttt{ivo://}'', and
 will stand reference particular packet or an entire stream.
 
 A \emph{registered} VOEvent packet is one
-=======
-\subsection{VO Identifiers (IVORNs)}
-\label{sec:2.2}
-VOEvent benefits from the IVOA identifiers developed for the VO registry.
-In this document, such
-an identifier is called an IVORN, that is, an \emph{International Virtual
-Observatory Resource Name}. It is required to begin with ``\texttt{ivo://}'', and 
-will stand in for a particular packet. A \emph{registered} VOEvent packet is one
->>>>>>> eb2b5dc (Fix GWS RFC comments #4)
 that has a valid identifier --- meaning that a mechanism exists that can resolve
 that identifier to the full VOEvent packet. VOEvent identifiers thus provide a
 citation mechanism --- a way to express that, for instance, one VOEvent packet is a
@@ -476,6 +466,7 @@ An example of Author information might be:
  </Author>
 \end{lstlisting}
 
+<<<<<<< HEAD
 Contributor information can be included using as many \verb|<contributor>|
 elements as necessary. The element value is the full name of the person or
 organisation. Each element can have three optional attributes: an \xmlel{ivorn}
@@ -488,6 +479,38 @@ of an URI; and a \xmlel{role} attribute. The \xmlel{role} attribute is an import
 part of the contributor's metadata and allows proper attribution of work. We
 recommend to use here the list of \emph{contributorType} from the DataCite
 Metadata Schema v4.5 \citep{https://doi.org/10.14454/g8e5-6293}.
+=======
+A series of \texttt{<Contributor>} (see below) elements can be added into the 
+\texttt{<Author>} information. 
+
+\subsubsection{\texttt{<Contributor>}}
+Contributor information can be included using as many \texttt{<Contributor>} 
+elements as necessary in \texttt{<Author>}. The element value is the full name of the person or 
+organisation. Each element can have three optional attributes: an \texttt{ivorn} 
+attribute to refer to the person's or organisation information in the VO 
+registry; an \texttt{altIdentifier} attribute to refer to other identifier (such 
+as an ORCID (Open Researcher and Contributor ID)\footnote{
+\url{https://orcid.org}} for persons, or a Research Organisation Registry 
+(ROR)\footnote{\url{https://ror.org}} identifier for institutions), in the form 
+of an URI; and a \texttt{role} attribute. The \texttt{role} attribute is an important 
+part of the contributor's metadata and allows proper attribution of work. We 
+recommend to use here the list of \emph{contributorType} from the DataCite 
+Metadata Schema v4.5 \citep{https://doi.org/10.14454/g8e5-6293}, as listed in 
+their Appendix 7.a\footnote{\url{https://datacite-metadata-schema.readthedocs.io/en/4.5/appendices/appendix-1/contributorType/}}.
+
+Here is an example of contributors in an \texttt{<Author>}:
+
+\begin{lstlisting}
+<Author>
+    [...]
+    <Contributor altIdentifier="https://orcid.org/0000-0001-7915-5571"
+        role="ContactPerson">Baptiste Cecconi</Contributor>
+    <Contributor altIdentifier="https://ror.org/029nkcm90"
+        role="HostingInstitution">Observatoire de Paris</Contributor>    
+</Author>
+\end{lstlisting}
+
+>>>>>>> 4896865 (Fix SSIG RFC comments #1)
 
 Here is an example of contributors in an \verb|<Author>|:
 \begin{lstlisting}
@@ -500,6 +523,7 @@ Here is an example of contributors in an \verb|<Author>|:
 \end{lstlisting}
 
 \subsubsection{\texttt{<AuthorIVORN>}}
+<<<<<<< HEAD
 As an alternative to quoting Author information over and over, this information
 can be published to the VO registry, then referenced through an IVORN.
 The \verb|<AuthorIVORN>| element contains the identifier of the organisation responsible
@@ -509,6 +533,17 @@ particular publisher, or more precisely, from a specific content creator. In
 general, \verb|<AuthorIVORN>| should be a VOResource identifier that resolves to
 an organisation in the sense of \citep{2007ivoa.spec.0302H}. Publishers and
 subscribers may use this VOResource to exchange curation metadata directly.
+=======
+As an alternative to quoting Author information over and over, this information 
+can be published to the VO registry, then referenced through an IVORN. The 
+\texttt{<AuthorIVORN>} element contains the identifier of the organisation responsible 
+for making the VOEvent available. Event subscribers will often use this as their 
+primary filtering criterion. Many subscribers will only want events from a 
+particular publisher, or more precisely, from a specific content creator. In 
+general, \texttt{<AuthorIVORN>} should be a VOResource identifier that resolves to 
+an organisation in the sense of \citep{2007ivoa.spec.0302H}. Publishers and 
+subscribers may use this VOResource to exchange curation metadata directly. 
+>>>>>>> 4896865 (Fix SSIG RFC comments #1)
 
 \subsubsection{\texttt{<Date>}}
 The \verb|<Date>| contains the date and time of the creation of the VOEvent
