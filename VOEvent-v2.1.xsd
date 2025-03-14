@@ -254,7 +254,7 @@ Revision 2.1 2025/01/07 BaptisteCecconi
       </xs:element>
       <xs:element minOccurs="0" name="PositionName" type="xs:string">
         <xs:annotation>
-          <xs:documentation>Named position for the event</xs:documentation>
+          <xs:documentation>Named position for the event or an observatory</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Position2D" type="Position2D" minOccurs="0">
@@ -312,7 +312,7 @@ Revision 2.1 2025/01/07 BaptisteCecconi
       <xs:element name="Name1" type="xs:string" minOccurs="0"/>
       <xs:element name="Name2" type="xs:string" minOccurs="0"/>
       <xs:element name="Value2" type="Value2"/>
-      <xs:element name="Error2Radius" type="xs:float" minOccurs="0"/>
+      <xs:element name="Error2Radius" type="coord_value" minOccurs="0"/>
       <xs:element name="Error2" type="Error2" minOccurs="0"/>
     </xs:all>
     <xs:attribute name="unit" type="xs:string"/>
