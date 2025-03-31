@@ -32,6 +32,7 @@
 \author{\\Tom \textbf{Vestrand}, Los Alamos National Laboratory, USA}
 \author[https://orcid.org/0000-0002-9145-8580]{\\Roy \textbf{Williams}, California Institute of Technology, USA}
 \author[https://orcid.org/0000-0002-9919-3310]{\\Przemyslaw \textbf{Wozniak}, Los Alamos National Laboratory, USA}
+\author{\\Markus \textbf{Demleitner}, Universität Heidelberg, Germany}
 
 \editor[mailto:baptiste.cecconi@obspm.fr]{Baptiste Cecconi}
 \editor[mailto:seaman@noao.edu]{Rob Seaman}
@@ -290,74 +291,66 @@ arbitrary application-level functionality. See the IVOA VOEvent Transport Protoc
 Recommendation \citep{2017ivoa.spec.0320S} for further discussion.
 \end{itemize}
 
-\subsection{VO Identifiers (IVORNs)}
-\label{sec:2.2}
-VOEvent benefits from the IVOA identifiers developed for the VO registry.
-In this document, such
-an identifier is called an \emph{IVORN}, that is, an \emph{International Virtual
-Observatory Resource Name}. It is required to begin with ``\texttt{ivo://}'', and
-will stand in for a particular packet. A \emph{registered} VOEvent packet is one
+\subsection{VO Identifiers (IVOIDs)}
+\label{sec:ivoids}
+VOEvent benefits from the IVOA identifiers \citep{2016ivoa.spec.0523D}
+developed for the VO registry.  In this document, such
+an identifier is called an \emph{IVOID}, that is, an \emph{International Virtual
+Observatory Identifier}
+It is required to begin with ``\texttt{ivo://}'', and
+will stand reference particular packet or an entire stream.
+
+A \emph{registered} VOEvent packet is one
 that has a valid identifier --- meaning that a mechanism exists that can resolve
 that identifier to the full VOEvent packet. VOEvent identifiers thus provide a
-citation mechanism --- a way to express that one VOEvent packet is a
-\emph{follow-up} in some fashion of a previous packet. For these reasons,
-VOEvent packets will often contain VO identifiers \citep{2016ivoa.spec.0523D}.
-These take the general form \texttt{ivo://authorityID/resourceKey\#local\_ID}, and
-are references to metadata packets that may be found at a VO registry or VOEvent
-repository. There are several types of metadata schema that the registry can
-hold. For the purposes of VOEvent, the principal schemata are:
-\begin{itemize}
-\item \textbf{VOEvent}: the metadata packet for an alert resulting from the
-observation of a transient celestial event. This schema is defined in this
-document.
-\item \textbf{VOEventStreamRegExt}: the metadata packet for a stream of VOEvents,
-including information about who is running it, the parameters that may be
-included and their meaning. The VOEventStreamRegExt may also be shortened to
-just `stream', they mean the same thing.
-\item \textbf{VOEventServerRegExt}: the metadata packet to describe a service that
-provides VOEvents, which may be past events from a repository query service, or
-may be events sent in near real-time from a subscription service. The server
-definition includes the list of streams whose events are kept, the service
-endpoint to query the repository, or the endpoint to resolve a VOEvent
-identifier.
-\item \textbf{Author Organisation}: these metadata \citep{2007ivoa.spec.0302H}
-describe an author, including contact information and a description of the
-project. The VOEvent \textbf{<Who>} element contains either a reference to an
-author's IVORN or explicit contact information sufficient to describe the
-author.
-\end{itemize}
+citation mechanism --- a way to express that, for instance, one VOEvent packet is a
+\emph{follow-up} in some fashion of a previous packet.
 
-When such an identifier is \emph{resolved}, it means that the VOEvent metadata
-packet is obtained in exchange for the identifier. Such resolution happens
-through the global, distributed IVOA registry in stages. The registry is queried
-to locate a repository holding the relevant packet, and then the repository is
-queried for the packet itself. The part of the IVORN before the ``\texttt{\#}''
-symbol points to the \emph{VOEventStreamRegExt} of which the event is a member;
-the whole IVORN (that includes the \texttt{local\_ID}) points to the event itself.
-Thus VOEvent identifiers serve two purposes; they contain a stream identifier,
-then the ``\texttt{\#}'' sign, then the local reference within that stream.
+\begin{admonition}{Note}
+When it talked about identifiers of VOEvents and their streams, VOEvent
+Version 2.0 mostly talked about ”IVORNs”, IVOA Resource Names, rather
+than IVOIDs.  This term was found to be misleading during the
+preparation of Identifiers 2.0 \citep{2016ivoa.spec.0523D} and was
+deprecated in that document's section 1.1.  Therefore, since version 2.1
+of this specifiation, it adopts the term IVOID in the running text as
+well.  This does not change the normative content; normative content
+\emph{would} be changed if we also updated the names of the
+\xmlel{ivoid} attribute or the \xmlel{AuthorIVORN} or \xmlel{EventIVORN}
+element names, which therefore retain the deprecated nomenclature.
 
-This is a key point in understanding VOEvent identifiers: \textbf{The Event
-identifier also expresses the Stream identifier.} For example:
-\begin{itemize}
-\item \texttt{ivo://nvo.caltech/voeventnet/catot\#1004071150784109051}\\
-This identifier points to a specific VOEvent (number \texttt{1004071150784109051})
-that is an instance of the stream called \texttt{
-ivo://nvo.caltech/voeventnet/catot}. However, this IVORN will not resolve from
-the global VO registry, but only from a repository that has this stream of
-events.
-\item \texttt{ivo://nvo.caltech/voeventnet/catot}\\
-This Stream identifier can be looked up in any VO registry, returning a
-description, who runs it, the names, semantics, and descriptions of the
-parameters used in the events, how to subscribe, etc. In this case, the stream
-represents optical transients from the CRTS survey. For resolving the event
-itself, we want a repository that will have the event, so a query would be used
-like this: ``\emph{Find repositories that keep the events from this Stream}''
-\end{itemize}
+\end{admonition}
 
-The nature of a standard service to query VOEvent server records and the
-metadata necessary to describe a Stream remain under discussion in the VOEvent
-Working Group.
+Historically, these have taken the general form $$
+\hbox{\nolinkurl{ivo://authorityID/resourceKey#local_ID}}, $$ while new
+VOEvent identifiers should follow the regulations of section 4.1 of
+citet{2016ivoa.spec.0523D}, i.e.,$$
+\hbox{\nolinkurl{ivo://authorityID/resourceKey?local_ID}}.$$
+
+VOEvent identifiers are indirect
+references to metadata packets that may be found in a VOEvent
+repository.
+In a compliant, registered VOEvent stream, each event's id without the
+query part must reference a VO Registry record containing a capability
+with a \xmlel{standardID} of \nolinkurl{ivo://ivoa.net/std/voevent} as per
+Sect.~\ref{sec:registering}.  That resouce describes the stream at
+which the VOEvent originated.  Publishers providing archives of their
+events should include more capabilities through which archived events
+can be found; this could, for instance, be a web page or perhaps a cone
+search service.  Publishers relying on third parties to archive their
+events should provide IsServedBy relationships to these third-party
+services.
+
+This is a key point in understanding VOEvent identifiers: The Event
+identifier contains the Stream identifier.  For example,
+\nolinkurl{ivo://example.org/catot?100407}
+points to a specific VOEvent with the local id 100407
+coming from the stream called \nolinkurl{ivo://example.org/catot}.
+The full, unparsed
+IVOID will not resolve in
+the global VO Registry; only the part without the query string will.
+To resolve the full identifier, a separate archive has to be set up and
+mentioned in the registry record that
+\nolinkurl{ivo://example.org/catot} points to.
 
 \subsection{Authentication and Authorisation}
 \label{sec:2.3}
@@ -424,12 +417,14 @@ classification of the event.
 
 The \verb|<VOEvent>| element has three attributes:
 
-\noindent \textbf{3.1.1} \xmlel{ivorn} \label{sec:3.1.1} ---
+\noindent {\bf 3.1.1} \texttt{ivorn}\footnote{See sect.~\ref{sec:ivoids}
+for why the attribute is called ivorn rather than ivoid; the attribute
+name cannot be changed without breaking implementations.} \label{sec:3.1.1} ---
 Each VOEvent packet is required to have one-and-only-one identifier, expressed
 with the \xmlel{ivorn} attribute. VOEvent identifiers are URIs
 \citep{2016ivoa.spec.0523D}. As the issuance of duplicate identifiers would
 diminish the trust placed in systems exchanging VOEvents, it is anticipated that
-a number of VOEvent publishers will be founded to issue unique IVORNs from a
+a number of VOEvent publishers will be founded to issue unique IVOIDs from a
 variety of useful and appropriate namespaces. The non-opaque URI identifier is
 constructed systematically so that the identifier of a different resource, the
 VOEventStreamRegExt, is deducible from the identifier of an event. The first
@@ -1707,7 +1702,7 @@ and Unit.
 
 \subsection{Changes from VOEvent 1.11}
 \begin{itemize}
-\item The concept of event stream is introduced in section \ref{sec:2.2}, this
+\item The concept of event stream is introduced in section \ref{sec:ivoids}, this
 is new in VOEvent 2.0. The stream metadata acts as a template for the events in
 the stream, and is registered with the VO registry.
 \item The section on transport of VOEvents has been removed, so it can be
