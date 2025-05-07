@@ -238,25 +238,25 @@ VOEvent packets express sky transient alerts. VOEvent users subscribe to the
 types of alerts pertinent to their science goals. The following roles define the
 interchange of VOEvent semantics:
 \begin{itemize}
-\item An \emph\textbf{Author} is anyone (or any organisation) creating scientific
+\item An Author is anyone (or any organisation) creating scientific
 content suitable for representation as a sky transient alert. An author will
 typically register with the IVOA registry, so that the \verb|<Who>| element of
 VOEvent packets can be small and reusable, expressing only the IVOA identifier
 needed to retrieve the contact information for the author. An authoring
 organisation or individual may often rely on autonomous systems to actually
 create and transport the individual alert messages.
-\item A \emph\textbf{Publisher} receives alerts from one-or-more authors, and
+\item A Publisher receives alerts from one-or-more authors, and
 assigns a unique identifier to each resulting packet. Either the author or the
 publisher generates the actual XML syntax of the event, but the publisher is
 responsible for the validity of the packet relative to the VOEvent schema.
 Publishers will register with the IVOA registry as described below.
-\item A \emph\textbf{Repository} subscribes to (or is party to the original
+\item A Repository subscribes to (or is party to the original
 creation of) one or more VOEvent streams, persists packets either permanently
 or temporarily, and runs a service that allows clients to resolve identifiers
 and apply complex queries to its holdings. A given packet had one Publisher but
 may be held in more than one Repository. Public repositories will register with
 the IVOA registry.
-\item A \emph\textbf{Subscriber} is any entity that receives VOEvent packets for
+\item A Subscriber is any entity that receives VOEvent packets for
 whatever purpose. Subscribers can find out how to get certain types of events
 by consulting the lists of publishers and repositories in the IVOA registry.
 A subscription is a filter on the stream of events from a publisher: the
