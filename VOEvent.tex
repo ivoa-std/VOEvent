@@ -466,6 +466,10 @@ An example of Author information might be:
  </Author>
 \end{lstlisting}
 
+A series of \verb|<Contributor>| (see below) elements can be added into the
+\verb|<Author>| information.
+
+\subsubsection{\texttt{<Contributor>}}
 Contributor information can be included using as many \verb|<contributor>|
 elements as necessary in \verb|Author|. The element value is the full name of the person or
 organisation. Each element can have three optional attributes: an \xmlel{ivorn}
@@ -482,7 +486,7 @@ their documentation\footnote{\url{https://datacite-metadata-schema.readthedocs.i
 
 Here is an example of contributors in an \verb|<Author>|:
 \begin{lstlisting}
-Author>
+<Author>
 	<Contributor altIdentifier="https://orcid.org/0000-0001-7915-5571"
 	    role="ContactPerson">Baptiste Cecconi</Contributor>
 	<Contributor altIdentifier="https://ror.org/029nkcm90"
