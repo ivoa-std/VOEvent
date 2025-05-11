@@ -7,7 +7,7 @@ DOCNAME = VOEvent
 DOCVERSION = 2.1
 
 # Publication date, ISO format; update manually for "releases"
-DOCDATE = 2024-05-22
+DOCDATE = 2025-05-07
 
 # What is it you're writing: NOTE, WD, PR, REC, PEN, or EN
 DOCTYPE = PR
