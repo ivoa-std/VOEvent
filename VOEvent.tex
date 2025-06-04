@@ -1383,7 +1383,13 @@ As of this writing, these keys include:
   Protocol \citep{2017ivoa.spec.0320S}
 \item \verb|acc-xmpp| The endpoint uses an informal method based on
     	XMPP (jabber).
-\item \verb|acc-kafka| The endpoint uses Apache Kafka \citep{kafka}.
+
+\item \verb|acc-kafka| The endpoint uses Apache Kafka \citep{kafka}.  In
+VOResource, the access URLs for Kafka enpoints use a VO-custom URI
+prefix x-kafka.  The authority part in these URIs is the kafka host. In
+the query part of the URI, give any extra parameters, in particular
+\emph{topic}.
+
 \item \verb|acc-proprietary| The endpoint is usable by some
   method not (yet) mentioned in the VOEvent standard's registry record.
 \end{compactitem}
@@ -1403,9 +1409,9 @@ provider, perhaps to ensure high availability:
     <accessURL>http://example.org/events/vtp</accessURL>
   </interface>
   <interface xsi:type="voe:StreamEndpoint" role="std"
-      standardID="ivo://ivoa.net/std/voevent#acc-vtp">
-    <accessURL>http://example.org/events/kafka</accessURL>
-    <accessURL>http://bigshot.com/streams/example-voe</accessURL>
+      standardID="ivo://ivoa.net/std/voevent#acc-kafka">
+    <accessURL>x-kafka://example.org?topic=sample-stream</accessURL>
+    <mirrorURL>x-kafka://bigshot.com?topic=sample-stream</mirrorURL>
   </interface>
 </capability>
 \end{lstlisting}
