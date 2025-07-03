@@ -26,13 +26,12 @@
 \author[https://orcid.org/0000-0002-0672-4945]{\\Frederic \textbf{Hessman}, University of Gottingen, Germany}
 \author[https://orcid.org/0000-0001-9629-2922]{\\Pierre \textbf{Le Sidaner}, Observatoire de Paris, France}
 \author[https://orcid.org/0000-0002-3957-1324]{\\Szabolcs \textbf{Marka}, Columbia University, USA}
-\author[https://orcid.org/0000-0001-6847-2328]{\\Dave \textbf{Morris}, University of Edinburg, UK}
+\author[https://orcid.org/0000-0001-6847-2328]{\\Dave \textbf{Morris}, University of Edinburgh, UK}
 \author[https://orcid.org/0000-0003-2377-2356]{\\Arnold \textbf{Rots}, Harvard-Smithsonian Center for Astrophysics, USA}
 \author[https://orcid.org/0000-0001-9385-8978]{\\Rob \textbf{Seaman}, National Optical Astronomy Observatory, USA}
 \author{\\Tom \textbf{Vestrand}, Los Alamos National Laboratory, USA}
 \author[https://orcid.org/0000-0002-9145-8580]{\\Roy \textbf{Williams}, California Institute of Technology, USA}
 \author[https://orcid.org/0000-0002-9919-3310]{\\Przemyslaw \textbf{Wozniak}, Los Alamos National Laboratory, USA}
-\author{\\Markus \textbf{Demleitner}, Universität Heidelberg, Germany}
 
 \editor[mailto:baptiste.cecconi@obspm.fr]{Baptiste Cecconi}
 \editor[mailto:seaman@noao.edu]{Rob Seaman}
@@ -109,19 +108,20 @@ robotic survey and monitoring telescopes with apertures from tens of centimetres
 to tens of meters, large-field survey projects like Catalina Real-Time Transient
 Survey (CRTS)\footnote{\url{http://crts.caltech.edu}} \citep{bib08}, Palomar
 Transient Factory (PTF)\footnote{\url{https://www.ptf.caltech.edu}}
-\citep{bib31}, Zwicky Transient Factory (ZTF)\footnote{
-\url{https://www.ztf.caltech.edu}} \citep{2014htu..conf...27B},
+\citep{bib31}, Zwicky Transient Factory
+(ZTF)\footnote{\url{https://www.ztf.caltech.edu}} \citep{2014htu..conf...27B},
 Pan-STARRS\footnote{\url{https://panstarrs.stsci.edu}} \citep{bib09} and Large
 Synoptic Survey Telescope (LSST)\footnote{\url{https://www.lsst.org}}
 \citep{bib07}, satellites like Swift \citep{bib11a} and Fermi \citep{bib11b},
 and more singular experiments like Laser Interferometer Gravitational Waves
 Observatory (LIGO)\footnote{\url{https://www.ligo.org}} \citep{bib06}. The
-community has demonstrated that robotic telescopes\footnote{
-\url{http://www.astro.physik.uni-goettingen.de/~hessman/MONET/links.html}} can
-quickly follow-up events using the standard outlined in this document. In the
+community has demonstrated that robotic
+telescopes\footnote{\url{http://www.astro.physik.uni-goettingen.de/~hessman/MONET/links.html}}
+can quickly follow-up events using the standard outlined in this document. In the
 past, human-centric event alert systems have been very successful, including the
-Central Bureau for Astronomical Telegrams (CBAT)\footnote{
-\url{http://www.cbat.eps.harvard.edu/index.html}} and the Astronomer's Telegram
+Central Bureau for Astronomical Telegrams
+(CBAT)\footnote{\url{http://www.cbat.eps.harvard.edu/index.html}} and the
+Astronomer's Telegram
 (ATEL)\footnote{\url{http://www.astronomerstelegram.org}} \citep{bib01}, but
 these systems use predominantly natural-language text to describe each event,
 and do not have sophisticated selection criteria for subscribers. The GRB
@@ -147,9 +147,9 @@ regions}''. In practice the result of complex queries such as these will be
 transmitted through intermediary ``brokers'' --- which will subscribe to
 VOEvent-producing systems and provide filter services to client groups
 (``subscribers'') via specialised VOEvents. Filtering will often be based on
-coincidence between multiple events. A gravitational wave detector may produce
-a large number of candidate events, but the interesting ones may be only those
-that register with multiple instruments.
+coincidence (spatial or temporal) between multiple events. A gravitational wave
+detector may produce a large number of candidate events, but the interesting ones
+may be only those that register with multiple instruments.
 
 A recent study \citep{2018arXiv181112680C} extended the usage of VOEvent to
 reports or predictions of Solar System events. This assessment revealed the
@@ -165,16 +165,15 @@ System. (c) The capability to specify a time range, with a start and end time.
 Handling the anticipated event rates quickly and accurately will require alert
 packets to be issued in a structured data format, not natural language. Such a
 structured discovery alert --- and any follow-up packets --- will be referred
-to as a VOEvent. VOEvent will rely on XML schema\footnote{
-\url{https://www.w3.org/XML/Schema}} to provide the appropriate structured
-syntax and semantics. These schemata may be specific to VOEvent or may implement
-external schemata such as the IVOA's Space-Time Coordinate (STC) metadata
-specification \citep{2007ivoa.spec.1030R}. Some of the VOEvent structure is
-provided by this document, for example the meaning of the \verb|<Who>|
-and \verb|<Date>|
-elements; however other structure is provided by the author of the event
-stream, who might define, for example, what the \verb|<peak_energy>| and
-\verb|<energy_variance>| parameters mean when supplied with one of those events.
+to as a VOEvent. VOEvent will rely on XML
+schema\footnote{\url{https://www.w3.org/XML/Schema}} to provide the appropriate
+structured syntax and semantics. These schemata may be specific to VOEvent or
+may implement external schemata such as the IVOA's Space-Time Coordinate (STC)
+metadata specification \citep{2007ivoa.spec.1030R}. Some of the VOEvent structure
+is provided by this document, for example the meaning of the \verb|<Who>|
+and \verb|<Date>| elements; however other structure is provided by the author
+of the event stream, who might define, for example, what the \verb|<peak_energy>|
+and \verb|<energy_variance>| parameters mean when supplied with one of those events.
 
 VOEvent is a pragmatic effort that crosses the boundary between the Virtual
 Observatory and the larger astronomical community. The results of astronomical
@@ -206,39 +205,20 @@ of VOEvent packets are in \S\ref{sec:4}, and linked references in \S\ref{sec:5}.
 \label{fig:diagram}
 \end{figure}
 
-Fig.~\ref{fig:diagram} shows the role this document plays within the
-IVOA architecture \citep{2021ivoa.spec.1101D}.
+VOEvent is an IVOA standard, which means that it fits into a rich matrix of
+other IVOA standards. Figure \ref{fig:diagram} shows where VOEvent fits into
+the broader IVOA architecture \citep{2021ivoa.spec.1101D}.
 
-VOEvents inherit much of the structure and semantics of \textbf{
-VOTable} \citep{2019ivoa.spec.1021O}, including the \textbf{UCD}
+VOEvents inherit much of the structure and semantics of \textbf{VOTable}
+\citep{2019ivoa.spec.1021O}, including the \textbf{UCD}
 \citep{2018ivoa.spec.0527P} scheme for semantics of quantities and the VOUnits
 standard \citep{2023ivoa.spec.1215G}. VOEvent takes space-time coordinates from
 the \textbf{STC} \citep{2007ivoa.spec.1030R}, and it uses the URI semantics of the
-IVOA \textbf{Vocabulary} 1.0 \citep{2009ivoa.spec.1007G} effort. IVOA \textbf{ Identifiers}
-\citep{2016ivoa.spec.0523D} are used for events and their parent streams and
-servers, and both these latter are described by IVOA \textbf{Resource Metadata}
-\citep{2007ivoa.spec.0302H} and stored in the VO Registry.
-
-\subsection{VOEvent in the VO Architecture}
-
-VOEvent is an IVOA standard, which means that it fits into a rich matrix of
-other IVOA standards. Figure \ref{fig:diagram} shows where VOEvent fits into the broader
-IVOA architecture. VOEvents inherit much of the structure and semantics of \textbf{
-VOTable} \citep{2019ivoa.spec.1021O}, including the \textbf{UCD}
-\citep{2018ivoa.spec.0527P} scheme for semantics of quantities and the VOUnits
-standard \citep{2014ivoa.spec.0523D}. VOEvent takes space-time coordinates from
-the \textbf{STC} \citep{2007ivoa.spec.1030R}, and it uses the URI semantics of the
-IVOA \textbf{Vocabulary} \citep{2009ivoa.spec.1007G} effort. IVOA \textbf{ Identifiers}
-\citep{2016ivoa.spec.0523D} are used for events and their parent streams and
-servers, and both these latter will be described by IVOA \textbf{Resource Metadata}
-\citep{2007ivoa.spec.0302H} and stored in the registry.
-
-\begin{figure}[ht!]
-\centering\includegraphics[width=0.9\textwidth]{role_diagram}
-\caption{VOEvent standard in the VO architecture diagram}
-\label{fig:diagram}
-\end{figure}
-
+IVOA \textbf{Vocabulary} 1.0 \citep{2009ivoa.spec.1007G} effort. IVOA 
+\textbf{Identifiers} \citep{2016ivoa.spec.0523D} are used for events and their
+parent streams and servers, and both these latter are described by IVOA
+\textbf{Resource Metadata} \citep{2007ivoa.spec.0302H} and stored in the VO
+Registry.
 
 \section{Usage}
 \label{sec:2}
@@ -258,25 +238,25 @@ VOEvent packets express sky transient alerts. VOEvent users subscribe to the
 types of alerts pertinent to their science goals. The following roles define the
 interchange of VOEvent semantics:
 \begin{itemize}
-\item An \emph\textbf{Author} is anyone (or any organisation) creating scientific
+\item An Author is anyone (or any organisation) creating scientific
 content suitable for representation as a sky transient alert. An author will
 typically register with the IVOA registry, so that the \verb|<Who>| element of
 VOEvent packets can be small and reusable, expressing only the IVOA identifier
 needed to retrieve the contact information for the author. An authoring
 organisation or individual may often rely on autonomous systems to actually
 create and transport the individual alert messages.
-\item A \emph\textbf{Publisher} receives alerts from one-or-more authors, and
+\item A Publisher receives alerts from one-or-more authors, and
 assigns a unique identifier to each resulting packet. Either the author or the
 publisher generates the actual XML syntax of the event, but the publisher is
 responsible for the validity of the packet relative to the VOEvent schema.
 Publishers will register with the IVOA registry as described below.
-\item A \emph\textbf{Repository} subscribes to (or is party to the original
+\item A Repository subscribes to (or is party to the original
 creation of) one or more VOEvent streams, persists packets either permanently
 or temporarily, and runs a service that allows clients to resolve identifiers
 and apply complex queries to its holdings. A given packet had one Publisher but
 may be held in more than one Repository. Public repositories will register with
 the IVOA registry.
-\item A \emph\textbf{Subscriber} is any entity that receives VOEvent packets for
+\item A Subscriber is any entity that receives VOEvent packets for
 whatever purpose. Subscribers can find out how to get certain types of events
 by consulting the lists of publishers and repositories in the IVOA registry.
 A subscription is a filter on the stream of events from a publisher: the
@@ -308,7 +288,7 @@ citation mechanism --- a way to express that, for instance, one VOEvent packet i
 
 \begin{admonition}{Note}
 When it talked about identifiers of VOEvents and their streams, VOEvent
-Version 2.0 mostly talked about ”IVORNs”, IVOA Resource Names, rather
+Version 2.0 mostly talked about ``IVORNs'' IVOA Resource Names, rather
 than IVOIDs.  This term was found to be misleading during the
 preparation of Identifiers 2.0 \citep{2016ivoa.spec.0523D} and was
 deprecated in that document's section 1.1.  Therefore, since version 2.1
@@ -317,7 +297,6 @@ well.  This does not change the normative content; normative content
 \emph{would} be changed if we also updated the names of the
 \xmlel{ivoid} attribute or the \xmlel{AuthorIVORN} or \xmlel{EventIVORN}
 element names, which therefore retain the deprecated nomenclature.
-
 \end{admonition}
 
 Historically, these have taken the general form $$
@@ -397,12 +376,12 @@ following optional sub-elements:
 \item[\tt <Reference>] External Content (see \S\ref{sec:3.9})
 \end{itemize}
 
-Only those elements required to convey the event being described need be
+Only those elements required to convey the event being described need to be
 present; the ordering of elements is not formally constrained. The intent of
 VOEvent is to describe a single astronomical transient event per packet.
 Multiple events should be expressed using multiple packets. On the other hand,
 complex observations may best be expressed using multiple follow-up packets or
-via embedded \verb|<References>| to external resources such as VOTables or RTML
+via embedded \verb|<References>| to external resources such as VOTables or HTML
 documents. XML structures other than those listed in this document should be
 used with care within a \verb|<VOEvent>| element, but some applications may
 require the freedom to reference schema outside the scope of this specification.
@@ -459,7 +438,7 @@ For example, a \verb|<VOEvent>| packet resulting from Tycho Brahe's discovery of
 a ``Stella Nova'' in Cassiopeia on 11 November 1572 might start:
 \begin{lstlisting}[language=XML]
 <VOEvent ivorn="ivo://uraniborg.hven#1572-11-11/0001"
-    role="observation" version="2.0">...
+    role="observation" version="2.1">...
 \end{lstlisting}
 
 \subsection{\texttt{<Who>} --- Curation Metadata}
@@ -476,7 +455,7 @@ and a logo. A contact person has a name, email, and phone number. Other
 contributors can also be noted.
 
 An example of Author information might be:
-\begin{lstlisting}
+\begin{lstlisting}[language=XML]
 <Author>
     <title>Rapid Telescope for Optical Response</title>
     <shortName>Raptor</shortName>
@@ -487,18 +466,33 @@ An example of Author information might be:
  </Author>
 \end{lstlisting}
 
+A series of \verb|<Contributor>| (see below) elements can be added into the
+\verb|<Author>| information.
+
+\subsubsection{\texttt{<Contributor>}}
 Contributor information can be included using as many \verb|<contributor>|
-elements as necessary. The element value is the full name of the person or
+elements as necessary in \verb|Author|. The element value is the full name of the person or
 organisation. Each element can have three optional attributes: an \xmlel{ivorn}
 attribute to refer to the person's or organisation information in the VO
 registry; an \xmlel{altIdentifier} attribute to refer to other identifier (such
-as an ORCID (Open Researcher and Contributor ID)\footnote{
-\url{https://orcid.org}} for persons, or a Research Organisation Registry
+as an ORCID (Open Researcher and Contributor ID)\footnote{\url{https://orcid.org}}
+for persons, or a Research Organisation Registry
 (ROR)\footnote{\url{https://ror.org}} identifier for institutions), in the form
 of an URI; and a \xmlel{role} attribute. The \xmlel{role} attribute is an important
 part of the contributor's metadata and allows proper attribution of work. We
 recommend to use here the list of \emph{contributorType} from the DataCite
-Metadata Schema v4.5 \citep{https://doi.org/10.14454/g8e5-6293}.
+Metadata Schema v4.5 \citep{https://doi.org/10.14454/g8e5-6293}, as listed in
+their documentation\footnote{\url{https://datacite-metadata-schema.readthedocs.io/en/4.5/appendices/appendix-1/contributorType/}}.
+
+Here is an example of contributors in an \verb|<Author>|:
+\begin{lstlisting}
+<Author>
+	<Contributor altIdentifier="https://orcid.org/0000-0001-7915-5571"
+	    role="ContactPerson">Baptiste Cecconi</Contributor>
+	<Contributor altIdentifier="https://ror.org/029nkcm90"
+	    role="HostingInstitution">Observatoire de Paris</Contributor>
+</Author>
+\end{lstlisting}
 
 \subsubsection{\texttt{<AuthorIVORN>}}
 As an alternative to quoting Author information over and over, this information
@@ -550,7 +544,7 @@ dependent variables --- what was seen at that location at that time.
 
 A \verb|<What>| element contains a list of \verb|<Param>| elements which may be
 associated and labeled using \verb|<Group>| elements. It may also have one or
-more <Table> elements, each of which can contain \verb|<Param>| and \verb|<Field>|
+more \verb|<Table>| elements, each of which can contain \verb|<Param>| and \verb|<Field>|
 elements: these last define a whole column, or vector of data, rather than a
 single primitive value as with <Param>. See \S\ref{sec:4} for an example of
 usage.
@@ -560,7 +554,7 @@ usage.
 \label{sec:3.3.1}
 \verb|<Param>| elements may be used to represent the values of arbitrarily named
 quantities. Thus a publisher need not establish a fixed schema for all events
-they issue. Unified Content Descriptors (UCDs) \citep{2018ivoa.spec.0527P}.
+they issue. Unified Content Descriptors (UCDs) \citep{2018ivoa.spec.0527P}
 %\citep{std:UCD}
 may be used to clarify meaning. Usage of \verb|<Param>| and \verb|<Group>| is
 similar to the VOTable specification, see \S4.9 of \citep{2019ivoa.spec.1021O}.
@@ -586,12 +580,10 @@ performed.
 
 \noindent \textbf{3.3.1.3} \xmlel{unit}\label{sec:3.3.1.3} --- The unit for
 interpreting \xmlel{value}. See \S4.4 of \citep{2019ivoa.spec.1021O}
-%\citep{std:VOTABLE}
-which relies on VOUnits \citep{2014ivoa.spec.0523D}.
+which relies on VOUnits \citep{2023ivoa.spec.1215G}.
 
 \noindent \textbf{3.3.1.4} \xmlel{ucd}\label{sec:3.3.1.4} --- A UCD
 \citep{2018ivoa.spec.0527P}
-%\citep{std:UCD}
 expression characterizing the nature of the \verb|<Param>|.
 
 \noindent \textbf{3.3.1.5} \xmlel{dataType}\label{sec:3.3.1.5} --- A string specifying
@@ -632,7 +624,7 @@ In VOEvent, these can be represented as:
 \label{sec:3.3.2}
 \verb|<Group>| provides a simple mechanism for associating several \verb|<Param>|
 (and/or \verb|<Reference>|) elements, for instance, an error with a measurement.
-\verb|<Group>|s may NOT be nested. \verb|<Group>| elements may have a
+\verb|<Group>|s MUST NOT be nested. \verb|<Group>| elements may have a
 \xmlel{name}
 attribute, and unlike VOTable usage, may also have a \xmlel{type} attribute:
 
@@ -699,8 +691,8 @@ elements. There is then a 1-to-1 correspondence between them for each row.
 
 The Table can contain \verb|<Description>| and \verb|<Reference>| elements to add
 documentation; the \verb|<Field>| elements can also contain these. Thus
-the \verb|<Table>| can contain, in order, an optional \verb|<Description>| and \
-verb|<Reference>|, then a sequence of one or more \verb|<Field>| elements, then a
+the \verb|<Table>| can contain, in order, an optional \verb|<Description>| and 
+\verb|<Reference>|, then a sequence of one or more \verb|<Field>| elements, then a
 \verb|<Data>| element. The \verb|<Field>| element can also contain
 optional \verb|<Description>| and \verb|<Reference>| and nothing else. The \verb|<Data>| element
 can contain only \verb|<TR>| elements, each of which can contain only \verb|<TD>|
@@ -730,7 +722,7 @@ significance to subscribing clients.
 
 \noindent \textbf{3.3.3.4} \xmlel{unit}\label{sec:3.3.3.4} --- The unit for
 interpreting the values as given in the \verb|<TD>| table cells. See \S4.4 of
-\citep{2019ivoa.spec.1021O}, which relies on \citep{2014ivoa.spec.0523D}.
+\citep{2019ivoa.spec.1021O}, which relies on \citep{2023ivoa.spec.1215G}. 
 
 \noindent \textbf{3.3.3.5} \xmlel{ucd}\label{sec:3.3.3.5} --- A UCD
 \citep{2018ivoa.spec.0527P} expression characterizing the nature of the data in
@@ -751,7 +743,7 @@ structure, such as one of the IVOA standard data models.
     <Description>Individual Moduli and Distances for NGC 0931 from
       NED</Description>
     <Field name="(m-M)" unit="mag" ucd="phot.mag.distMod" dataType="float"/>
-    <Field name="err(m-M)" unit="mag" ucd="phot.mag.distMod;stat.err"
+    <Field name="err(m-M)" unit="mag" ucd="stat.err;phot.mag.distMod"
       dataType="float"/>
     <Field name="D" unit="Mpc" ucd="pos.distance dataType="float"/>
     <Field name="REFCODE" ucd="meta.bib.bibcode"/>
@@ -854,8 +846,11 @@ systems. The list of valid reference frames is available as an IVOA vocabulary:
 \url{https://www.ivoa.net/rdf/refframe}
 \item The center specification can be \emph{TOPO} (i.e., the location of the
 observatory), \emph{GEO} (geocentric coordinates), or \emph{BARY} (relative to
-the barycenter of the solar system). The full list of valid reference positions
-is available as an IVOA vocabulary: \url{https://www.ivoa.net/rdf/refposition}
+the barycenter of the solar system). Those terms are short versions of terms
+listed in reference positions IVOA vocabulary: \url{https://www.ivoa.net/rdf/refposition}.
+If the center specification is different from the three listed terms, the
+\verb|<AstroCoordSystem>| must be defined explicitly, with the \verb|<TimeFrame>|
+and \verb|<SpaceFrame>| elements.
 \end{itemize}
 
 
@@ -890,7 +885,7 @@ or explicitly performed to that level of accuracy.
 A similar question faces the authors of VOEvent packets, who must make a
 judicious choice between the available coordinate system options to meet the
 expected scientific needs of consumers of those packets. If a detailed or high
-accuracy coordinate system selection is not needed, \emph\textbf{UTC-ICRS-TOPO}
+accuracy coordinate system selection is not needed, \emph{UTC-ICRS-TOPO}
 would be a good choice as an interoperability standard.
 
 \subsubsection{ObservatoryLocation}
@@ -947,6 +942,49 @@ Each \xmlel{C1}, \xmlel{C2} and \xmlel{C3} element have
 \xmlel{pos\_unit} and \xmlel{ucd}
 optional attributes.
 
+\subsubsection{\texttt{<AstroCoords>} --- Astronomy Coordinates}
+
+As presented in the previous sections, the \verb|<AstroCoords>| has an
+attribute \xmlel{coord\_system\_id} used to refer to the \verb|<AstroCoordSystem>|
+in use for the coordinates values. Coordinates can be expressed with two
+objects \verb|<Position2D>| or \verb|<Position3D>| depending on the dimensionality
+of the coordinates, e.g., \verb|<Position2D>| for sky coordinates.
+
+\paragraph{\texttt{<Position2D>}} is used to store 2D coordinate
+positions. The names of the coordinate axes are set using \verb|<Name1>| and
+\verb|<Name2>| elements. The values of the coordinates are set using a
+\verb|<Value2D>|. The errors on the coordinate, if any, can be set using an
+\verb|<Error2D>| object or an \verb|<Error2Radius>|.
+
+\subparagraph{\texttt{<Value2D>}} is used to store the actual values of 2D
+coordinates. It contains two elements: \verb|<C1>| and \verb|<C2>|, which are
+both with type \xmlel{coord\_value}.
+
+\subparagraph{\texttt{<Error2D>}} is used to store the uncertainty values of 2D
+coordinates. It contains two elements: \verb|<C1>| and \verb|<C2>|, which are
+both with type \xmlel{coord\_value}.
+
+\subparagraph{\texttt{<Error2Radius>}} is used to store the uncertainty value
+of 2D coordinates through a radius estimation. It has a type \xmlel{coord\_value}.
+
+\paragraph{\texttt{<Position3D>}} is used to store 3D coordinate positions. The
+names of the coordinate axes are set using \verb|<Name1>|, \verb|<Name2>| and
+\verb|<Name3>| elements. The values of the coordinates are set using a
+\verb|<Value3D>| object. The errors on the coordinate, if any, can be set using
+a \verb|<Error3D>| object.
+
+\subparagraph{\texttt{<Value3D>}} is used to store the actual values of 3D
+coordinates. It contains three elements: \verb|<C1>|, \verb|<C2>| and
+\verb|<C3>|, which are all with type \xmlel{coord\_value}.
+
+\subparagraph{\texttt{<Error3D>}} is used to store the actual values of 3D
+coordinates. It contains three elements: \verb|<C1>|, \verb|<C2>| and
+\verb|<C3>|, which are all with type \xmlel{coord\_value}.
+
+\paragraph{\xmlel{coord\_value}} is the object type of the coordinate
+or uncertainty values. Such objects have two attributes \xmlel{pos\_unit} and
+\xmlel{ucd}, which convey the units and UCD of the value.
+
 \subsubsection{Parsing the WhereWhen Element}
 \label{sec:3.4.3}
 When parsing a VOEvent packet, the following pseudocode may be of use to provide
@@ -983,8 +1021,8 @@ The following coordinate systems are recognised for solar event data:
 \item \emph{UTC-HGC-TOPO} --- Carrington heliographic coordinates
 \end{itemize}
 
-What this means is that these coordinate combinations will be supported in the
-library and that, hence, use of VOEvent by the solar research community is
+These coordinate combinations shall be supported by VOEvent software (brokers
+and clients) and that, hence, use of VOEvent by the solar research community is
 supported. It does not imply, of course, that all VOEvent participants are
 expected to recognise and handle these solar coordinates --- nor, for that
 matter, that solar subscribers be able to handle equatorial coordinates.
@@ -999,11 +1037,10 @@ A \xmlel{PositionName} element is available in the
 at which the event is observed without coordinates (e.g., for unresolved
 observations, or global impact).
 
-A \xmlel{TimeInterval} element is available in the \xmlel{
-ObservationLocation/Ast\-roCoords/Time} element. It is composed of two elements
+A \xmlel{TimeInterval} element is available in the
+\xmlel{ObservationLocation/Ast\-roCoords/Time} element. It is composed of two elements
 \xmlel{ISOTimeStart} and \xmlel{ISOTimeStop}, both defined similarly to
-the \xmlel{
-ISOTime} element of \xmlel{TimeInstant}. This pair of dates is used to refer to
+the \xmlel{ISOTime} element of \xmlel{TimeInstant}. This pair of dates is used to refer to
 interval observations or predictions. This interval concept is different than
 the error on the event Time, but rather corresponds to the boundaries of a
 temporally extended event.
@@ -1016,7 +1053,7 @@ The precise definition of ``distant'' will depend on the objects observed, the
 instrumentation and the science program. For remote objects such as gamma-ray
 bursts or supernovae, it is likely that spatial coordinates measured from
 spacecraft in Earth orbit will be immediately useful --- indeed, the error box
-of the reported coordinates may be much larger than than the pointing accuracy
+of the reported coordinates may be much larger than that the pointing accuracy
 of the follow-up telescope. On the other hand, the field of view of the
 instrument on that telescope may be many times larger than the error box.
 Subscribers must always balance such concerns --- this is just one facet of
@@ -1074,10 +1111,10 @@ for the cases where the relevant concepts are not described in existing vocabula
 
 \subsubsection{Attributes}
 The \verb|<Why>| element has two optional attributes, \xmlel{importance}
-and \xmlel{expires}, providing ratings of the relative noteworthiness and urgency of each
-VOEvent, respectively. Subscribers should consider the
-\xmlel{importance} and \xmlel{
-expires} ratings from a particular publisher in combination with other VOEvent
+and \xmlel{expires}, providing ratings of the relative noteworthiness and
+urgency of each VOEvent, respectively. Subscribers should consider the
+\xmlel{importance} and \xmlel{expires} ratings from a particular publisher
+in combination with other VOEvent
 metadata in interpreting an alert for their purposes. The publishers of each
 category of event are encouraged to develop a self-consistent rating scheme for
 these values.
@@ -1090,8 +1127,8 @@ considered of generally greater importance.
 
 \paragraph{\xmlel{expires}}\label{sec:3.6.2}
 The \xmlel{expires} attribute provides a rating of the urgency or time-criticality
-of the VOEvent, expressed as an ISO-8601\footnote{\url{
-https://www.w3.org/TR/NOTE-datetime}} representation of some date and time in
+of the VOEvent, expressed as an ISO-8601\footnote{\url{https://www.w3.org/TR/NOTE-datetime}}
+representation of some date and time in
 the future. The meaning of \xmlel{expires} is application dependent but will often
 represent the date and time after which a follow-up observation might be
 belated.
@@ -1150,11 +1187,11 @@ is no longer a very urgent one:
 <Why importance="1.0" expires="1574-05-11T12:00:00">
     <Inference probability="1.0">
         <Name>Tycho's Stella Nova</Name>
-        <Concept>http://ivoat.ivoa.net/stars.supernova.Ia</Concept>
+        <Concept>https://ivoa.net/rdf/uat/#supernovae</Concept>
     </Inference>
     <Inference probability="1.0" relation="associated">
         <Name>3C 10</Name>
-        <Concept>http://ivoat.ivoa.net/ISM.SNRemnant</Concept>
+        <Concept>https://ivoa.net/rdf/uat/#supernova-remnants</Concept>
         <Description>Supernova remnant</Description>
     </Inference>
 </Why>
@@ -1234,7 +1271,7 @@ divide a single VOEvent into two or more new threads. First, follow-up the event
 in one packet and then supersede the original event, rather than the follow-up,
 in a second packet (with a second identifier that can start a second thread).
 
-The ``\emph{retraction}" \xmlel{cite} indicates that the initial discovery event
+The ``\emph{retraction}'' \xmlel{cite} indicates that the initial discovery event
 is being completely retracted for some reason. The publisher of a retraction may
 be other than the publisher of the original VOEvent --- subscribers are free to
 interpret such a situation as they see fit.
@@ -1245,7 +1282,8 @@ Splitting, merging or retracting a VOEvent should typically be accompanied by a
 An attempt is made to retract the sighting of Tycho's supernova:
 \begin{lstlisting}
 <Citations>
-    <EventIVORN cite="retraction">ivo://uraniborg.hven#1572-11-11/0001</EventIVORN>
+    <EventIVORN 
+        cite="retraction">ivo://uraniborg.hven#1572-11-11/0001</EventIVORN>
     <Description>Oops!</Description>
 </Citations>
 \end{lstlisting}
@@ -1272,8 +1310,7 @@ content, there is also a locator for the meaning of the content, which is
 another URI, specified by the \xmlel{meaning} attribute. It is anticipated that a
 Note will be written discussing the IVOA-wide usage of such meaning locators. A
 client application may ignore \verb|<Reference>| elements with
-unrecognized \xmlel{
-meaning} attributes. On the other hand, the client may ignore the `meaning'
+unrecognized \xmlel{meaning} attributes. On the other hand, the client may ignore the `meaning'
 attribute if the position of the \verb|<Reference>| element is sufficient to
 establish semantics; for example if it is contained in a \verb|<Param>|, then
 presumably it gives drill-down semantics for the precise meaning of that
@@ -1352,7 +1389,7 @@ uniqueness is maintained using the Registry.
 
 It is recommended to register VOEvent streams using
 \xmlel{vs:CatalogService} (or, if the stream is only accessible through
-third-party services, \xmlel{vs:CatalogResource})
+third-party services, \xmlel{vs:Catalog\-Resource})
 resources, as these allow service operators
 to attach rich metadata like the originating facility and instrument, and
 possibly extra stream metadata in a tableset.  However, this
@@ -1483,9 +1520,9 @@ earlier event, as defined in the \verb|<Citations>| element.
     <Description>An imaginary event report about SN 2009lw.</Description>
     <Reference uri="http://raptor.lanl.gov/data/lightcurves/235649409"
       mimetype="application/x-votable+xml"
-      meaning="http://www.ivoa.net/rdf/IVOAT#LightCurve"/>
+      meaning="http://ivoa.net/rdf/uat#light-curves"/>
     <Param name="seeing" value="2" unit="arcsec"
-      ucd="instr.obsty.site.seeing" dataType="float"/>
+      ucd="instr.obsty.seeing" dataType="float"/>
     <Group name="magnitude">
       <Description>Time is days since the ref time in the
         WhereWhen section</Description>
@@ -1494,16 +1531,16 @@ earlier event, as defined in the \verb|<Citations>| element.
       <Param name="mag" value="19.5" unit="mag"
         ucd="phot.mag" dataType="float"/>
       <Param name="magerr" value="0.14" unit="mag"
-        ucd="phot.mag; stat.err" dataType="float"/>
+        ucd="stat.err;phot.mag" dataType="float"/>
     </Group>
     <Table>
-      <Param name="telescope" value="various" utype="whatever"/>
+      <Param name="telescope" value="various"/>
       <Description>Individual Moduli and Distances for NGC 0931
         from NED</Description>
       <Field name="(m-M)" unit="mag" ucd="phot.mag.distMod"/>
-      <Field name="err(m-M)" unit="mag" ucd="phot.mag.distMod;stat.err"/>
+      <Field name="err(m-M)" unit="mag" ucd="stat.err;phot.mag.distMod"/>
       <Field name="D" unit="Mpc" ucd="pos.distance"/>
-      <Field name="REFCODE" ucd="meta.bib.bibcode" utype="whatever"/>
+      <Field name="REFCODE" ucd="meta.bib.bibcode"/>
       <Data>
         <TR><TD>33.16</TD><TD>0.38</TD><TD>51.3</TD><TD>1997ApJS..109..333W</TD></TR>
         <TR><TD>33.32</TD><TD>0.38</TD><TD>46.1</TD><TD>1997ApJS..109..333W</TD></TR>
@@ -1560,7 +1597,7 @@ earlier event, as defined in the \verb|<Citations>| element.
 
 \subsection{Prediction of a Solar Wind event arrival time at Jupiter}
 This second imaginary example describes the predicted time of arrival of
-an Solar Wind dynamic pressure pulse at Jupiter. The prediction has been
+a Solar Wind dynamic pressure pulse at Jupiter. The prediction has been
 produced by a 1D MHD propagation model \cite{tao05}, referred to as with
 the DOI of the paper describing the code. The \xmlel{WhereWhen} section provides
 the location of the event detection, and the time frame in use for the
@@ -1678,22 +1715,20 @@ black, attributes in green, required attributes underlined.
 \xmlel{altIdentifier} and \xmlel{role}.
 \item The restricted list of \xmlel{AstroCoordSystem} is removed. It was
 previously an \xmlel{idValues} type, now it is a simple \xmlel{xs:string} type.
-This allows to have extra Solar and Planetary frames without modifying the
+This allows to include Solar and Planetary frames without modifying the
 schema. The \xmlel{idValues} type and its references (in \xmlel{AstroCoordSystem}
 and \xmlel{coord\_system\_id}) have been removed. The \xmlel{AstroCoordSystem} can
-be fully described with a \xmlel{TimeFrame} and a \xmlel{SpaceFrame}  (according to
-STC-1.33).
+be fully described with a \xmlel{TimeFrame} and a \xmlel{SpaceFrame}, see 
+\citet{2007ivoa.spec.1030R}.
 \item Annotations in \xmlel{AstroCoords/Time} and \xmlel{AstroCoords/Position2D}
 have been included in the schema (according to STC-1.33).
 \item The concept of \xmlel{AstroCoords/PositionName} is introduced with
 type \xmlel{xs:string}. This allows to identify a target by its name (such as a named solar
 system body).
 \item The concept of \xmlel{TimeInterval} is introduced in the \verb|<Time>|
-section. It contains a \xmlel{StartTime} and a \xmlel{StopTime}
-\item The concept of \xmlel{TimeOrigin} is introduced in \xmlel{TimeInstant}, with
-type \xmlel{xs:string} (according to STC-1.33)
-\item The positional error elements have been improved. The \xmlel{
-Position2D/Error2Radius} is now optional, and a new \xmlel{Position2D/Error2}
+section. It contains a \xmlel{ISOStartTime} and a \xmlel{ISOStopTime}
+\item The positional error elements have been improved. The \xmlel{Position2D/Er\-ror2Radius}
+is now optional, and a new \xmlel{Position2D/Error2}
 concept is introduced (allowing to describe error bars on each of the 2D frame
 axes). A \xmlel{Position3D/Error3} concept is also introduced.
 \item Each individual positional value are now associated with their own UCD
@@ -1714,8 +1749,7 @@ and clarified.
 \item The value of a \verb|<Param>| element can now be expressed as an element
 in addition to an attribute.
 \item The \verb|<Param>| element now has an attribute ``\xmlel{dataType}'' to
-express the meaning of the parameter value (\texttt{int}, \texttt{float}, \texttt{
-string}).
+express the meaning of the parameter value (\texttt{int}, \texttt{float}, \texttt{string}).
 \item There is a new \verb|<Table>| element to express simple tables, see section
 \ref{sec:3.3.3}.
 \item The \verb|<Param>| and \verb|<Field>| elements may have an attribute

@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='ASCII'?>
 <!-- Change log
 Revision 2.1 2025/01/07 BaptisteCecconi
-- added "Name" complex type with "ivorn", "altIdentifier" and "role" attributes, used by "contributor"(in "Who/Author")
-- added "ContributorRole" simple type, with enumeration of role values
+- added "Name" complex type with "ivorn", "altIdentifier" and "role" attributes, used by "Contributor" (in "Who/Author")
+- deprecated "contributor" in "Who/Author" (kept for backward compatibility)
+- added "ContributorRole" simple type, with enumeration of role values (from DataCite schema v4.5)
 - removed restricted list of "AstroCoordSystem": previously "idValues" type, now "xs:string"
 - removed "idValues" type (and references)
 - added annotation in "AstroCoords/Time" (according to STC-1.30)
@@ -12,11 +13,11 @@ Revision 2.1 2025/01/07 BaptisteCecconi
 - added "TimeInterval" of type "TimeInterval" in "Time"
 - added "TimeInterval" type with "StartTime" and "StopTime" elements
 - changed minOccurs attribute in "Position2D/Error2Radius": now set to 0
-- added "Error2" element in "Position2D" with type "error2" and minOccurs=0
-- added "Error3" element in "Position3D" with type "error3" and minOccurs=0
+- added "Error2" element in "Position2D" with type "Error2" and minOccurs=0
+- added "Error3" element in "Position3D" with type "Error3" and minOccurs=0
 - added "coord_value" type introducing "ucd" and "unit" attributes for C1, C2 and C3 elements
-- added "error2" type, with "C1" and "C2" elements
-- added "error3" type, with "C1", "C2" and "C3" elements
+- added "Error2" type, with "C1" and "C2" elements
+- added "Error3" type, with "C1", "C2" and "C3" elements
 - added "TimeFrameType" (taken from to STC-1.30)
 - added "SpaceFrameType" (taken from to STC-1.30)
 - updated "AstroCoords" with with sequence instead of choice
@@ -85,7 +86,8 @@ Revision 2.1 2025/01/07 BaptisteCecconi
             <xs:element name="contactName" type="xs:string"/>
             <xs:element name="contactEmail" type="xs:string"/>
             <xs:element name="contactPhone" type="xs:string"/>
-            <xs:element name="contributor" type="Name"/>
+            <xs:element name="contributor" type="xs:string"/>  <!--- DEPRECATED -->
+            <xs:element name="Contributor" type="Name"/>
           </xs:choice>
         </xs:complexType>
       </xs:element>
@@ -252,7 +254,7 @@ Revision 2.1 2025/01/07 BaptisteCecconi
       </xs:element>
       <xs:element minOccurs="0" name="PositionName" type="xs:string">
         <xs:annotation>
-          <xs:documentation>Named position for the event</xs:documentation>
+          <xs:documentation>Named position for the event or an observatory</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Position2D" type="Position2D" minOccurs="0">
@@ -310,8 +312,8 @@ Revision 2.1 2025/01/07 BaptisteCecconi
       <xs:element name="Name1" type="xs:string" minOccurs="0"/>
       <xs:element name="Name2" type="xs:string" minOccurs="0"/>
       <xs:element name="Value2" type="Value2"/>
-      <xs:element name="Error2Radius" type="xs:float" minOccurs="0"/>
-      <xs:element name="Error2" type="error2" minOccurs="0"/>
+      <xs:element name="Error2Radius" type="coord_value" minOccurs="0"/>
+      <xs:element name="Error2" type="Error2" minOccurs="0"/>
     </xs:all>
     <xs:attribute name="unit" type="xs:string"/>
   </xs:complexType>
@@ -325,7 +327,7 @@ Revision 2.1 2025/01/07 BaptisteCecconi
       <xs:element name="Name2" type="xs:string" minOccurs="0"/>
       <xs:element name="Name3" type="xs:string" minOccurs="0"/>
       <xs:element name="Value3" type="Value3"/>
-      <xs:element name="Error3" type="error3" minOccurs="0"/>
+      <xs:element name="Error3" type="Error3" minOccurs="0"/>
     </xs:all>
     <xs:attribute name="unit" type="xs:string"/>
   </xs:complexType>
@@ -352,7 +354,7 @@ Revision 2.1 2025/01/07 BaptisteCecconi
     </xs:all>
   </xs:complexType>
 
-  <xs:complexType name="error2">
+  <xs:complexType name="Error2">
     <xs:annotation>
       <xs:documentation> Part of WhereWhen</xs:documentation>
     </xs:annotation>
@@ -374,7 +376,7 @@ Revision 2.1 2025/01/07 BaptisteCecconi
     </xs:all>
   </xs:complexType>
 
-  <xs:complexType name="error3">
+  <xs:complexType name="Error3">
     <xs:annotation>
       <xs:documentation> Part of WhereWhen</xs:documentation>
     </xs:annotation>
@@ -568,7 +570,7 @@ Revision 2.1 2025/01/07 BaptisteCecconi
   </xs:complexType>
   <xs:simpleType name="contributorRole">
     <xs:annotation>
-      <xs:documentation>The list of contributor roles is extracted from the DataCite Schema v4.3.</xs:documentation>
+      <xs:documentation>The list of contributor roles is extracted from the DataCite Schema v4.5.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="ContactPerson"/>
