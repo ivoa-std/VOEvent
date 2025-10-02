@@ -31,14 +31,18 @@ VECTORFIGURES =
 # Additional files to distribute (e.g., CSS, schema files, examples...)
 AUX_FILES = VOEvent-v2.1.xsd VOEventRegExt-v2.0.xsd resrec-sample.vor
 
-include ivoatex/Makefile
-
 -include ivoatex/Makefile
 
 ivoatex/Makefile:
 	@echo "*** ivoatex submodule not found.  Initialising submodules."
 	@echo
 	git submodule update --init
+
+resrec-sample.vor:
+	curl "http://dc.g-vo.org/oai.xml?verb=GetRecord&metadataPrefix=ivo_vor&identifier=ivo://org.gavo.dc/std/gcn-swift-uvot/swift"\
+		|  xmlstarlet sel -B -Nri:http://www.ivoa.net/xml/RegistryInterface/v1.0\
+			-t -c //ri:Resource \
+		| xmlstarlet fo > resrec-sample.vor
 
 test:
 	@echo "No tests defined yet"
