@@ -302,7 +302,7 @@ element names, which therefore retain the deprecated nomenclature.
 Historically, these have taken the general form $$
 \hbox{\nolinkurl{ivo://authorityID/resourceKey#local_ID}}, $$ while new
 VOEvent identifiers should follow the regulations of section 4.1 of
-citet{2016ivoa.spec.0523D}, i.e.,$$
+\citet{2016ivoa.spec.0523D}, i.e.,$$
 \hbox{\nolinkurl{ivo://authorityID/resourceKey?local_ID}}.$$
 
 VOEvent identifiers are indirect
@@ -1513,97 +1513,7 @@ and a \verb|<Group>| with the actual report: the magnitude is 19.5, measured
 \verb|<WhereWhen>| section. There is a \verb|<Table>| of measured distances to the
 presumed host galaxy. The packet represents a follow-up observation of an
 earlier event, as defined in the \verb|<Citations>| element.
-\begin{lstlisting}[language=XML]
-<?xml version="1.0" encoding="UTF-8"?>
-<voe:VOEvent ivorn="ivo://raptor.lanl/VOEvent#235649409"
-  role="observation"
-  version="2.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.0"
-  xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.0
-    http://www.ivoa.net/xml/VOEvent/VOEvent-v2.0.xsd">
-  <Who>
-    <AuthorIVORN>ivo://raptor.lanl/organization</AuthorIVORN>
-    <Date>2005-04-15T14:34:16</Date>
-  </Who>
-  <What>
-    <Description>An imaginary event report about SN 2009lw.</Description>
-    <Reference uri="http://raptor.lanl.gov/data/lightcurves/235649409"
-      mimetype="application/x-votable+xml"
-      meaning="http://ivoa.net/rdf/uat#light-curves"/>
-    <Param name="seeing" value="2" unit="arcsec"
-      ucd="instr.obsty.seeing" dataType="float"/>
-    <Group name="magnitude">
-      <Description>Time is days since the ref time in the
-        WhereWhen section</Description>
-      <Param name="time" value="278.02" unit="d"
-        ucd="time.epoch" dataType="float"/>
-      <Param name="mag" value="19.5" unit="mag"
-        ucd="phot.mag" dataType="float"/>
-      <Param name="magerr" value="0.14" unit="mag"
-        ucd="stat.err;phot.mag" dataType="float"/>
-    </Group>
-    <Table>
-      <Param name="telescope" value="various"/>
-      <Description>Individual Moduli and Distances for NGC 0931
-        from NED</Description>
-      <Field name="(m-M)" unit="mag" ucd="phot.mag.distMod"/>
-      <Field name="err(m-M)" unit="mag" ucd="stat.err;phot.mag.distMod"/>
-      <Field name="D" unit="Mpc" ucd="pos.distance"/>
-      <Field name="REFCODE" ucd="meta.bib.bibcode"/>
-      <Data>
-        <TR><TD>33.16</TD><TD>0.38</TD><TD>51.3</TD><TD>1997ApJS..109..333W</TD></TR>
-        <TR><TD>33.32</TD><TD>0.38</TD><TD>46.1</TD><TD>1997ApJS..109..333W</TD></TR>
-        <TR><TD>33.51</TD><TD>0.48</TD><TD>50.4</TD><TD>2009ApJS..182..474S</TD></TR>
-        <TR><TD>33.55</TD><TD>0.38</TD><TD>51.3</TD><TD>1997ApJS..109..333W</TD></TR>
-        <TR><TD>33.71</TD><TD>0.43</TD><TD>55.2</TD><TD>2009ApJS..182..474S</TD></TR>
-        <TR><TD>34.01</TD><TD>0.80</TD><TD>63.3</TD><TD>1997ApJS..109..333W</TD></TR>
-      </Data>
-    </Table>
-  </What>
-  <WhereWhen id="Raptor-2455100">
-    <ObsDataLocation>
-      <ObservatoryLocation id="RAPTOR"/>
-      <ObservationLocation>
-        <AstroCoordSystem id="UTC-ICRS-TOPO"/>
-        <AstroCoords coord_system_id="UTC-ICRS-TOPO">
-          <Time>
-            <TimeInstant>
-              <ISOTime>2009-09-25T12:00:00</ISOTime>
-            </TimeInstant>
-            <Error>0.0</Error>
-          </Time>
-          <Position2D unit="deg">
-            <Value2>
-              <C1>37.0603169</C1>
-              <!-- RA  -->
-              <C2>31.3116578</C2>
-              <!-- Dec -->
-            </Value2>
-            <Error2Radius>0.03</Error2Radius>
-          </Position2D>
-        </AstroCoords>
-      </ObservationLocation>
-    </ObsDataLocation>
-  </WhereWhen>
-  <How>
-    <Description>
-      <![CDATA[This VOEvent packet resulted from observations made with
-        <a href=http://www.raptor.lanl.gov>Raptor</a> AB at Los Alamos. ]]>
-    </Description>
-  </How>
-  <Citations>
-    <EventIVORN cite="followup">ivo://raptor.lanl/VOEvent#235649408</EventIVORN>
-  </Citations>
-  <Why>
-    <Concept>http://ivoat.ivoa.net/process.variation.burst;em.opt</Concept>
-    <Description>Looks like a SN</Description>
-    <Inference relation="associated" probability="0.99">
-      <Name>NGC0931</Name>
-    </Inference>
-  </Why>
-</voe:VOEvent>
-\end{lstlisting}
+\lstinputlisting[language=XML]{voevent-ex1.xml}
 
 \subsection{Prediction of a Solar Wind event arrival time at Jupiter}
 This second imaginary example describes the predicted time of arrival of
@@ -1614,86 +1524,7 @@ the location of the event detection, and the time frame in use for the
 predicted dates. The \xmlel{What} section provides the interval, in which the
 detection threshold is met. The reference dataset is also cited in the
 \xmlel{Why} section.
-\begin{lstlisting}[language=XML]
-<?xml version="1.0"?>
-<voe:VOEvent ivorn="ivo://psws.irap/VOEvent/Tao_Jupiter_2018-10-02T17_34_45::v1.0"
-  role="prediction" version="2.1"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.1"
-  xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.1
-    http://www.ivoa.net/xml/VOEvent/VOEvent-v2.1.xsd">
-  <Who>
-    <AuthorIVORN>ivo://psws</AuthorIVORN>
-    <Author>
-      <contactEmail>Michel.Gangloff@irap.omp.eu</contactEmail>
-      <contactName>Michel Gangloff</contactName>
-    </Author>
-    <Date>2018-10-02T17:34:45</Date>
-  </Who>
-  <What>
-    <Description>Time intervals in which dynamic pressure is greater than
-      0.08 nPa at Jupiter</Description>
-    <Param name="event_type" value="Solar Wind dynamic pressure pulse" ucd="meta.id"/>
-    <Group name="event">
-      <Param name="tested_parameter" value="Dynamic Pressure" ucd="meta.id" dataType="string"/>
-      <Param name="threshold" value="0.08" ucd="phys.pressure" unit="nPa" dataType="string"/>
-    </Group>
-    <Group name="target">
-      <Param name="target_name" value="Jupiter" ucd="meta.id" utype="epn:target_name"/>
-      <Param name="target_class" value="planet" ucd="meta.id" utype="epn:target_class"/>
-      <Param name="target_region" value="Magnetosphere" ucd="meta.id" utype="epn:target_region"/>
-    </Group>
-    <Table>
-      <Description>Time intervals found by the propagation code</Description>
-      <Field dataType="string" name="Start Time" ucd="time.begin" utype="epn:time_min">
-        <Description>time tag for beginning of interval</Description>
-      </Field>
-      <Field dataType="string" name="Stop Time" ucd="time.end" utype="epn:time_max">
-        <Description>time tag for end of interval</Description>
-      </Field>
-      <Data>
-        <TR><TD>2018-10-03T10:00:00.000</TD><TD>2018-10-04T01:00:00.000</TD></TR>
-        <TR><TD>2018-10-04T07:00:00.000</TD><TD>2018-10-04T11:00:00.000</TD></TR>
-        <TR><TD>2018-10-08T01:00:00.000</TD><TD>2018-10-08T07:00:00.000</TD></TR>
-      </Data>
-    </Table>
-  </What>
-  <WhereWhen>
-    <ObsDataLocation>
-      <ObservatoryLocation/>
-      <ObservationLocation>
-        <AstroCoordSystem>
-          <TimeFrame>
-            <ReferencePosition>Jupiter</ReferencePosition>
-            <TimeScale>UTC</TimeScale>
-          </TimeFrame>
-        </AstroCoordSystem>
-        <AstroCoords>
-          <PositionName>Jupiter</PositionName>
-        </AstroCoords>
-      </ObservationLocation>
-    </ObsDataLocation>
-  </WhereWhen>
-  <How>
-    <Description>This prediction has been computed by the Heliospheric propagation 1D MHD model
-      for solar wind prediction at planets, probes and comets.</Description>
-    <Reference uri="https://doi.org/10.1029/2004JA010959"/>
-  </How>
-  <Why>
-    <Inference probability="1.0">
-      <Concept>http://astrothesaurus.org/uat/1534</Concept>
-      <Name>Solar Wind measured at 1 AU</Name>
-      <Reference uri="https://doi.org/10.48322/1shr-ht18"/>
-    </Inference>
-    <Inference>
-      <Concept>http://astrothesaurus.org/uat/1966</Concept>
-      <Name>MHD simulation of propagated Solar Wind at Jupiter</Name>
-      <Reference uri="https://doi.org/10.1029/2004JA010959"/>
-    </Inference>
-  </Why>
-  <Description>3 Solar Pressure pulses predicted at Jupiter between 2018-10-03 and 2018-10-09</Description>
-</voe:VOEvent>
-\end{lstlisting}
+\lstinputlisting[language=XML]{voevent-ex2.xml}
 
 \section{Schema Diagram for VOEvent}
 \label{sec:5}
@@ -1736,7 +1567,7 @@ have been included in the schema (according to STC-1.33).
 type \xmlel{xs:string}. This allows to identify a target by its name (such as a named solar
 system body).
 \item The concept of \xmlel{TimeInterval} is introduced in the \verb|<Time>|
-section. It contains a \xmlel{ISOStartTime} and a \xmlel{ISOStopTime}
+section. It contains a \xmlel{ISOTimeStart} and a \xmlel{ISOTimeStop}
 \item The positional error elements have been improved. The \xmlel{Position2D/Er\-ror2Radius}
 is now optional, and a new \xmlel{Position2D/Error2}
 concept is introduced (allowing to describe error bars on each of the 2D frame

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<voe:VOEvent ivorn="ivo://raptor.lanl/VOEvent#235649409"
+  role="observation"
+  version="2.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.1"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.1
+    http://www.ivoa.net/xml/VOEvent/VOEvent-v2.1.xsd">
+  <Who>
+    <AuthorIVORN>ivo://raptor.lanl/organization</AuthorIVORN>
+    <Date>2005-04-15T14:34:16</Date>
+  </Who>
+  <What>
+    <Description>An imaginary event report about SN 2009lw.</Description>
+    <Reference uri="http://raptor.lanl.gov/data/lightcurves/235649409"
+      mimetype="application/x-votable+xml"
+      meaning="http://ivoa.net/rdf/uat#light-curves"/>
+    <Param name="seeing" value="2" unit="arcsec"
+      ucd="instr.obsty.seeing" dataType="float"/>
+    <Group name="magnitude">
+      <Description>Time is days since the ref time in the
+        WhereWhen section</Description>
+      <Param name="time" value="278.02" unit="d"
+        ucd="time.epoch" dataType="float"/>
+      <Param name="mag" value="19.5" unit="mag"
+        ucd="phot.mag" dataType="float"/>
+      <Param name="magerr" value="0.14" unit="mag"
+        ucd="stat.err;phot.mag" dataType="float"/>
+    </Group>
+    <Table>
+      <Param name="telescope" value="various"/>
+      <Description>Individual Moduli and Distances for NGC 0931
+        from NED</Description>
+      <Field name="(m-M)" unit="mag" ucd="phot.mag.distMod"/>
+      <Field name="err(m-M)" unit="mag" ucd="stat.err;phot.mag.distMod"/>
+      <Field name="D" unit="Mpc" ucd="pos.distance"/>
+      <Field name="REFCODE" ucd="meta.bib.bibcode"/>
+      <Data>
+        <TR><TD>33.16</TD><TD>0.38</TD><TD>51.3</TD><TD>1997ApJS..109..333W</TD></TR>
+        <TR><TD>33.32</TD><TD>0.38</TD><TD>46.1</TD><TD>1997ApJS..109..333W</TD></TR>
+        <TR><TD>33.51</TD><TD>0.48</TD><TD>50.4</TD><TD>2009ApJS..182..474S</TD></TR>
+        <TR><TD>33.55</TD><TD>0.38</TD><TD>51.3</TD><TD>1997ApJS..109..333W</TD></TR>
+        <TR><TD>33.71</TD><TD>0.43</TD><TD>55.2</TD><TD>2009ApJS..182..474S</TD></TR>
+        <TR><TD>34.01</TD><TD>0.80</TD><TD>63.3</TD><TD>1997ApJS..109..333W</TD></TR>
+      </Data>
+    </Table>
+  </What>
+  <WhereWhen id="Raptor-2455100">
+    <ObsDataLocation>
+      <ObservatoryLocation id="RAPTOR"/>
+      <ObservationLocation>
+        <AstroCoordSystem id="UTC-ICRS-TOPO"/>
+        <AstroCoords coord_system_id="UTC-ICRS-TOPO">
+          <Time>
+            <TimeInstant>
+              <ISOTime>2009-09-25T12:00:00</ISOTime>
+            </TimeInstant>
+            <Error>0.0</Error>
+          </Time>
+          <Position2D unit="deg">
+            <Value2>
+              <C1>37.0603169</C1>
+              <!-- RA  -->
+              <C2>31.3116578</C2>
+              <!-- Dec -->
+            </Value2>
+            <Error2Radius>0.03</Error2Radius>
+          </Position2D>
+        </AstroCoords>
+      </ObservationLocation>
+    </ObsDataLocation>
+  </WhereWhen>
+  <How>
+    <Description>
+      <![CDATA[This VOEvent packet resulted from observations made with
+        <a href=http://www.raptor.lanl.gov>Raptor</a> AB at Los Alamos. ]]>
+    </Description>
+  </How>
+  <Citations>
+    <EventIVORN cite="followup">ivo://raptor.lanl/VOEvent#235649408</EventIVORN>
+  </Citations>
+  <Why>
+    <Concept>http://ivoat.ivoa.net/process.variation.burst;em.opt</Concept>
+    <Description>Looks like a SN</Description>
+    <Inference relation="associated" probability="0.99">
+      <Name>NGC0931</Name>
+    </Inference>
+  </Why>
+</voe:VOEvent>
