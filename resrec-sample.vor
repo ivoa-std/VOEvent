@@ -1,80 +1,93 @@
-<ri:Resource
-    xmlns:voe="http://www.ivoa.net/xml/VOEventRegExt/v2"
-    xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
-    xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
-    xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    created="2020-10-28T15:11:00Z"
-    status="active"
-    updated="2020-10-28T15:11:00Z"
-    xsi:type="vs:CatalogService">
-    <title>Meteor Shower prediction</title>
-    <shortName>meteor_showers</shortName>
-    <identifier>ivo://vopdc.obspm/imcce/meteorshower/event</identifier>
-    <curation>
-        <publisher ivo-id="ivo://vopdc.obspm/imcce"
-          >Paris Astronomical Data Centre - IMCCE</publisher>
-        <creator>
-            <name>Jeremy Vaubaillon</name>
-        </creator>
-        <date role="updated">2019-03-22T15:50:42</date>
-        <contact>
-            <name>PADC support team</name>
-            <address>77 av. Denfert Rochereau, 75014 Paris, FRANCE</address>
-            <email>vo.paris@observatoiredeparis.psl.eu</email>
-            <telephone>0033140512082</telephone>
-        </contact>
-    </curation>
-    <content>
-        <subject>Comet</subject>
-        <subject>Simulation</subject>
-        <description>
-            This is an ephemeris of meteor showers occurring on solar
-            system planets, produced by simulating the ejection of
-            meteoroids from the sunlit hemisphere of cometary nuclei, typically
-            from 0 to 3 au, followed by the propagation of orbits of meteoroids
-            in the Solar System, taking into account the gravitation of the
-            Sun, the 8 planets, Pluto, and the Moon, as well as the radiation
-            pressure and the Poynting-Robertson drag. Note that asteroid parent
-            bodies were considered as active (i.e. comet-like bodies) even if
-            they are not active today. The showers are predicted when a planet
-            enters a large enough set of meteoroids, at a distance less than
-            typically 0.01 au. See Vaubaillon J., Colas F., Jorda L. 2005 A new
-            method to predict meteor showers. I. Description of the model,
-            Astronomy and Astrophysics, Volume 439/2 p.751-760, as well as:
-            Vaubaillon J. 2017 A confidence index for forecasting of meteor
-            showers, Planetary and Space Science, Volume 143 p.78-82
-        </description>
-        <source format="bibcode">2017P%26SS..143...78V</source>
-        <referenceURL>
-          http://voparis-tap-voevent.obspm.fr/tableinfo/meteor_showers.epn_core
-        </referenceURL>
-        <type>Other</type>
-        <contentLevel>Research</contentLevel>
-        <relationship>
-            <!-- TAP service containing/archiving all previous
-              events produced by this stream -->
-            <relationshipType>IsSourceOf</relationshipType>
-            <relatedResource ivo-id="ivo://vopdc.obspm/imcce/meteorshower/epn"
-              >Meteor Shower prediction EPN-TAP service</relatedResource>
-        </relationship>
-    </content>
-    <capability standardID="ivo://ivoa.net/std/VOEvent">
-        <!-- TODO: figure out if this needs a declaration like
-          "This is VOEvent 2 in XML serialisation" – or if that's
-          implied in something else we're saying here -->
-        <interface role="std" xsi:type="voe:StreamEndpoint"
-          standardID="ivo://ivoa.net/std/VOEvent#acc-vtp">
-            <accessURL>x-vtp://voparis-voevent-psws.obspm.fr:8099</accessURL>
-        </interface>
-    </capability>
-    <facility>IMCCE</facility>
-    <coverage>
-        <waveband>Radio</waveband>
-        <waveband>Optical</waveband>
-        <waveband>Infrared</waveband>
-    </coverage>
-</ri:Resource>
+<?xml version="1.0"?>
+<ri:Resource xmlns:oai="http://www.openarchives.org/OAI/2.0/" xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0" xmlns:voe="http://www.ivoa.net/xml/VOEventRegExt/v2" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" created="2025-06-04T14:00:00Z" status="active" updated="2025-10-02T08:32:12Z" version="1.2" xsi:type="vs:DataService">
+  <title>GCN VOEvent Streams From Swift-UVOT</title>
+  <shortName>swift-UVOT VOEv</shortName>
+  <identifier>ivo://org.gavo.dc/std/gcn-swift-uvot/swift</identifier>
+  <curation>
+    <publisher>GCN</publisher>
+    <creator>
+      <name>The Swift Team</name>
+    </creator>
+    <date role="updated">2035-01-01T00:00:00</date>
+    <contact>
+      <name>The Swift Team</name>
+      <email>support@gcn.nasa.gov</email>
+    </contact>
+  </curation>
+  <content>
+    <subject>gamma-ray-astronomy</subject>
+    <subject>gamma-ray-bursts</subject>
+    <subject>time-domain-astronomy</subject>
+    <description> VOEvent alerts produced from transient detections resulting from
+observations with the NASA Neil Gehrels Swift Observatory and the
+Ultraviolet Optical Telescope. Events should be reported within tens
+to of seconds to hours; expect about 3 events per week, where most
+events correspond to a gamma ray bursts, but other transients may
+occur.
 
-<!-- vim:et:sw=2
--->
+Streams giving localizations for gamma ray transients with follow-up
+characterization in the ultraviolet/optical including localization and
+images with their ground-processed data. The sequence includes a
+postage stamp image (SWIFT_UVOT_DBURST, SWIFT_UVOT_DBURST_PROC),
+finding charts (SWIFT_UVOT_FCHART,SWIFT_UVOT_FCHART_PROC), and
+localization acquired (SWIFT_UVOT_POS) or not acquired
+(SWIFT_UVOT_POS_NACK).</description>
+    <source format="bibcode">2004ApJ...611.1005G</source>
+    <referenceURL>http://dc.g-vo.org/std/gcn-swift-uvot/swift/info</referenceURL>
+    <contentLevel>Research</contentLevel>
+  </content>
+  <rights>public</rights>
+  <capability standardID="ivo://ivoa.net/std/voevent">
+    <description>Fermi UV followup events including a postage stamp image.</description>
+    <interface role="std" standardID="ivo://ivoa.net/std/voevent#acc-kafka" xsi:type="voe:StreamEndpoint">
+      <accessURL use="full">x-kafka://kafka.gcn.nasa.gov?topic=gcn.classic.voevent.SWIFT_UVOT_DBURST</accessURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/voevent">
+    <description>Fermi UV followup events including a postage stamp image, after ground
+processing.</description>
+    <interface role="std" standardID="ivo://ivoa.net/std/voevent#acc-kafka" xsi:type="voe:StreamEndpoint">
+      <accessURL use="full">x-kafka://kafka.gcn.nasa.gov?topic=gcn.classic.voevent.SWIFT_UVOT_DBURST_PROC</accessURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/voevent">
+    <description>Fermi UV followup events including a finding chart.</description>
+    <interface role="std" standardID="ivo://ivoa.net/std/voevent#acc-kafka" xsi:type="voe:StreamEndpoint">
+      <accessURL use="full">x-kafka://kafka.gcn.nasa.gov?topic=gcn.classic.voevent.SWIFT_UVOT_FCHART</accessURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/voevent">
+    <description>Fermi UV followup events including a finding chart, after ground
+processing.</description>
+    <interface role="std" standardID="ivo://ivoa.net/std/voevent#acc-kafka" xsi:type="voe:StreamEndpoint">
+      <accessURL use="full">x-kafka://kafka.gcn.nasa.gov?topic=gcn.classic.voevent.SWIFT_UVOT_FCHART_PROC</accessURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/voevent">
+    <description>Fermi UV followup events where positions have been acquired.</description>
+    <interface role="std" standardID="ivo://ivoa.net/std/voevent#acc-kafka" xsi:type="voe:StreamEndpoint">
+      <accessURL use="full">x-kafka://kafka.gcn.nasa.gov?topic=gcn.classic.voevent.SWIFT_UVOT_POS</accessURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/voevent">
+    <description>Fermi UV followup events where positions have not been acquired.</description>
+    <interface role="std" standardID="ivo://ivoa.net/std/voevent#acc-kafka" xsi:type="voe:StreamEndpoint">
+      <accessURL use="full">x-kafka://kafka.gcn.nasa.gov?topic=gcn.classic.voevent.SWIFT_UVOT_POS_NACK</accessURL>
+    </interface>
+  </capability>
+  <capability>
+    <description>A browser-based archive of the events recorded.</description>
+    <interface xsi:type="vr:WebBrowser">
+      <accessURL use="full">https://gcn.gsfc.nasa.gov/swift_grbs.html</accessURL>
+    </interface>
+  </capability>
+  <facility>Swift</facility>
+  <instrument>UVOT</instrument>
+  <coverage>
+    <spatial>0/0-11</spatial>
+    <temporal>53329 64328</temporal>
+    <spectral>3.056070549e-19 1.168497563e-18</spectral>
+    <footprint ivo-id="ivo://ivoa.net/std/moc">http://dc.g-vo.org/std/gcn-swift-uvot/swift/coverage</footprint>
+    <waveband>Ultraviolet/Optical</waveband>
+  </coverage>
+</ri:Resource>
