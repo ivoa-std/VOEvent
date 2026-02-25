@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <voe:VOEvent ivorn="ivo://raptor.lanl/VOEvent#235649409"
   role="observation"
-  version="2.0"
+  version="2.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.0"
-  xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.0
-    http://www.ivoa.net/xml/VOEvent/VOEvent-v2.0.xsd">
+  xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.1"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.1
+    http://www.ivoa.net/xml/VOEvent/VOEvent-v2.1.xsd">
   <Who>
     <AuthorIVORN>ivo://raptor.lanl/organization</AuthorIVORN>
     <Date>2005-04-15T14:34:16</Date>
