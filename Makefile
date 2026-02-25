@@ -7,7 +7,7 @@ DOCNAME = VOEvent
 DOCVERSION = 2.1
 
 # Publication date, ISO format; update manually for "releases"
-DOCDATE = 2025-07-03
+DOCDATE = 2026-02-25
 
 # What is it you're writing: NOTE, WD, PR, REC, PEN, or EN
 DOCTYPE = PR
@@ -18,7 +18,7 @@ AUTHOR_EMAIL=baptiste.cecconi@obspm.fr
 
 # Source files for the TeX document (but the main file must always
 # be called $(DOCNAME).tex
-SOURCES = $(DOCNAME).tex role_diagram.pdf gitmeta.tex
+SOURCES = $(DOCNAME).tex role_diagram.pdf gitmeta.tex voevent-ex1.xml voevent-ex2.xml
 
 # List of image files to be included in submitted package (anything that
 # can be rendered directly by common web browsers)
