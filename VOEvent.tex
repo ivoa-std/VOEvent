@@ -214,7 +214,7 @@ VOEvents inherit much of the structure and semantics of \textbf{VOTable}
 \citep{2018ivoa.spec.0527P} scheme for semantics of quantities and the VOUnits
 standard \citep{2023ivoa.spec.1215G}. VOEvent takes space-time coordinates from
 the \textbf{STC} \citep{2007ivoa.spec.1030R}, and it uses the URI semantics of the
-IVOA \textbf{Vocabulary} 1.0 \citep{2009ivoa.spec.1007G} effort. IVOA 
+IVOA \textbf{Vocabulary} 1.0 \citep{2009ivoa.spec.1007G} effort. IVOA
 \textbf{Identifiers} \citep{2016ivoa.spec.0523D} are used for events and their
 parent streams and servers, and both these latter are described by IVOA
 \textbf{Resource Metadata} \citep{2007ivoa.spec.0302H} and stored in the VO
@@ -691,7 +691,7 @@ elements. There is then a 1-to-1 correspondence between them for each row.
 
 The Table can contain \verb|<Description>| and \verb|<Reference>| elements to add
 documentation; the \verb|<Field>| elements can also contain these. Thus
-the \verb|<Table>| can contain, in order, an optional \verb|<Description>| and 
+the \verb|<Table>| can contain, in order, an optional \verb|<Description>| and
 \verb|<Reference>|, then a sequence of one or more \verb|<Field>| elements, then a
 \verb|<Data>| element. The \verb|<Field>| element can also contain
 optional \verb|<Description>| and \verb|<Reference>| and nothing else. The \verb|<Data>| element
@@ -722,7 +722,7 @@ significance to subscribing clients.
 
 \noindent \textbf{3.3.3.4} \xmlel{unit}\label{sec:3.3.3.4} --- The unit for
 interpreting the values as given in the \verb|<TD>| table cells. See \S4.4 of
-\citep{2019ivoa.spec.1021O}, which relies on \citep{2023ivoa.spec.1215G}. 
+\citep{2019ivoa.spec.1021O}, which relies on \citep{2023ivoa.spec.1215G}.
 
 \noindent \textbf{3.3.3.5} \xmlel{ucd}\label{sec:3.3.3.5} --- A UCD
 \citep{2018ivoa.spec.0527P} expression characterizing the nature of the data in
@@ -1282,7 +1282,7 @@ Splitting, merging or retracting a VOEvent should typically be accompanied by a
 An attempt is made to retract the sighting of Tycho's supernova:
 \begin{lstlisting}
 <Citations>
-    <EventIVORN 
+    <EventIVORN
         cite="retraction">ivo://uraniborg.hven#1572-11-11/0001</EventIVORN>
     <Description>Oops!</Description>
 </Citations>
@@ -1388,7 +1388,7 @@ uniqueness is maintained using the Registry.
 \end{compactitem}
 
 It is recommended to register VOEvent streams using
-\xmlel{vs:CatalogService} (or, if the stream is only accessible through
+\xmlel{vs:CatalogSer\-vice} (or, if the stream is only accessible through
 third-party services, \xmlel{vs:Catalog\-Resource})
 resources, as these allow service operators
 to attach rich metadata like the originating facility and instrument, and
@@ -1396,8 +1396,7 @@ possibly extra stream metadata in a tableset.  However, this
 specification does not constrain the resource type.
 
 A public event stream MUST define a capability with standard id of
-\nolinkurl{ivo://ivoa.net/std/VOEvent}.
-
+\nolinkurl{ivo://ivoa.net/std/voevent}.
 Note that path parts in IVOA identifiers are case-insensitive, and hence
 when comparing ivoids, clients must ignore case.
 
@@ -1405,13 +1404,19 @@ This specification does not constrain the type of the capability, but as
 of this version, it is recommended to use plain \xmlel{vr:capability}
 elements (i.e., not have \xmlel{xsi:type} attributes).
 
+When multiple VOEvent streams share their VOResource metadata (curation,
+summary title and description, coverage, etc), they should be defined as
+multiple VOEvent capabilities of the same VOResource record; these
+capabilities should then come with human-readable description of the
+stream's contents.
+
 Zero or more endpoints publishing the event stream are declared within
 this capability element using \xmlel{vr:interface} elements with their
 \xmlel{role} attributes set to \verb|std|; such standard interfaces MUST
 be of type \xmlel{voe:Stream\-Endpoint} and then by the schema MUST have
 a \xmlel{standardID} attribute, the value of which SHOULD reference one
 of the keys in this standard's registry record,
-\nolinkurl{ivo://ivoa.net/std/VOEvent}.
+\nolinkurl{ivo://ivoa.net/std/voevent}.
 
 As of this writing, these keys include:
 
@@ -1420,7 +1425,12 @@ As of this writing, these keys include:
   Protocol \citep{2017ivoa.spec.0320S}
 \item \verb|acc-xmpp| The endpoint uses an informal method based on
     	XMPP (jabber).
-\item \verb|acc-kafka| The endpoint uses Apache Kafka \citep{kafka}.
+\item \verb|acc-kafka| The endpoint uses Apache Kafka \citep{kafka}.  In
+VOResource, the access URLs for Kafka enpoints use a VO-custom URI
+prefix x-kafka.  The authority part in these URIs is the kafka host. In
+the query part of the URI, give any extra parameters, in particular
+\emph{topic}.
+
 \item \verb|acc-proprietary| The endpoint is usable by some
   method not (yet) mentioned in the VOEvent standard's registry record.
 \end{compactitem}
@@ -1440,9 +1450,9 @@ provider, perhaps to ensure high availability:
     <accessURL>http://example.org/events/vtp</accessURL>
   </interface>
   <interface xsi:type="voe:StreamEndpoint" role="std"
-      standardID="ivo://ivoa.net/std/voevent#acc-vtp">
-    <accessURL>http://example.org/events/kafka</accessURL>
-    <accessURL>http://bigshot.com/streams/example-voe</accessURL>
+      standardID="ivo://ivoa.net/std/voevent#acc-kafka">
+    <accessURL>x-kafka://example.org?topic=sample-stream</accessURL>
+    <mirrorURL>x-kafka://bigshot.com?topic=sample-stream</mirrorURL>
   </interface>
 </capability>
 \end{lstlisting}
@@ -1718,7 +1728,7 @@ previously an \xmlel{idValues} type, now it is a simple \xmlel{xs:string} type.
 This allows to include Solar and Planetary frames without modifying the
 schema. The \xmlel{idValues} type and its references (in \xmlel{AstroCoordSystem}
 and \xmlel{coord\_system\_id}) have been removed. The \xmlel{AstroCoordSystem} can
-be fully described with a \xmlel{TimeFrame} and a \xmlel{SpaceFrame}, see 
+be fully described with a \xmlel{TimeFrame} and a \xmlel{SpaceFrame}, see
 \citet{2007ivoa.spec.1030R}.
 \item Annotations in \xmlel{AstroCoords/Time} and \xmlel{AstroCoords/Position2D}
 have been included in the schema (according to STC-1.33).
