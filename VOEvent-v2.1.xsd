@@ -275,9 +275,11 @@ Revision 2.1 2025/01/07 BaptisteCecconi
     <xs:annotation>
       <xs:documentation> Part of WhereWhen</xs:documentation>
     </xs:annotation>
-    <xs:sequence maxOccurs="unbounded">
-      <xs:element name="TimeInstant" type="TimeInstant" maxOccurs="1" minOccurs="0"/>
-      <xs:element name="TimeInterval" type="TimeInterval" maxOccurs="1" minOccurs="0"/>
+    <xs:sequence>
+      <xs:choice minOccurs="0">
+        <xs:element name="TimeInstant" type="TimeInstant" maxOccurs="1" minOccurs="0"/>
+        <xs:element name="TimeInterval" type="TimeInterval" maxOccurs="1" minOccurs="0"/>
+      </xs:choice>
       <xs:element name="Error" type="xs:float" maxOccurs="1" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute name="unit" type="xs:string"/>
@@ -287,7 +289,7 @@ Revision 2.1 2025/01/07 BaptisteCecconi
     <xs:annotation>
       <xs:documentation> Part of WhereWhen</xs:documentation>
     </xs:annotation>
-    <xs:sequence maxOccurs="unbounded">
+    <xs:sequence>
       <xs:element name="ISOTime" type="xs:string" minOccurs="0" maxOccurs="1"/>
       <xs:element name="TimeOffset" type="xs:float" minOccurs="0" maxOccurs="1"/>
       <xs:element name="TimeScale" type="xs:string" minOccurs="0" maxOccurs="1"/>
@@ -298,7 +300,7 @@ Revision 2.1 2025/01/07 BaptisteCecconi
     <xs:annotation>
       <xs:documentation> Part of WhereWhen</xs:documentation>
     </xs:annotation>
-    <xs:sequence maxOccurs="unbounded">
+    <xs:sequence>
       <xs:element name="ISOTimeStart" type="xs:string" minOccurs="0" maxOccurs="1"/>
       <xs:element name="ISOTimeStop" type="xs:string" minOccurs="0" maxOccurs="1"/>
     </xs:sequence>
