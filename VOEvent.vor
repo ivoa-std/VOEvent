@@ -1,11 +1,11 @@
-<ri:Resource 
-  xsi:type="vstd:Standard" 
-  created="2020-05-06T08:00:00Z" 
-  updated="2020-05-06T08:00:00Z" 
+<ri:Resource
+  xsi:type="vstd:Standard"
+  created="2020-05-06T08:00:00Z"
+  updated="2020-05-06T08:00:00Z"
   status="active"
-  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
-  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
   xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0
     http://www.ivoa.net/xml/VOResource/v1.0
@@ -15,7 +15,7 @@
     http://www.ivoa.net/xml/VOResource/v1.0">
 
   <title>Sky Event Reporting Metadata (VOEvent)</title>
-  <identifier>ivo://ivoa.net/std/VOEvent</identifier> 
+  <identifier>ivo://ivoa.net/std/VOEvent</identifier>
   <curation>
     <publisher>IVOA</publisher>
 
@@ -62,11 +62,11 @@ Structured data is used, rather than natural language, so that automated
 systems can effectively interpret VOEvent packets. Each packet may contain zero
 or more of the “who, what, where, when &amp; how” of a detected event, but in
 addition, may contain a hypothesis (a “why”) regarding the nature of the
-underlying physical cause of the event. 
+underlying physical cause of the event.
 
 Citations to previous VOEvents may be used to place each event in its correct
 context. Proper curation is encouraged throughout each event's life cycle from
-discovery through successive follow-ups. 
+discovery through successive follow-ups.
 
 VOEvent packets gain persistent identifiers and are typically stored in
 databases reached via registries. VOEvent packets may therefore reference other
@@ -81,7 +81,7 @@ to a particular registry, nor the intellectual property issues.
     <contentLevel>Research</contentLevel>
   </content>
 
-  <endorsedVersion status="rec">2.0</endorsedVersion>
+  <endorsedVersion status="rec">2.1</endorsedVersion>
 
   <key>
     <name>acc-vtp</name>
@@ -121,6 +121,19 @@ to a particular registry, nor the intellectual property issues.
     	access to the VOEvent stream using some method not (yet) mentioned
     	in the VOEvent standard's registry record.
     </description>
+  </key>
+
+  <key>
+  	<name>stream-2.0</name>
+  	<description>
+  		A stream serving VOEvent 2.0 records.
+  	</description>
+  </key>
+  <key>
+  	<name>stream-2.1</name>
+  	<description>
+  		A stream serving VOEvent 2.1 records.
+  	</description>
   </key>
 
 </ri:Resource>
