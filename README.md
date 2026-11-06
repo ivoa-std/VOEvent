@@ -1,4 +1,4 @@
-![VOEvent version](https://img.shields.io/badge/VOEvent-PR--2.1-yellow.svg)
+![VOEvent version](https://img.shields.io/badge/VOEvent-REC--2.1-green.svg)
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
 
@@ -20,7 +20,7 @@ solar or atmospheric particle bursts may also be reported.
 ## Status?
 
 The last stable version is
-**[REC-2.0](http://www.ivoa.net/documents/VOEvent/)**.
+**[REC-2.1](http://www.ivoa.net/documents/VOEvent/)**.
 
 The next version is prepared in this repository. 
 _It is not yet finalized and so, should not be considered
