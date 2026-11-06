@@ -310,7 +310,8 @@ references to metadata packets that may be found in a VOEvent
 repository.
 In a compliant, registered VOEvent stream, each event's id without the
 query part must reference a VO Registry record containing a capability
-with a \xmlel{standardID} of \nolinkurl{ivo://ivoa.net/std/voevent} as per
+with a \xmlel{standardID} of
+\nolinkurl{ivo://ivoa.net/std/voevent#stream-2.1} as per
 Sect.~\ref{sec:registering}.  That resouce describes the stream at
 which the VOEvent originated.  Publishers providing archives of their
 events should include more capabilities through which archived events
@@ -1395,8 +1396,8 @@ to attach rich metadata like the originating facility and instrument, and
 possibly extra stream metadata in a tableset.  However, this
 specification does not constrain the resource type.
 
-A public event stream MUST define a capability with standard id of
-\nolinkurl{ivo://ivoa.net/std/voevent}.
+A public event stream MUST define at least one capability with a standard id of
+\nolinkurl{ivo://ivoa.net/std/voevent#stream-2.1}.
 Note that path parts in IVOA identifiers are case-insensitive, and hence
 when comparing ivoids, clients must ignore case.
 
@@ -1444,7 +1445,7 @@ Kafka.  The Kafka stream is also availble through some other
 provider, perhaps to ensure high availability:
 
 \begin{lstlisting}
-<capability standardID="ivo://ivoa.net/std/voevent">
+<capability standardID="ivo://ivoa.net/std/voevent#stream-2.1">
   <interface xsi:type="voe:StreamEndpoint" role="std"
       standardID="ivo://ivoa.net/std/voevent#acc-vtp">
     <accessURL>http://example.org/events/vtp</accessURL>
@@ -1465,8 +1466,9 @@ shows how to declare an archive of the VOEvents sent out.
 \subsection{Finding VOEvent Streams}
 
 Normatively, VOEvent streams are located in the VO Registry as resources
-with capabilites whose \xmlel{standardID} attribute compares equal to
-the VOEvent standard id \nolinkurl{ivo://ivoa.net/std/voevent} ignoring
+with capabilites whose \xmlel{standardID} attribute match standard
+keys for VOEvent version 2 streams,
+\nolinkurl{ivo://ivoa.net/std/voevent#stream-2.%} ignoring
 case.
 
 This standard defines one mandatory details key for RegTAP
@@ -1481,10 +1483,11 @@ Using RegTAP, all registered VOEvent streams
 can be located using a query like
 
 \begin{lstlisting}[language=SQL]
-SELECT ivoid, res_title
+SELECT ivoid, res_title, cap_description, access_url
 FROM rr.resource
-  NATURAL JOIN rr.capability
-WHERE standard_id='ivo://ivoa.net/std/voevent'
+NATURAL JOIN rr.capability
+NATURAL JOIN rr.interface
+WHERE standard_id ILIKE 'ivo://ivoa.net/std/voevent#stream-2.%'
 \end{lstlisting}
 
 To get URLs and titles of streams giving a subject containing supernova
@@ -1497,7 +1500,7 @@ FROM rr.resource
   NATURAL JOIN rr.interface
   NATURAL JOIN rr.res_subject
 WHERE
-  standard_id='ivo://ivoa.net/std/voevent'
+  standard_id ILIKE 'ivo://ivoa.net/std/voevent#stream-2.%'
   AND 1=ivo_nocasematch(res_subject, '%supernova%')
   AND role='std'
 \end{lstlisting}
